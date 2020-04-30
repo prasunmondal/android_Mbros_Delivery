@@ -12,10 +12,12 @@ class AppContext {
     private lateinit var saveUserActivity: Context
 
     fun getMainActivity(): Context {
+        println("Getting Context: " + this.mainActivity)
         return this.mainActivity
     }
 
     fun setMainActivity(value: Context) {
+        println("Setting Context: "  +value)
         this.mainActivity = value
     }
 

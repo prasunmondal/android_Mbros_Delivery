@@ -23,8 +23,34 @@ class DownloadUpdateMetadataInfo(private val context: Context, private val url: 
 		private const val MIME_TYPE = "application/vnd.android.package-archive"
 	}
 
+	fun enqueDownload2() {
+		println("address: " + FileManagers.downloadLink_Metadata.destination)
+		val destination = FileManagers.downloadLink_Metadata.destination
+
+//		val uri = Uri.parse("$FILE_BASE_PATH$destination")
+//
+//		val file = File(destination)
+//		if (file.exists()) file.delete()
+//
+//		val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+//		val downloadUri = Uri.parse(url)
+//		val request = DownloadManager.Request(downloadUri)
+//		request.setMimeType(MIME_TYPE)
+//		request.setTitle(context.getString(R.string.checking_for_updates))
+//		request.setDescription(context.getString(R.string.metadata_downloading))
+//
+//		// set destination
+//		request.setDestinationUri(uri)
+//
+////		showInstallOption(view, isRefresh)
+//		// Enqueue a new download and same the referenceId
+//		downloadManager.enqueue(request)
+////		Toast.makeText(context, context.getString(R.string.checkingForUpdates), Toast.LENGTH_LONG).show()
+	}
+
 	fun enqueueDownload(view: View, isRefresh: Boolean) {
 
+//		println("Here....... " + FileManagers.downloadLink_Metadata.destination)
 		val destination = FileManagers.downloadLink_Metadata.destination
 
 		val uri = Uri.parse("$FILE_BASE_PATH$destination")
@@ -42,7 +68,7 @@ class DownloadUpdateMetadataInfo(private val context: Context, private val url: 
 		// set destination
 		request.setDestinationUri(uri)
 
-		showInstallOption(view, isRefresh)
+//		showInstallOption(view, isRefresh)
 		// Enqueue a new download and same the referenceId
 		downloadManager.enqueue(request)
 //		Toast.makeText(context, context.getString(R.string.checkingForUpdates), Toast.LENGTH_LONG).show()
@@ -73,13 +99,14 @@ class DownloadUpdateMetadataInfo(private val context: Context, private val url: 
 				R.string.updateAvailable,
 				Snackbar.LENGTH_INDEFINITE, R.string.update
 			) {
-				downloadAndUpdate(view)
+				downloadAndUpdate()
 			}
 		}
 	}
 
-	private fun downloadAndUpdate(view: View) {
-		val apkUrl = fetchedMetadatas.getValue(fetchedMetadatas.APP_DOWNLOAD_LINK) ?: return
+	fun downloadAndUpdate() {
+		println("Im inside")
+//		val apkUrl = fetchedMetadatas.getValue(fetchedMetadatas.APP_DOWNLOAD_LINK)
 //		DownloadUpdate(context, apkUrl).enqueueDownload(view)
 	}
 }

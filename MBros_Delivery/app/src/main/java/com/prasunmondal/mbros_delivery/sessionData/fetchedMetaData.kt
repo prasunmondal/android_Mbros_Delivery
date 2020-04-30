@@ -49,6 +49,7 @@ class FetchedMetaData {
     }
 
 //    @SuppressLint("DefaultLocale")
+
 //    fun updateButtonData(isRefresh: Boolean) {
 //        if(isRefresh)
 //            Toast.makeText(AppContexts.getMainActivity(), "Refresh Complete", Toast.LENGTH_SHORT).show()
