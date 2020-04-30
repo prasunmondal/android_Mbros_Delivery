@@ -23,31 +23,6 @@ class DownloadRateList(private val context: Context, private val url: String) {
 		private const val MIME_TYPE = "application/vnd.android.package-archive"
 	}
 
-	fun enqueDownload2() {
-		println("address: " + fileManagers.storageLink_RateList.destination)
-		val destination = fileManagers.storageLink_RateList.destination
-
-//		val uri = Uri.parse("$FILE_BASE_PATH$destination")
-//
-//		val file = File(destination)
-//		if (file.exists()) file.delete()
-//
-//		val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-//		val downloadUri = Uri.parse(url)
-//		val request = DownloadManager.Request(downloadUri)
-//		request.setMimeType(MIME_TYPE)
-//		request.setTitle(context.getString(R.string.checking_for_updates))
-//		request.setDescription(context.getString(R.string.metadata_downloading))
-//
-//		// set destination
-//		request.setDestinationUri(uri)
-//
-////		showInstallOption(view, isRefresh)
-//		// Enqueue a new download and same the referenceId
-//		downloadManager.enqueue(request)
-////		Toast.makeText(context, context.getString(R.string.checkingForUpdates), Toast.LENGTH_LONG).show()
-	}
-
 	fun enqueueDownload(view: View, isRefresh: Boolean) {
 
 //		println("Here....... " + fileManagers.downloadLink_Metadata.destination)
@@ -71,7 +46,6 @@ class DownloadRateList(private val context: Context, private val url: String) {
 		showInstallOption(view, isRefresh)
 		// Enqueue a new download and same the referenceId
 		downloadManager.enqueue(request)
-//		Toast.makeText(context, context.getString(R.string.checkingForUpdates), Toast.LENGTH_LONG).show()
 	}
 
 	private fun showInstallOption(view: View, isRefresh: Boolean) {
