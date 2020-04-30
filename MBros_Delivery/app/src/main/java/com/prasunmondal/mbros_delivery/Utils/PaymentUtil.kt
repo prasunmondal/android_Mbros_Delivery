@@ -1,6 +1,6 @@
 package com.prasunmondal.mbros_delivery.Utils
 
-import com.prasunmondal.mbros_delivery.sessionData.FetchedMetaData.Singleton.instance as fetchedMetadatas
+import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList.Singleton.instance as fetchedRateLists
 import com.prasunmondal.mbros_delivery.sessionData.LocalConfig.Singleton.instance as localConfigs
 
 class PaymentUtil {
@@ -10,10 +10,10 @@ class PaymentUtil {
     }
 
     fun isPayOptionEnabled(): Boolean {
-        if (localConfigs.doesUsernameExists() && fetchedMetadatas.isDataFetched()) {
+        if (localConfigs.doesUsernameExists() && fetchedRateLists.isDataFetched()) {
             val currentUser = localConfigs.getValue(localConfigs.USERNAME)!!.toLowerCase()
             val payBill =
-                fetchedMetadatas.getValueByLabel(fetchedMetadatas.TAG_PENDING_BILL, currentUser)
+                fetchedRateLists.getValueByLabel(fetchedRateLists.TAG_PENDING_BILL, currentUser)
             return payBill.isNotEmpty() && payBill.toInt() > 0
         }
         return false
@@ -24,21 +24,21 @@ class PaymentUtil {
     }
 
     fun getOutstandingAmount(currentUser: String): Int? {
-        val outstandingBal = fetchedMetadatas.getValueByLabel(fetchedMetadatas.TAG_CURRENT_OUTSTANDING, currentUser)
+        val outstandingBal = fetchedRateLists.getValueByLabel(fetchedRateLists.TAG_CURRENT_OUTSTANDING, currentUser)
         if(outstandingBal.isNotEmpty())
             return outstandingBal.toInt()
         return null
     }
 
     fun getPendingBill(currentUser: String): Int? {
-        val payBill = fetchedMetadatas.getValueByLabel(fetchedMetadatas.TAG_PENDING_BILL, currentUser)
+        val payBill = fetchedRateLists.getValueByLabel(fetchedRateLists.TAG_PENDING_BILL, currentUser)
         if(payBill.isNotEmpty())
             return payBill.toInt()
         return null
     }
 
     fun isDisplayButtonEnabled(): Boolean {
-        if(localConfigs.doesUsernameExists() && fetchedMetadatas.isDataFetched()) {
+        if(localConfigs.doesUsernameExists() && fetchedRateLists.isDataFetched()) {
             val currentUser = localConfigs.getValue(localConfigs.USERNAME)!!
             return (localConfigs.doesUsernameExists()
                     && (getOutstandingAmount(currentUser) != null

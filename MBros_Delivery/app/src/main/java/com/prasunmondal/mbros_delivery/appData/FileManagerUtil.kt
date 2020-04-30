@@ -17,7 +17,7 @@ class FileManagerUtil {
 
     var localConfigurationStorage = FilePaths(rootFromContext, "AppData", "AppConfigurationData")
 
-    var downloadLink_Metadata = FilePaths(
+    var storageLink_RateList = FilePaths(
         AppContexts.getMainActivity().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString(), "", "details.csv")
 
     var downloadLink_UpdateAPK = FilePaths(

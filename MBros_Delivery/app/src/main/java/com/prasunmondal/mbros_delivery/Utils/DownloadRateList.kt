@@ -12,11 +12,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.prasunmondal.mbros_delivery.BuildConfig
 import com.prasunmondal.mbros_delivery.R
 import java.io.File
-import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as FileManagers
-import com.prasunmondal.mbros_delivery.sessionData.FetchedMetaData.Singleton.instance as fetchedMetadatas
+import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagers
+import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList.Singleton.instance as fetchedRateList
 
 
-class DownloadUpdateMetadataInfo(private val context: Context, private val url: String) {
+class DownloadRateList(private val context: Context, private val url: String) {
 
 	companion object {
 		private const val FILE_BASE_PATH = "file://"
@@ -24,8 +24,8 @@ class DownloadUpdateMetadataInfo(private val context: Context, private val url: 
 	}
 
 	fun enqueDownload2() {
-		println("address: " + FileManagers.downloadLink_Metadata.destination)
-		val destination = FileManagers.downloadLink_Metadata.destination
+		println("address: " + fileManagers.storageLink_RateList.destination)
+		val destination = fileManagers.storageLink_RateList.destination
 
 //		val uri = Uri.parse("$FILE_BASE_PATH$destination")
 //
@@ -50,8 +50,8 @@ class DownloadUpdateMetadataInfo(private val context: Context, private val url: 
 
 	fun enqueueDownload(view: View, isRefresh: Boolean) {
 
-//		println("Here....... " + FileManagers.downloadLink_Metadata.destination)
-		val destination = FileManagers.downloadLink_Metadata.destination
+//		println("Here....... " + fileManagers.downloadLink_Metadata.destination)
+		val destination = fileManagers.storageLink_RateList.destination
 
 		val uri = Uri.parse("$FILE_BASE_PATH$destination")
 
@@ -68,7 +68,7 @@ class DownloadUpdateMetadataInfo(private val context: Context, private val url: 
 		// set destination
 		request.setDestinationUri(uri)
 
-//		showInstallOption(view, isRefresh)
+		showInstallOption(view, isRefresh)
 		// Enqueue a new download and same the referenceId
 		downloadManager.enqueue(request)
 //		Toast.makeText(context, context.getString(R.string.checkingForUpdates), Toast.LENGTH_LONG).show()
@@ -80,7 +80,7 @@ class DownloadUpdateMetadataInfo(private val context: Context, private val url: 
 			override fun onReceive(context: Context, intent: Intent) {
 				println("Metadata Received!")
 				promptAndInitiateUpdate(view)
-//				fetchedMetadatas.updateButtonData(isRefresh)
+//				fetchedRateList.updateButtonData(isRefresh)
 			}
 		}
 		context.registerReceiver(onComplete, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
@@ -88,7 +88,7 @@ class DownloadUpdateMetadataInfo(private val context: Context, private val url: 
 
 	private fun promptAndInitiateUpdate(view: View)
 	{
-		var availableVers = fetchedMetadatas.getValue(fetchedMetadatas.APP_DOWNLOAD_VERSION)
+		var availableVers = fetchedRateList.getValue(fetchedRateList.APP_DOWNLOAD_VERSION)
 		val currentVers = BuildConfig.VERSION_CODE
 		println("current value: $currentVers")
 		if(availableVers == null) {
@@ -106,7 +106,7 @@ class DownloadUpdateMetadataInfo(private val context: Context, private val url: 
 
 	fun downloadAndUpdate() {
 		println("Im inside")
-//		val apkUrl = fetchedMetadatas.getValue(fetchedMetadatas.APP_DOWNLOAD_LINK)
+//		val apkUrl = fetchedRateList.getValue(fetchedRateList.APP_DOWNLOAD_LINK)
 //		DownloadUpdate(context, apkUrl).enqueueDownload(view)
 	}
 }

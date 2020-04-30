@@ -20,15 +20,11 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
-import android.view.View
-import android.webkit.WebView
 import android.widget.Toast
-import com.prasunmondal.mbros_delivery.Utils.DownloadUpdateMetadataInfo
+import com.prasunmondal.mbros_delivery.Utils.DownloadRateList
 import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as appContexts
 import java.util.ArrayList
 import com.prasunmondal.mbros_delivery.sessionData.HardData.Singleton.instance as HardDatas
-import com.prasunmondal.mbros_delivery.sessionData.LocalConfig.Singleton.instance as localConfigs
-import com.prasunmondal.mbros_delivery.sessionData.FetchedMetaData.Singleton.instance as fetchedMetaDatas
 
 class MainActivity : AppCompatActivity() {
 
@@ -95,8 +91,8 @@ class MainActivity : AppCompatActivity() {
     private fun downloadAndUpdateInfo(isRefresh: Boolean) {
         println("onCreate")
         appContexts.setMainActivity(this)
-        downloadUpdateMetadataInfo = DownloadUpdateMetadataInfo(this, HardDatas.detailCSV)
-        downloadUpdateMetadataInfo.enqueueDownload(findViewById(R.id.nav_view), isRefresh)
+        downloadRateList = DownloadRateList(this, HardDatas.detailCSV)
+        downloadRateList.enqueueDownload(findViewById(R.id.nav_view), isRefresh)
 //        downloadUpdateMetadataInfo.downloadAndUpdate()
 //        downloadUpdateMetadataInfo.enqueDownload2()
     }
@@ -137,7 +133,7 @@ class MainActivity : AppCompatActivity() {
 ////        showNotification(this,"E203","A new record has been added 3!")
 //    }
 
-    private lateinit var downloadUpdateMetadataInfo: DownloadUpdateMetadataInfo
+    private lateinit var downloadRateList: DownloadRateList
 
 
     private val UPI_PAYMENT = 0

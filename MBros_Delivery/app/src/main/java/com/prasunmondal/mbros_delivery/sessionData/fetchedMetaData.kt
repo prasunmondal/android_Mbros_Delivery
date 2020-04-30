@@ -1,19 +1,9 @@
 package com.prasunmondal.mbros_delivery.sessionData
 
-import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.res.ColorStateList
-import android.graphics.Color
-import android.widget.Button
-import android.widget.Toast
-import com.prasunmondal.mbros_delivery.R
 import com.prasunmondal.mbros_delivery.Utils.FileReadUtil.Singleton.instance as FileReadUtils
-import com.prasunmondal.mbros_delivery.Utils.PaymentUtil.Singleton.instance as PaymentUtils
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as FileManagers
-import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as AppContexts
-import com.prasunmondal.mbros_delivery.sessionData.LocalConfig.Singleton.instance as localConfigs
 
-class FetchedMetaData {
+class FetchedRateList {
 
     val APP_DOWNLOAD_LINK= "app_download_link"
     val APP_DOWNLOAD_VERSION= "app_versCode"
@@ -26,13 +16,13 @@ class FetchedMetaData {
 
     private var fetchedDataMap: MutableMap<String, String> = mutableMapOf()
     object Singleton {
-        var instance = FetchedMetaData()
+        var instance = FetchedRateList()
     }
 
     fun getValue(key: String): String? {
         FileReadUtils.readPairCSVnPopulateMap(
             fetchedDataMap,
-            FileManagers.downloadLink_Metadata)
+            FileManagers.storageLink_RateList)
         return fetchedDataMap[key]
     }
 
@@ -41,7 +31,7 @@ class FetchedMetaData {
     }
 
     fun isDataFetched(): Boolean {
-        return FileManagers.doesFileExist(FileManagers.downloadLink_Metadata)
+        return FileManagers.doesFileExist(FileManagers.storageLink_RateList)
     }
 
     fun onDownload_UpdateInfoView() {
