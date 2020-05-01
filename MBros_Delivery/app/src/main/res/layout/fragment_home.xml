@@ -60,7 +60,7 @@
         android:ems="10"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="73dp" />
+        app:layout_constraintTop_toBottomOf="@+id/viewTotalPc" />
 
     <EditText
         android:id="@+id/editText4"
