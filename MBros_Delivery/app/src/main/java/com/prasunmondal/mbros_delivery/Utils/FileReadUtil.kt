@@ -26,4 +26,39 @@ class FileReadUtil {
             throw (e)
         }
     }
+
+    fun getValue_forKey(fileName: FilePaths, keyColumnIndex: Int, key: String, valueColumnIndex: Int): String? {
+        try {
+            val reader = CSVReader(FileReader(File(fileName.destination)))
+            var nextLine: Array<String>
+            while (reader.peek() != null) {
+                nextLine = reader.readNext()
+                if(nextLine[keyColumnIndex] == key) {
+                    return nextLine[valueColumnIndex]
+                }
+            }
+        } catch (e: IOException) {
+            println(e)
+            throw (e)
+        }
+        TODO("when asked value doesn't exist.. need to update the values")
+        return null
+    }
+
+    fun getListOfValues(fileName: FilePaths, keyColumnIndex: Int): List<String>? {
+        var list: MutableList<String> = []
+        try {
+            val reader = CSVReader(FileReader(File(fileName.destination)))
+            var nextLine: Array<String>
+            while (reader.peek() != null) {
+                nextLine = reader.readNext()
+                list.add(nextLine[keyColumnIndex])
+            }
+        } catch (e: IOException) {
+            println(e)
+            throw (e)
+        }
+        TODO("when asked value list is empty.. need to update the values")
+        return list
+    }
 }

@@ -14,6 +14,12 @@ class FetchedRateList {
     val TAG_CURRENT_OUTSTANDING = "currentOutstanding_"
     val TAG_PENDING_BILL = "pendingBill_"
 
+    val RateListColIndex_Name = 1
+    val RateListColIndex_PhoneNo = 2
+    val RateListColIndex_prevBal = 3
+    val RateListColIndex_todaysPrice = 4
+
+
     private var fetchedDataMap: MutableMap<String, String> = mutableMapOf()
     object Singleton {
         var instance = FetchedRateList()
