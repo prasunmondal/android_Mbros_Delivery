@@ -38,6 +38,10 @@ class FetchedRateList {
 
     }
 
+    fun getAllUserName() {
+
+    }
+
 //    @SuppressLint("DefaultLocale")
 
 //    fun updateButtonData(isRefresh: Boolean) {
