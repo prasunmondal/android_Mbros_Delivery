@@ -6,37 +6,14 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/viewTotalKG"
-        android:layout_width="80dp"
-        android:layout_height="33dp"
-        android:text="0"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/viewTotalPc"
-        android:layout_width="80dp"
-        android:layout_height="33dp"
-        android:text="0"
-        android:textColor="#000000"
-        android:textSize="14sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/viewTotalPcLabel87"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/viewTotalKGLabel"
         android:layout_width="41dp"
         android:layout_height="33dp"
         android:text="  KG"
         android:textAlignment="viewStart"
         android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/viewTotalKG"
-        app:layout_constraintHorizontal_bias="0.348"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editText8"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -54,41 +31,44 @@
         app:layout_constraintVertical_bias="0.001" />
 
     <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/editText8"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewTotalPc" />
+        app:layout_constraintStart_toEndOf="@+id/viewTotalPcLabel87"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
-
-    <EditText
-        android:id="@+id/editText6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/editText9"
+        android:layout_width="153dp"
+        android:layout_height="40dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        app:layout_constraintStart_toEndOf="@+id/editText2"
-        app:layout_constraintTop_toTopOf="@+id/editText2" />
+        app:layout_constraintStart_toEndOf="@+id/viewTotalKGLabel"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editText7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toBottomOf="@+id/editText4"
-        app:layout_constraintStart_toEndOf="@+id/editText4"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
-        app:layout_constraintVertical_bias="0.0" />
+    <LinearLayout
+        android:id="@+id/PieceLayout"
+        android:layout_width="163dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText8">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/KGLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/PieceLayout"
+        app:layout_constraintTop_toBottomOf="@+id/editText9">
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
