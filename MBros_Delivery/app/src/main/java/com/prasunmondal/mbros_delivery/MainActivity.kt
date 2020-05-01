@@ -297,7 +297,7 @@ class MainActivity : AppCompatActivity() {
 //    }
 
     fun setUIValues() {
-        val pricePerKgLabel = findViewById<EditText>(R.id.pricePerKg)
+//        val pricePerKgLabel = findViewById<EditText>(R.id.pricePerKg)
         println("----------------" + currentSession.getCurrentCustomer())
         println("----------------" + fetchedRateList.getPricePerKg(currentSession.getCurrentCustomer()))
 
