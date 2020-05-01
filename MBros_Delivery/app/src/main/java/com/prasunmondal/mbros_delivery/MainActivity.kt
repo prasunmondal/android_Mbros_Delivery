@@ -24,7 +24,8 @@ import android.widget.EditText
 import android.widget.Toast
 import com.jaredrummler.materialspinner.MaterialSpinner
 import com.prasunmondal.mbros_delivery.Utils.DownloadRateList
-import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList
+import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
+import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList.Singleton.instance as fetchedRateList
 import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as appContexts
 import java.util.ArrayList
 import com.prasunmondal.mbros_delivery.sessionData.HardData.Singleton.instance as HardDatas
@@ -59,9 +60,9 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        setUIValues()
 
-
-        downloadAndUpdateInfo(false)
+//        downloadAndUpdateInfo(false)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -289,6 +290,9 @@ class MainActivity : AppCompatActivity() {
 
     fun setUIValues() {
         val pricePerKgLabel = findViewById<EditText>(R.id.pricePerKg)
-//        pricePerKgLabel.text = FetchedRateList.Singleton.instance.getValue()
+        println("----------------" + currentSession.getCurrentCustomer())
+        println("----------------" + fetchedRateList.getPricePerKg(currentSession.getCurrentCustomer()))
+
+//        pricePerKgLabel.setText(fetchedRateList.getPricePerKg(currentSession.getCurrentCustomer()))
     }
 }

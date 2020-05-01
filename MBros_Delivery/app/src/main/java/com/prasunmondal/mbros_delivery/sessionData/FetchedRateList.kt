@@ -1,7 +1,7 @@
 package com.prasunmondal.mbros_delivery.sessionData
 
-import com.prasunmondal.mbros_delivery.Utils.FileReadUtil.Singleton.instance as FileReadUtils
-import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as FileManagers
+import com.prasunmondal.mbros_delivery.Utils.FileReadUtil.Singleton.instance as fileReadUtils
+import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagers
 
 class FetchedRateList {
 
@@ -26,9 +26,9 @@ class FetchedRateList {
     }
 
     fun getValue(key: String): String? {
-        FileReadUtils.readPairCSVnPopulateMap(
+        fileReadUtils.readPairCSVnPopulateMap(
             fetchedDataMap,
-            FileManagers.storageLink_RateList)
+            fileManagers.storageLink_RateList)
         return fetchedDataMap[key]
     }
 
@@ -37,7 +37,7 @@ class FetchedRateList {
     }
 
     fun isDataFetched(): Boolean {
-        return FileManagers.doesFileExist(FileManagers.storageLink_RateList)
+        return fileManagers.doesFileExist(fileManagers.storageLink_RateList)
     }
 
     fun onDownload_UpdateInfoView() {
@@ -45,7 +45,14 @@ class FetchedRateList {
     }
 
     fun getAllUserName(): MutableList<String> {
-        return FileReadUtils.getListOfValues(FileManagers.storageLink_RateList, RateListColIndex_Name)!!
+        return fileReadUtils.getListOfValues(fileManagers.storageLink_RateList, RateListColIndex_Name)!!
+    }
+
+    fun getPricePerKg(user: String): String {
+        return fileReadUtils.getValue_forKey(fileManagers.storageLink_RateList,
+            RateListColIndex_Name,
+            user,
+            RateListColIndex_todaysPrice)!!
     }
 
 //    @SuppressLint("DefaultLocale")
