@@ -46,7 +46,7 @@ class FileReadUtil {
     }
 
     fun getListOfValues(fileName: FilePaths, keyColumnIndex: Int): List<String>? {
-        var list: MutableList<String> = []
+        lateinit var list : MutableList<String>
         try {
             val reader = CSVReader(FileReader(File(fileName.destination)))
             var nextLine: Array<String>
