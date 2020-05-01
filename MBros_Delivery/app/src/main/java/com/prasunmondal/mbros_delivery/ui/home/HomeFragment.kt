@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.jaredrummler.materialspinner.MaterialSpinner
 import com.prasunmondal.mbros_delivery.R
 
 class HomeFragment : Fragment() {
@@ -28,4 +29,6 @@ class HomeFragment : Fragment() {
 //        })
         return root
     }
+
+
 }

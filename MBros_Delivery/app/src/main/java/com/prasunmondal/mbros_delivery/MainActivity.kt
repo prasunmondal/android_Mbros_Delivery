@@ -20,8 +20,11 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import android.widget.EditText
 import android.widget.Toast
+import com.jaredrummler.materialspinner.MaterialSpinner
 import com.prasunmondal.mbros_delivery.Utils.DownloadRateList
+import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList
 import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as appContexts
 import java.util.ArrayList
 import com.prasunmondal.mbros_delivery.sessionData.HardData.Singleton.instance as HardDatas
@@ -283,4 +286,9 @@ class MainActivity : AppCompatActivity() {
 //        startActivity(i)
 //        finish()
 //    }
+
+    fun setUIValues() {
+        val pricePerKgLabel = findViewById<EditText>(R.id.pricePerKg)
+//        pricePerKgLabel.text = FetchedRateList.Singleton.instance.getValue()
+    }
 }

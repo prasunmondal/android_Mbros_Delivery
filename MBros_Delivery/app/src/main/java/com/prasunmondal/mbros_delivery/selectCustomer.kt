@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.jaredrummler.materialspinner.MaterialSpinner
+import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as appContext
 import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList
 
@@ -33,7 +34,7 @@ class selectCustomer : AppCompatActivity() {
         val customerSelector: MaterialSpinner = findViewById(R.id.customerSelector)
         val customerName: String = customerSelector.getItems<String>()[customerSelector.selectedIndex].toString()
         Toast.makeText(this@selectCustomer, "Selected User: " + customerName, Toast.LENGTH_SHORT).show()
-        // save
+        currentSession.setCurrentCustomer(customerName)
         goToCalculatingPage()
     }
 
