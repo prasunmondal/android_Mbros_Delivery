@@ -2,6 +2,7 @@ package com.prasunmondal.mbros_delivery.ui.home
 
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.prasunmondal.mbros_delivery.R
+import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -35,20 +37,23 @@ class HomeFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         GRoot = root
-        addTransactionRow(root)
+        for(i in 1..5) {
+            addTransactionRow(root)
+        }
 
         return root
     }
 
     fun addTransactionRow(root: View) {
-        list_PieceFields.add(addUnitRow(root, root.findViewById(R.id.PieceLayout)))
-        list_KGFields.add(addUnitRow(root, root.findViewById(R.id.KGLayout)))
+        list_PieceFields.add(addUnitRow(root, root.findViewById(R.id.PieceLayout), InputType.TYPE_CLASS_NUMBER))
+        list_KGFields.add(addUnitRow(root, root.findViewById(R.id.KGLayout), InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL))
     }
 
-    fun addUnitRow(root: View, containerLayout: View): EditText{
+    fun addUnitRow(root: View, containerLayout: View, inputType: Int): EditText{
         val mRlayout = containerLayout as LinearLayout
         var myEditText = EditText(context)
         myEditText.setLayoutParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
+        myEditText.inputType= inputType
         mRlayout.addView(myEditText)
         setOnClickListener(myEditText)
         return myEditText
@@ -69,8 +74,6 @@ class HomeFragment : Fragment() {
                 s: CharSequence, start: Int,
                 before: Int, count: Int
             ) {
-                println("text changed")
-//                onChangeIndividualKGs()
                 updateLabelOnChange()
             }
         })
@@ -98,8 +101,5 @@ class HomeFragment : Fragment() {
 
         labelPc.setText(total_Pieces.toString())
         labelKG.setText(total_KGs.toString())
-
     }
-
-
 }
