@@ -21,11 +21,11 @@ class AppContext {
         this.mainActivity = value
     }
 
-    fun getSaveUserActivity(): Context {
+    fun getCustomerSelectionActivity(): Context {
         return this.saveUserActivity
     }
 
-    fun setSaveUserActivity(value: Context) {
+    fun setCustomerSelectionActivity(value: Context) {
         this.saveUserActivity = value
     }
 }

@@ -41,12 +41,12 @@ class FileReadUtil {
             println(e)
             throw (e)
         }
-        TODO("when asked value doesn't exist.. need to update the values")
+//        "when asked value doesn't exist.. need to update the values")
         return null
     }
 
-    fun getListOfValues(fileName: FilePaths, keyColumnIndex: Int): List<String>? {
-        lateinit var list : MutableList<String>
+    fun getListOfValues(fileName: FilePaths, keyColumnIndex: Int): MutableList<String>? {
+        var list : MutableList<String> = mutableListOf<String>()
         try {
             val reader = CSVReader(FileReader(File(fileName.destination)))
             var nextLine: Array<String>
@@ -58,7 +58,7 @@ class FileReadUtil {
             println(e)
             throw (e)
         }
-        TODO("when asked value list is empty.. need to update the values")
+//        "when asked value list is empty.. need to update the values"
         return list
     }
 }

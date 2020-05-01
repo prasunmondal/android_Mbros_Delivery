@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.jaredrummler.materialspinner.MaterialSpinner
+import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as appContext
+import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList
 
 
 class selectCustomer : AppCompatActivity() {
@@ -16,11 +18,12 @@ class selectCustomer : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_customer)
+        appContext.setCustomerSelectionActivity(this)
         populateTodaysCustomer()
     }
 
     fun populateTodaysCustomer() {
-        val geeks = listOf("Fowler", "Beck", "Evans")
+        val geeks = FetchedRateList.Singleton.instance.getAllUserName()
         val spinner: MaterialSpinner =
             findViewById<View>(R.id.customerSelector) as MaterialSpinner
         spinner.setItems(geeks)
