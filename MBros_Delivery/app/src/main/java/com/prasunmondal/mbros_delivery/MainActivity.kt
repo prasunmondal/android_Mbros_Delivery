@@ -7,6 +7,9 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Bundle
+import android.text.Editable
+import android.text.InputType
+import android.text.TextWatcher
 import android.util.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -21,9 +24,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
 import com.jaredrummler.materialspinner.MaterialSpinner
 import com.prasunmondal.mbros_delivery.Utils.DownloadRateList
+import com.prasunmondal.mbros_delivery.sessionData.AppContext
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList.Singleton.instance as fetchedRateList
 import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as appContexts
@@ -39,6 +44,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+        AppContext.Singleton.instance.setMainActivity(this)
 
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
@@ -59,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
 
         setUIValues()
 
@@ -269,7 +277,7 @@ class MainActivity : AppCompatActivity() {
 //        }
 //        if (id == R.id.refresh) {
 //            println("Refrshing...,.......")
-//            Toast.makeText(this, "Refreshing data... Sometimes it may take 5 minutes to reflect the data.", Toast.LENGTH_LONG).show()
+//            Toast.makeText(this, "Refreshing data... Sometimes it may take 5 minutes to reflect the data.", Toast.LENGT_LONG).show()
 //            downloadAndUpdateInfo(true)
 //            return true
 //        }
@@ -295,4 +303,6 @@ class MainActivity : AppCompatActivity() {
 
 //        pricePerKgLabel.setText(fetchedRateList.getPricePerKg(currentSession.getCurrentCustomer()))
     }
+
+
 }
