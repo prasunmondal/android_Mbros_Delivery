@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         GRoot = root
-        for(i in 1..5) {
+        for(i in 1..10) {
             addTransactionRow(root)
         }
         currentSession.setCurrentCustomer_totalKG("0")

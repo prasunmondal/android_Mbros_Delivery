@@ -9,9 +9,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.jaredrummler.materialspinner.MaterialSpinner
+import com.prasunmondal.mbros_delivery.Utils.DownloadRateList
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as appContext
 import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList
+import com.prasunmondal.mbros_delivery.sessionData.HardData
 
 
 class selectCustomer : AppCompatActivity() {
@@ -21,6 +23,7 @@ class selectCustomer : AppCompatActivity() {
         setContentView(R.layout.activity_select_customer)
         appContext.setCustomerSelectionActivity(this)
         populateTodaysCustomer()
+        downloadAndUpdateInfo(false)
     }
 
     fun populateTodaysCustomer() {
@@ -42,5 +45,10 @@ class selectCustomer : AppCompatActivity() {
         val i = Intent(this@selectCustomer, MainActivity::class.java)
         startActivity(i)
         finish()
+    }
+
+    private fun downloadAndUpdateInfo(isRefresh: Boolean) {
+        var downloadRateList = DownloadRateList(this, HardData.Singleton.instance.detailCSV)
+        downloadRateList.enqueueDownload(findViewById(R.id.customerSelector), isRefresh)
     }
 }

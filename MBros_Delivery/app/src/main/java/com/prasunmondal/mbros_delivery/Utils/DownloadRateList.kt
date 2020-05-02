@@ -7,10 +7,12 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.view.View
+import android.widget.Toast
 import com.prasunmondal.mbros_delivery.Utility.showSnackbar
 import com.google.android.material.snackbar.Snackbar
 import com.prasunmondal.mbros_delivery.BuildConfig
 import com.prasunmondal.mbros_delivery.R
+import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as appContext
 import java.io.File
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagers
 import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList.Singleton.instance as fetchedRateList
@@ -53,6 +55,7 @@ class DownloadRateList(private val context: Context, private val url: String) {
 		val onComplete = object : BroadcastReceiver() {
 			override fun onReceive(context: Context, intent: Intent) {
 				println("Metadata Received!")
+				Toast.makeText(appContext.getCustomerSelectionActivity(), "Download Complete", Toast.LENGTH_LONG)
 				promptAndInitiateUpdate(view)
 //				fetchedRateList.updateButtonData(isRefresh)
 			}
