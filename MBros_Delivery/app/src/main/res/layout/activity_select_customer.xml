@@ -30,7 +30,7 @@
         android:ems="10"
         android:prompt="@string/app_name"
         android:textColor="#000000"
-        android:textColorHint="#292828"
+        android:textColorHint="#424141"
         android:forceDarkAllowed="true"
         android:popupBackground="#61666B"
         android:textSize="15dp"
@@ -47,8 +47,7 @@
         android:clickable="true"
         android:onClick="onClickDownloadData"
         app:fabCustomSize="@dimen/send_fab_size"
-        android:background="@color/white"
-        android:=""
+        app:backgroundTint="#302F2F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/stat_sys_download_done" />
