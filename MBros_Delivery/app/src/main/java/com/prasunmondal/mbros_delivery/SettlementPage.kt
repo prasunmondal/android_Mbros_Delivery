@@ -1,5 +1,6 @@
 package com.prasunmondal.mbros_delivery
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -20,10 +21,10 @@ class SettlementPage : AppCompatActivity() {
         setContentView(R.layout.activity_settlement_page)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+//        fab.setOnClickListener { view ->
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show()
+//        }
         initiallize()
     }
 
@@ -78,5 +79,11 @@ class SettlementPage : AppCompatActivity() {
         } else {
             return value.toInt().toString()
         }
+    }
+
+    fun goToSendMail(view: View) {
+        val i = Intent(this@SettlementPage, SendMail::class.java)
+        startActivity(i)
+        finish()
     }
 }
