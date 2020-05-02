@@ -22,8 +22,7 @@ class selectCustomer : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_customer)
         appContext.setCustomerSelectionActivity(this)
-        downloadAndUpdateInfo(false)
-
+        populateTodaysCustomer()
     }
 
     fun populateTodaysCustomer() {
@@ -53,6 +52,6 @@ class selectCustomer : AppCompatActivity() {
     }
 
     fun onClickDownloadData(view: View) {
-        populateTodaysCustomer()
+        downloadAndUpdateInfo(false)
     }
 }
