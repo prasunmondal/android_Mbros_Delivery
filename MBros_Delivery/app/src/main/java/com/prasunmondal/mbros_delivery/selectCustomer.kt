@@ -1,22 +1,24 @@
 package com.prasunmondal.mbros_delivery
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
 import com.jaredrummler.materialspinner.MaterialSpinner
 import com.prasunmondal.mbros_delivery.Utils.DownloadRateList
-import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
-import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as appContext
-import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList
 import com.prasunmondal.mbros_delivery.sessionData.HardData
+import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as appContext
+import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
+import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList.Singleton.instance as fetchedRateList
 
 
 class selectCustomer : AppCompatActivity() {
+
+    var text_NoCustomerToSelect = "No Customer to Select"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +28,9 @@ class selectCustomer : AppCompatActivity() {
     }
 
     fun populateTodaysCustomer() {
-        val geeks = FetchedRateList.Singleton.instance.getAllUserName()
+        var geeks = mutableListOf<String>(text_NoCustomerToSelect)
+        if(fetchedRateList.isDataFetched())
+            geeks = fetchedRateList.getAllUserName()
         val spinner: MaterialSpinner =
             findViewById<View>(R.id.customerSelector) as MaterialSpinner
         spinner.setItems(geeks)
@@ -41,9 +45,13 @@ class selectCustomer : AppCompatActivity() {
     }
 
     fun goToCalculatingPage() {
-        val i = Intent(this@selectCustomer, MainActivity::class.java)
-        startActivity(i)
-        finish()
+        if(currentSession.getCurrentCustomer().equals(text_NoCustomerToSelect)) {
+            Toast.makeText(this, "Select valid customer", Toast.LENGTH_LONG).show()
+        } else {
+            val i = Intent(this@selectCustomer, MainActivity::class.java)
+            startActivity(i)
+            finish()
+        }
     }
 
     private fun downloadAndUpdateInfo(isRefresh: Boolean) {
@@ -53,5 +61,29 @@ class selectCustomer : AppCompatActivity() {
 
     fun onClickDownloadData(view: View) {
         downloadAndUpdateInfo(false)
+        sendEmail()
+    }
+
+    protected fun sendEmail() {
+        Log.i("Send email", "")
+        val TO = arrayOf("prasun.mondal02@gmail.com")
+        val CC = arrayOf("prsn.online@gmail.com")
+        val emailIntent = Intent(Intent.ACTION_SEND)
+        emailIntent.data = Uri.parse("mailto:")
+        emailIntent.type = "text/plain"
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO)
+        emailIntent.putExtra(Intent.EXTRA_CC, CC)
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject")
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here")
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."))
+            finish()
+            Log.i("Finished sending email...", "")
+        } catch (ex: ActivityNotFoundException) {
+            Toast.makeText(
+                this@selectCustomer,
+                "There is no email client installed.", Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 }

@@ -55,7 +55,7 @@ class DownloadRateList(private val context: Context, private val url: String) {
 		val onComplete = object : BroadcastReceiver() {
 			override fun onReceive(context: Context, intent: Intent) {
 				println("Metadata Received!")
-				Toast.makeText(appContext.getCustomerSelectionActivity(), "Download Complete", Toast.LENGTH_LONG)
+				Toast.makeText(appContext.getCustomerSelectionActivity(), "Download Complete", Toast.LENGTH_LONG).show()
 				promptAndInitiateUpdate(view)
 //				fetchedRateList.updateButtonData(isRefresh)
 			}
