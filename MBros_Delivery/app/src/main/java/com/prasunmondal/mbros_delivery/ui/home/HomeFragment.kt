@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.prasunmondal.mbros_delivery.R
@@ -42,6 +43,7 @@ class HomeFragment : Fragment() {
         }
         currentSession.setCurrentCustomer_totalKG("0")
         currentSession.setCurrentCustomer_totalPCs("0")
+        updateLabels()
         return root
     }
 
@@ -75,12 +77,12 @@ class HomeFragment : Fragment() {
                 s: CharSequence, start: Int,
                 before: Int, count: Int
             ) {
-                updateLabelOnChange()
+                updateLabels()
             }
         })
     }
 
-    fun updateLabelOnChange() {
+    fun updateLabels() {
         total_KGs = 0.0
         total_Pieces = 0
         var iterator = list_KGFields.listIterator()
@@ -97,8 +99,8 @@ class HomeFragment : Fragment() {
             }
         }
 
-        var labelPc = GRoot.findViewById<EditText>(R.id.editText8)
-        var labelKG = GRoot.findViewById<EditText>(R.id.editText9)
+        var labelPc = GRoot.findViewById<TextView>(R.id.editText8)
+        var labelKG = GRoot.findViewById<TextView>(R.id.editText9)
 
         currentSession.setCurrentCustomer_totalKG(total_KGs.toString())
         currentSession.setCurrentCustomer_totalPCs(total_Pieces.toString())
