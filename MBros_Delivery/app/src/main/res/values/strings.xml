@@ -40,4 +40,5 @@
         <item>Subhodeep Ghosh</item>
         <item>Sudipta Roy</item>
     </string-array>
+    <string name="title_activity_settlement_page">SettlementPage</string>
 </resources>

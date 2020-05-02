@@ -23,6 +23,7 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -66,11 +67,6 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-
-        setUIValues()
-
-//        downloadAndUpdateInfo(false)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -255,54 +251,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    fun goToPaymentOptionsPage() {
-//        val i = Intent(this@MainActivity, ShowPaymentOptions::class.java)
-//        startActivity(i)
-//    }
-
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        // Inflate the main_menu; this adds items to the action bar if it is present.
-//        menuInflater.inflate(R.menu.main_menu, menu)
-//        return true
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        val id: Int = item.getItemId()
-//        if (id == R.id.action_favorite) {
-//            goToSaveUserPage()
-//            return true
-//        }
-//        if (id == R.id.refresh) {
-//            println("Refrshing...,.......")
-//            Toast.makeText(this, "Refreshing data... Sometimes it may take 5 minutes to reflect the data.", Toast.LENGT_LONG).show()
-//            downloadAndUpdateInfo(true)
-//            return true
-//        }
-//        if (id == R.id.paymentOptions) {
-//            println("Clicked View Payment Option btn...")
-//            goToPaymentOptionsPage()
-//            return true
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
-
-//    fun goToSaveUserPage() {
-//        localConfigs.deleteData()
-//        val i = Intent(this@MainActivity, SaveUser::class.java)
-//        startActivity(i)
-//        finish()
-//    }
-
-    fun setUIValues() {
-//        val pricePerKgLabel = findViewById<EditText>(R.id.pricePerKg)
-        println("----------------" + currentSession.getCurrentCustomer())
-        println("----------------" + fetchedRateList.getPricePerKg(currentSession.getCurrentCustomer()))
-
-//        pricePerKgLabel.setText(fetchedRateList.getPricePerKg(currentSession.getCurrentCustomer()))
+    fun goToSettlementPage(view: View) {
+        val i = Intent(this@MainActivity, SettlementPage::class.java)
+        startActivity(i)
     }
-
-
 }

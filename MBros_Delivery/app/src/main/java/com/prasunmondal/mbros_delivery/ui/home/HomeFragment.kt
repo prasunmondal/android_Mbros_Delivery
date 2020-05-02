@@ -1,5 +1,6 @@
 package com.prasunmondal.mbros_delivery.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
@@ -12,6 +13,8 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.prasunmondal.mbros_delivery.R
+import com.prasunmondal.mbros_delivery.SettlementPage
+import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 import java.util.*
 
 class HomeFragment : Fragment() {
@@ -99,7 +102,9 @@ class HomeFragment : Fragment() {
         var labelPc = GRoot.findViewById<EditText>(R.id.editText8)
         var labelKG = GRoot.findViewById<EditText>(R.id.editText9)
 
-        labelPc.setText(total_Pieces.toString())
-        labelKG.setText(total_KGs.toString())
+        currentSession.setCurrentCustomer_totalKG(total_KGs.toString())
+        currentSession.setCurrentCustomer_totalPCs(total_Pieces.toString())
+        labelPc.setText(currentSession.getCurrentCustomer_totalPCs())
+        labelKG.setText(currentSession.getCurrentCustomer_totalKG())
     }
 }
