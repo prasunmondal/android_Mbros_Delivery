@@ -1,9 +1,10 @@
 package com.prasunmondal.mbros_delivery
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.prasunmondal.mbros_delivery.MailUtils.Mail
 import com.prasunmondal.mbros_delivery.MailUtils.SendEmailAsyncTask
@@ -13,6 +14,9 @@ class SendMail : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_send_mail)
+
+        var fab_send = findViewById<FloatingActionButton>(R.id.send_mail)
+        fab_send.setRippleColor(Color.parseColor("#000000"))
     }
 
     private fun sendMessage() {
@@ -21,9 +25,7 @@ class SendMail : AppCompatActivity() {
         val email =
             SendEmailAsyncTask()
         email.activity = this
-        email.m = Mail(
-            "prsn.online@gmail.com", "7727861666325"
-        )
+        email.m = Mail("prsn.online@gmail.com", "7727861666325")
         email.m!!.set_from("prsn.online@gmail.com")
         email.m!!.body ="body"
         email.m!!.set_to(recipients)
@@ -36,8 +38,7 @@ class SendMail : AppCompatActivity() {
     }
 
     fun displayMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-//        Snackbar.make(findViewById(R.id.fab), message, Snackbar.LENGTH_LONG)
-//            .setAction("Action", null).show()
+        Snackbar.make(findViewById(R.id.send_mail), message, Snackbar.LENGTH_INDEFINITE)
+            .setAction("Action", null).show()
     }
 }

@@ -61,7 +61,7 @@ class selectCustomer : AppCompatActivity() {
 
     fun onClickDownloadData(view: View) {
         downloadAndUpdateInfo(false)
-        sendEmail()
+//        sendEmail()
     }
 
     protected fun sendEmail() {

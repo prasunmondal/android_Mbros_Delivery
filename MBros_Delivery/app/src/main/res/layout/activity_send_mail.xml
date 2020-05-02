@@ -8,13 +8,13 @@
     tools:context=".SendMail">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton4"
+        android:id="@+id/send_mail"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:clickable="true"
-        android:src="@drawable/send_icon"
         android:onClick="onClickSendMail"
+        android:src="@drawable/send_icon"
         app:fabCustomSize="@dimen/send_fab_size"
         app:fabSize="@integer/config_navAnimTime"
         app:layout_anchorGravity="bottom|center"

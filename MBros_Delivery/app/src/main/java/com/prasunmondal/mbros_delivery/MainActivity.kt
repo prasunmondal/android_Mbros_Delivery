@@ -72,8 +72,6 @@ class MainActivity : AppCompatActivity() {
         downloadRateList.enqueueDownload(findViewById(R.id.nav_view), isRefresh)
     }
 
-
-
     fun goToSettlementPage(view: View) {
         val i = Intent(this@MainActivity, SettlementPage::class.java)
         startActivity(i)
