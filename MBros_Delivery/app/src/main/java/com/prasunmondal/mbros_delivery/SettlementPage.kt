@@ -36,7 +36,6 @@ class SettlementPage : AppCompatActivity() {
         var toPay = todaysPrice + prevBalance
         var newBalance = toPay - 0
 
-
         findViewById<TextView>(R.id.kgView).text = totalKG.toString()
         findViewById<TextView>(R.id.priceView).text = pricePerKG.toString()
         findViewById<TextView>(R.id.todayPriceView).text = todaysPrice.toString()

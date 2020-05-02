@@ -14,6 +14,7 @@
         android:layout_height="38dp"
         android:layout_marginStart="24dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/todayPriceView" />
 
@@ -22,6 +23,7 @@
         android:layout_width="96dp"
         android:layout_height="38dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/todayPriceView"
         app:layout_constraintStart_toEndOf="@+id/kgView"
         app:layout_constraintTop_toTopOf="@+id/todayPriceView" />
@@ -33,6 +35,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginEnd="24dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,8 +43,9 @@
         android:id="@+id/prevBalanceView"
         android:layout_width="136dp"
         android:layout_height="38dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/todayPriceView"
         app:layout_constraintStart_toStartOf="@+id/todayPriceView"
         app:layout_constraintTop_toBottomOf="@+id/todayPriceView" />
@@ -50,8 +54,9 @@
         android:id="@+id/toPayView"
         android:layout_width="136dp"
         android:layout_height="38dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/todayPriceView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/todayPriceView"
@@ -59,11 +64,12 @@
 
     <EditText
         android:id="@+id/paidTodayView"
-        android:layout_width="136dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="138dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:inputType="numberDecimal"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/todayPriceView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/todayPriceView"
@@ -73,8 +79,9 @@
         android:id="@+id/newBalanceView"
         android:layout_width="136dp"
         android:layout_height="38dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:text="TextView"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/todayPriceView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/todayPriceView"
