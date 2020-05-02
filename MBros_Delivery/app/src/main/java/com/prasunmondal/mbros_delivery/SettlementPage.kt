@@ -38,10 +38,10 @@ class SettlementPage : AppCompatActivity() {
 
         findViewById<TextView>(R.id.kgView).text = totalKG.toString()
         findViewById<TextView>(R.id.priceView).text = pricePerKG.toString()
-        findViewById<TextView>(R.id.todayPriceView).text = todaysPrice.toString()
-        findViewById<TextView>(R.id.prevBalanceView).text = prevBalance.toString()
-        findViewById<TextView>(R.id.toPayView).text = toPay.toString()
-        findViewById<TextView>(R.id.newBalanceView).text = newBalance.toString()
+        findViewById<TextView>(R.id.todayPriceView).text = todaysPrice.toInt().toString()
+        findViewById<TextView>(R.id.prevBalanceView).text = prevBalance.toInt().toString()
+        findViewById<TextView>(R.id.toPayView).text = toPay.toInt().toString()
+        findViewById<TextView>(R.id.newBalanceView).text = newBalance.toInt().toString()
 
         var paidTodayView = findViewById<EditText>(R.id.paidTodayView)
         paidTodayView.addTextChangedListener(object : TextWatcher {
@@ -64,7 +64,11 @@ class SettlementPage : AppCompatActivity() {
     }
 
     fun onChangePaidTodayView(toPay: Float) {
-        var newBalance = toPay - findViewById<EditText>(R.id.paidTodayView).text.toString().toFloat()
-        findViewById<TextView>(R.id.newBalanceView).text = newBalance.toString()
+        var paidTodayView = findViewById<EditText>(R.id.paidTodayView)
+        var paidTodayText = paidTodayView.text.toString()
+        var newBalance = 0.0F
+        if(paidTodayText.length>0)
+            newBalance = toPay - paidTodayText.toFloat()
+        findViewById<TextView>(R.id.newBalanceView).text = newBalance.toInt().toString()
     }
 }
