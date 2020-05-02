@@ -1,6 +1,5 @@
 package com.prasunmondal.mbros_delivery.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputType
@@ -13,9 +12,7 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.prasunmondal.mbros_delivery.R
-import com.prasunmondal.mbros_delivery.SettlementPage
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
-import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -43,7 +40,8 @@ class HomeFragment : Fragment() {
         for(i in 1..5) {
             addTransactionRow(root)
         }
-
+        currentSession.setCurrentCustomer_totalKG("0")
+        currentSession.setCurrentCustomer_totalPCs("0")
         return root
     }
 
@@ -58,11 +56,11 @@ class HomeFragment : Fragment() {
         myEditText.setLayoutParams(ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
         myEditText.inputType= inputType
         mRlayout.addView(myEditText)
-        setOnClickListener(myEditText)
+        setOnChangeListener(myEditText)
         return myEditText
     }
 
-    fun setOnClickListener(editText: EditText) {
+    fun setOnChangeListener(editText: EditText) {
         editText.addTextChangedListener(object : TextWatcher {
             //
             override fun afterTextChanged(s: Editable) {}

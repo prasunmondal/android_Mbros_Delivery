@@ -55,6 +55,13 @@ class FetchedRateList {
             RateListColIndex_todaysPrice)!!
     }
 
+    fun getPrevBal(user: String): String {
+        return fileReadUtils.getValue_forKey(fileManagers.storageLink_RateList,
+            RateListColIndex_Name,
+            user,
+            RateListColIndex_prevBal)!!
+    }
+
 //    @SuppressLint("DefaultLocale")
 
 //    fun updateButtonData(isRefresh: Boolean) {
