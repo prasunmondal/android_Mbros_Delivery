@@ -28,18 +28,26 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <LinearLayout
-            android:id="@+id/PieceLayout"
-            android:layout_width="163dp"
+            android:id="@+id/SerialNo"
+            android:layout_width="51dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
+        </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/PieceLayout"
+            android:layout_width="113dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/KGLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"></LinearLayout>
+            android:layout_marginStart="20dp"
+            android:orientation="vertical">
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -78,7 +86,6 @@
                 android:textAlignment="viewStart"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
-
         </LinearLayout>
 
         <LinearLayout
