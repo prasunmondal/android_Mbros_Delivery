@@ -84,6 +84,5 @@ class SettlementPage : AppCompatActivity() {
     fun goToSendMail(view: View) {
         val i = Intent(this@SettlementPage, SendMail::class.java)
         startActivity(i)
-        finish()
     }
 }

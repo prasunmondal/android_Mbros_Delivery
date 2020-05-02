@@ -66,8 +66,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun downloadAndUpdateInfo(isRefresh: Boolean) {
-        println("onCreate")
-
         var downloadRateList = DownloadRateList(this, hardData.detailCSV)
         downloadRateList.enqueueDownload(findViewById(R.id.nav_view), isRefresh)
     }

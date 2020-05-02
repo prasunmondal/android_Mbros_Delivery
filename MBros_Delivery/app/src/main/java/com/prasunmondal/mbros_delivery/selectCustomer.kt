@@ -50,7 +50,6 @@ class selectCustomer : AppCompatActivity() {
         } else {
             val i = Intent(this@selectCustomer, MainActivity::class.java)
             startActivity(i)
-            finish()
         }
     }
 
