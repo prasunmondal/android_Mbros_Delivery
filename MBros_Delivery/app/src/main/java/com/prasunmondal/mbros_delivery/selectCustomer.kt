@@ -28,6 +28,7 @@ class selectCustomer : AppCompatActivity() {
     }
 
     fun populateTodaysCustomer() {
+        println("Spinner Updated")
         var geeks = mutableListOf<String>(text_NoCustomerToSelect)
         if(fetchedRateList.isDataFetched())
             geeks = fetchedRateList.getAllUserName()
@@ -53,13 +54,13 @@ class selectCustomer : AppCompatActivity() {
         }
     }
 
-    private fun downloadAndUpdateInfo(isRefresh: Boolean) {
+    private fun downloadAndUpdateInfo(isRefresh: Boolean, method: () -> Unit) {
         var downloadRateList = DownloadRateList(this, HardData.Singleton.instance.detailCSV)
-        downloadRateList.enqueueDownload(findViewById(R.id.customerSelector), isRefresh)
+        downloadRateList.enqueueDownload(findViewById(R.id.customerSelector), isRefresh, method)
     }
 
     fun onClickDownloadData(view: View) {
-        downloadAndUpdateInfo(false)
+        downloadAndUpdateInfo(false, ::populateTodaysCustomer)
 //        sendEmail()
     }
 

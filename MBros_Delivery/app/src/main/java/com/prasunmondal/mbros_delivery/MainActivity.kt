@@ -66,8 +66,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun downloadAndUpdateInfo(isRefresh: Boolean) {
-        var downloadRateList = DownloadRateList(this, hardData.detailCSV)
-        downloadRateList.enqueueDownload(findViewById(R.id.nav_view), isRefresh)
+//        var downloadRateList = DownloadRateList(this, hardData.detailCSV)
+//        downloadRateList.enqueueDownload(findViewById(R.id.nav_view), isRefresh)
     }
 
     fun goToSettlementPage(view: View) {

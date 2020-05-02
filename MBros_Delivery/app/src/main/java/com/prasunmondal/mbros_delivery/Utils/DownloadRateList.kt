@@ -25,7 +25,7 @@ class DownloadRateList(private val context: Context, private val url: String) {
 		private const val MIME_TYPE = "application/vnd.android.package-archive"
 	}
 
-	fun enqueueDownload(view: View, isRefresh: Boolean) {
+	fun enqueueDownload(view: View, isRefresh: Boolean, method: () -> Unit) {
 
 //		println("Here....... " + fileManagers.downloadLink_Metadata.destination)
 		val destination = fileManagers.storageLink_RateList.destination
@@ -45,18 +45,19 @@ class DownloadRateList(private val context: Context, private val url: String) {
 		// set destination
 		request.setDestinationUri(uri)
 
-		showInstallOption(view, isRefresh)
+		showInstallOption(view, isRefresh, method)
 		// Enqueue a new download and same the referenceId
 		downloadManager.enqueue(request)
 	}
 
-	private fun showInstallOption(view: View, isRefresh: Boolean) {
+	private fun showInstallOption(view: View, isRefresh: Boolean, method: () -> Unit) {
 		// read the update values when file is downloaded
 		val onComplete = object : BroadcastReceiver() {
 			override fun onReceive(context: Context, intent: Intent) {
 				println("Metadata Received!")
 				Toast.makeText(appContext.getCustomerSelectionActivity(), "Download Complete", Toast.LENGTH_LONG).show()
 				promptAndInitiateUpdate(view)
+				method.invoke()
 //				fetchedRateList.updateButtonData(isRefresh)
 			}
 		}
