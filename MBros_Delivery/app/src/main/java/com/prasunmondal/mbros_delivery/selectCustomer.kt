@@ -22,8 +22,8 @@ class selectCustomer : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_customer)
         appContext.setCustomerSelectionActivity(this)
-        populateTodaysCustomer()
         downloadAndUpdateInfo(false)
+
     }
 
     fun populateTodaysCustomer() {
@@ -50,5 +50,9 @@ class selectCustomer : AppCompatActivity() {
     private fun downloadAndUpdateInfo(isRefresh: Boolean) {
         var downloadRateList = DownloadRateList(this, HardData.Singleton.instance.detailCSV)
         downloadRateList.enqueueDownload(findViewById(R.id.customerSelector), isRefresh)
+    }
+
+    fun onClickDownloadData(view: View) {
+        populateTodaysCustomer()
     }
 }
