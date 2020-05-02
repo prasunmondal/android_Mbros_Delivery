@@ -2,10 +2,11 @@ package com.prasunmondal.mbros_delivery
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.prasunmondal.mbros_delivery.MailUtils.Mail
 import com.prasunmondal.mbros_delivery.MailUtils.SendEmailAsyncTask
-import com.prasunmondal.mbros_delivery.R
 
 class SendMail : AppCompatActivity() {
 
@@ -33,9 +34,10 @@ class SendMail : AppCompatActivity() {
     fun onClickSendMail(view: View) {
         sendMessage()
     }
-//
-//    fun displayMessage(message: String?) {
+
+    fun displayMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 //        Snackbar.make(findViewById(R.id.fab), message, Snackbar.LENGTH_LONG)
 //            .setAction("Action", null).show()
-//    }
+    }
 }
