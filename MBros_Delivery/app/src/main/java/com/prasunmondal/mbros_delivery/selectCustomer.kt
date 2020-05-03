@@ -6,6 +6,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.jaredrummler.materialspinner.MaterialSpinner
@@ -25,6 +27,7 @@ class selectCustomer : AppCompatActivity() {
         setContentView(R.layout.activity_select_customer)
         appContext.setCustomerSelectionActivity(this)
         populateTodaysCustomer()
+        populateCustomerListSpinner()
     }
 
     fun populateTodaysCustomer() {
@@ -89,5 +92,26 @@ class selectCustomer : AppCompatActivity() {
     fun goToDownloadPriceList() {
         val i = Intent(this@selectCustomer, DownloadPriceList::class.java)
         startActivity(i)
+    }
+
+    fun populateCustomerListSpinner() {
+        val spinner = findViewById<View>(R.id.spinner) as Spinner
+
+        var geeks = mutableListOf<String>(text_NoCustomerToSelect)
+        if(fetchedRateList.isDataFetched())
+            geeks = fetchedRateList.getAllUserName()
+
+        val dataAdapter =
+            ArrayAdapter(this, android.R.layout.simple_spinner_item, geeks)
+
+        // Drop down layout style - list view with radio button
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        // attaching data adapter to spinner
+
+        // attaching data adapter to spinner
+        spinner.adapter = dataAdapter
     }
 }

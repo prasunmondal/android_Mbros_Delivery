@@ -52,7 +52,8 @@ class FileReadUtil {
             var nextLine: Array<String>
             while (reader.peek() != null) {
                 nextLine = reader.readNext()
-                list.add(nextLine[keyColumnIndex])
+                if(nextLine[keyColumnIndex].length > 0)
+                    list.add(nextLine[keyColumnIndex])
             }
         } catch (e: IOException) {
             println(e)
