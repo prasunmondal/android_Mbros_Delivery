@@ -46,6 +46,7 @@ class selectCustomer : AppCompatActivity() {
     fun goToDownloadPriceList() {
         val i = Intent(this@selectCustomer, DownloadPriceList::class.java)
         startActivity(i)
+        finish()
     }
 
     fun populateCustomerListSpinner() {
