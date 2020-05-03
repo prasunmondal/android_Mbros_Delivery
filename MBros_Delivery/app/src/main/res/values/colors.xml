@@ -21,6 +21,8 @@
     <color name="selectCustomer_background">#000000</color>
     <color name="selectCustomer_actionBar">#1B1B1B</color>
     <color name="selectCustomer_statusBar">#292828</color>
+    <color name="selectCustomer_button">#292828</color>
+
 
     <color name="sendMail_background">#2D7EE7</color>
     <color name="sendMail_actionBar">#1B59C3</color>

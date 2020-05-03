@@ -14,7 +14,7 @@
         android:layout_width="134dp"
         android:layout_height="103dp"
         android:layout_marginBottom="30dp"
-        android:backgroundTint="#2E2E2E"
+        android:backgroundTint="@color/selectCustomer_button"
         android:clickable="true"
         android:onClick="onClickDownloadData"
         app:fabCustomSize="@dimen/send_fab_size"

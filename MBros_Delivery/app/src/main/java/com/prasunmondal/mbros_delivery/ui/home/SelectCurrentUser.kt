@@ -38,7 +38,6 @@ class SelectCurrentUser : AppCompatActivity() {
     fun onClickSaveUsername(view: View) {
         val customerSelector = findViewById<Spinner>(R.id.customerSelector)
         val customerName: String = customerSelector.selectedItem.toString()
-        Toast.makeText(this@SelectCurrentUser, "Selected User: " + customerName, Toast.LENGTH_SHORT).show()
         CurrentSession.Singleton.instance.setCurrentCustomer(customerName)
         goToCalculatingPage()
     }
