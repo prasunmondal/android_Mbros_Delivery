@@ -60,8 +60,7 @@ class selectCustomer : AppCompatActivity() {
     }
 
     fun onClickDownloadData(view: View) {
-        downloadAndUpdateInfo(false, ::populateTodaysCustomer)
-//        sendEmail()
+        goToDownloadPriceList()
     }
 
     protected fun sendEmail() {
@@ -85,5 +84,10 @@ class selectCustomer : AppCompatActivity() {
                 "There is no email client installed.", Toast.LENGTH_SHORT
             ).show()
         }
+    }
+
+    fun goToDownloadPriceList() {
+        val i = Intent(this@selectCustomer, DownloadPriceList::class.java)
+        startActivity(i)
     }
 }

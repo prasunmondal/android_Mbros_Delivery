@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SendMail"></activity>
+        <activity android:name=".DownloadPriceList"></activity>
+        <activity android:name=".SendMail" />
         <activity
             android:name=".SettlementPage"
             android:label="@string/title_activity_settlement_page"
@@ -31,7 +32,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
