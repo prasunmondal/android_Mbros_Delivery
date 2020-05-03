@@ -11,7 +11,6 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.DownloadPriceList
 import com.prasunmondal.mbros_delivery.R
@@ -38,12 +37,12 @@ class SelectCurrentUser : AppCompatActivity() {
     fun onClickSaveUsername(view: View) {
         val customerSelector = findViewById<Spinner>(R.id.customerSelector)
         val customerName: String = customerSelector.selectedItem.toString()
-        CurrentSession.Singleton.instance.setCurrentCustomer(customerName)
+        CurrentSession.Singleton.instance.setCurrentCustomer_name(customerName)
         goToCalculatingPage()
     }
 
     fun goToCalculatingPage() {
-        if(CurrentSession.Singleton.instance.getCurrentCustomer().equals(text_NoCustomerToSelect)) {
+        if(CurrentSession.Singleton.instance.getCurrentCustomer_name().equals(text_NoCustomerToSelect)) {
             Toast.makeText(this, "Select valid customer", Toast.LENGTH_LONG).show()
         } else {
             val i = Intent(this@SelectCurrentUser, WeighingPage::class.java)

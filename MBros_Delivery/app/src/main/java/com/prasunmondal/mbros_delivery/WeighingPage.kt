@@ -122,7 +122,7 @@ class WeighingPage : AppCompatActivity() {
     }
 
     fun setActionbarTextColor() {
-        val title: String = currentSession.getCurrentCustomer()
+        val title: String = currentSession.getCurrentCustomer_name()
         val spannableTitle: Spannable = SpannableString("")
         spannableTitle.setSpan(
             ForegroundColorSpan(Color.GRAY),
