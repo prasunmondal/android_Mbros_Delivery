@@ -9,8 +9,8 @@
 
     <Button
         android:id="@+id/selectCustomer_saveButton"
-        android:layout_width="78dp"
-        android:layout_height="51dp"
+        android:layout_width="122dp"
+        android:layout_height="73dp"
         android:background="#000000"
         android:onClick="onClickSaveUsername"
         android:text="Save"
@@ -18,25 +18,6 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/customerSelector"
         app:layout_constraintTop_toBottomOf="@+id/customerSelector" />
-
-    <com.jaredrummler.materialspinner.MaterialSpinner
-        android:id="@+id/customerSelector"
-        android:layout_width="381dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginEnd="16dp"
-        android:background="#35383A"
-        android:ems="10"
-        android:prompt="@string/app_name"
-        android:textColor="#000000"
-        android:textColorHint="#424141"
-        android:forceDarkAllowed="true"
-        android:popupBackground="#61666B"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton3"
@@ -53,11 +34,17 @@
         app:srcCompat="@android:drawable/stat_sys_download_done" />
 
     <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="398dp"
-        android:layout_height="75dp"
+        android:id="@+id/customerSelector"
+        android:layout_width="399dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="64dp"
+        android:background="#FFFFFF"
+        android:popupBackground="#CDD3D8"
+        android:prompt="@string/app_name"
+        android:textSize="30dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectCustomer_saveButton" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
