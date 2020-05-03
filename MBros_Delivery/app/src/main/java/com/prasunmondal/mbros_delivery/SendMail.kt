@@ -40,6 +40,10 @@ class SendMail : AppCompatActivity() {
         return str
     }
 
+    private fun getSubject(): String {
+        return "Delivered to: " + currentSession.getCurrentCustomer_name()
+    }
+
     private fun sendMessage() {
         val recipients =
             arrayOf<String>("prsn.online@gmail.com")
@@ -50,7 +54,7 @@ class SendMail : AppCompatActivity() {
         email.m!!.set_from("prsn.online@gmail.com")
         email.m!!.body = getMailBody()
         email.m!!.set_to(recipients)
-        email.m!!.set_subject("subject")
+        email.m!!.set_subject(getSubject())
         email.execute()
     }
 
