@@ -12,10 +12,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import com.prasunmondal.mbros_delivery.sessionData.CurrentSession
-import com.prasunmondal.mbros_delivery.ui.home.HomeViewModel
+import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 
 import kotlinx.android.synthetic.main.activity_weighing_page.*
 
@@ -38,8 +36,8 @@ class WeighingPage : AppCompatActivity() {
         for(i in 1..10) {
             addTransactionRow()
         }
-        CurrentSession.Singleton.instance.setCurrentCustomer_totalKG("0")
-        CurrentSession.Singleton.instance.setCurrentCustomer_totalPCs("0")
+        currentSession.setCurrentCustomer_totalKG("0")
+        currentSession.setCurrentCustomer_totalPCs("0")
         updateLabels()
     }
 
@@ -112,10 +110,10 @@ class WeighingPage : AppCompatActivity() {
         var labelPc = findViewById<TextView>(R.id.editText8)
         var labelKG = findViewById<TextView>(R.id.editText9)
 
-        CurrentSession.Singleton.instance.setCurrentCustomer_totalKG(total_KGs.toString())
-        CurrentSession.Singleton.instance.setCurrentCustomer_totalPCs(total_Pieces.toString())
-        labelPc.setText(CurrentSession.Singleton.instance.getCurrentCustomer_totalPCs())
-        labelKG.setText(CurrentSession.Singleton.instance.getCurrentCustomer_totalKG())
+        currentSession.setCurrentCustomer_totalKG(total_KGs.toString())
+        currentSession.setCurrentCustomer_totalPCs(total_Pieces.toString())
+        labelPc.setText(currentSession.getCurrentCustomer_totalPCs())
+        labelKG.setText(currentSession.getCurrentCustomer_totalKG())
     }
 
     fun goToSettlementPage(view: View) {
@@ -124,7 +122,7 @@ class WeighingPage : AppCompatActivity() {
     }
 
     fun setActionbarTextColor() {
-        val title: String = "Weight"
+        val title: String = currentSession.getCurrentCustomer()
         val spannableTitle: Spannable = SpannableString("")
         spannableTitle.setSpan(
             ForegroundColorSpan(Color.GRAY),

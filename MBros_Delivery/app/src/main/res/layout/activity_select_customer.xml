@@ -7,44 +7,6 @@
     android:background="@color/selectCustomer_background"
     tools:context=".selectCustomer">
 
-    <Button
-        android:id="@+id/selectCustomer_saveButton"
-        android:layout_width="122dp"
-        android:layout_height="73dp"
-        android:background="#000000"
-        android:onClick="onClickSaveUsername"
-        android:text="Save"
-        android:textColor="#ffffff"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/customerSelector"
-        app:layout_constraintTop_toBottomOf="@+id/customerSelector" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton3"
-        android:layout_width="134dp"
-        android:layout_height="103dp"
-        android:layout_marginBottom="30dp"
-        android:backgroundTint="#2E2E2E"
-        android:clickable="true"
-        android:onClick="onClickDownloadData"
-        app:fabCustomSize="@dimen/send_fab_size"
-        app:backgroundTint="#302F2F"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/stat_sys_download_done" />
-
-    <Spinner
-        android:id="@+id/customerSelector"
-        android:layout_width="373dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="64dp"
-        android:background="#FFFFFF"
-        android:popupBackground="#CDD3D8"
-        android:prompt="@string/app_name"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
