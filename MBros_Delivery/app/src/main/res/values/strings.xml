@@ -41,4 +41,5 @@
         <item>Sudipta Roy</item>
     </string-array>
     <string name="title_activity_settlement_page">SettlementPage</string>
+    <string name="title_activity_weighing_page">WeighingPage</string>
 </resources>

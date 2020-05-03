@@ -40,7 +40,7 @@ class selectCustomer : AppCompatActivity() {
         if(currentSession.getCurrentCustomer().equals(text_NoCustomerToSelect)) {
             Toast.makeText(this, "Select valid customer", Toast.LENGTH_LONG).show()
         } else {
-            val i = Intent(this@selectCustomer, MainActivity::class.java)
+            val i = Intent(this@selectCustomer, WeighingPage::class.java)
             startActivity(i)
         }
     }

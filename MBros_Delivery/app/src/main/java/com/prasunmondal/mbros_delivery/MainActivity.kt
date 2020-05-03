@@ -51,8 +51,6 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        setActionbarTextColor()
-        downloadAndUpdateInfo(false)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -71,22 +69,5 @@ class MainActivity : AppCompatActivity() {
 //        downloadRateList.enqueueDownload(findViewById(R.id.nav_view), isRefresh)
     }
 
-    fun goToSettlementPage(view: View) {
-        val i = Intent(this@MainActivity, SettlementPage::class.java)
-        startActivity(i)
-    }
 
-    fun setActionbarTextColor() {
-        val title: String = currentSession.getCurrentCustomer()
-        val spannableTitle: Spannable = SpannableString("")
-        spannableTitle.setSpan(
-            ForegroundColorSpan(Color.GRAY),
-            0,
-            spannableTitle.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        supportActionBar!!.title = title
-        window.statusBarColor = resources.getColor(R.color.main_activity_statusBar)
-        supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.main_activity_actionBar)))
-    }
 }

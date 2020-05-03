@@ -13,6 +13,7 @@
     <color name="download_price_actionBar">#CE7E03</color>
     <color name="download_price_statusBar">#815002</color>
 
+    <color name="main_activity_button">#D9E0E7</color>
     <color name="main_activity_background">#000000</color>
     <color name="main_activity_actionBar">#1B59C3</color>
     <color name="main_activity_statusBar">#023080</color>
