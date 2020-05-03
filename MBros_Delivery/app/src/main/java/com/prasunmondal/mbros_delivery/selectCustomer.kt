@@ -1,7 +1,12 @@
 package com.prasunmondal.mbros_delivery
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Spinner
@@ -20,6 +25,7 @@ class selectCustomer : AppCompatActivity() {
         setContentView(R.layout.activity_select_customer)
         appContext.setCustomerSelectionActivity(this)
         populateCustomerListSpinner()
+        setActionbarTextColor()
     }
 
     fun onClickSaveUsername(view: View) {
@@ -59,5 +65,19 @@ class selectCustomer : AppCompatActivity() {
             ArrayAdapter(this, android.R.layout.simple_spinner_item, geeks)
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = dataAdapter
+    }
+
+    fun setActionbarTextColor() {
+        val title: String = "Mondal Bros."
+        val spannableTitle: Spannable = SpannableString("")
+        spannableTitle.setSpan(
+            ForegroundColorSpan(Color.GRAY),
+            0,
+            spannableTitle.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        supportActionBar!!.title = title
+        window.statusBarColor = resources.getColor(R.color.selectCustomer_statusBar)
+        supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.selectCustomer_actionBar)))
     }
 }

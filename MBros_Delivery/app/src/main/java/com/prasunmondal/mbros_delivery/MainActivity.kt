@@ -1,7 +1,12 @@
 package com.prasunmondal.mbros_delivery
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.prasunmondal.mbros_delivery.Utils.DownloadRateList
+import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as appContext
 import com.prasunmondal.mbros_delivery.sessionData.HardData.Singleton.instance as hardData
 
@@ -50,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
+        setActionbarTextColor()
         downloadAndUpdateInfo(false)
     }
 
@@ -73,5 +79,19 @@ class MainActivity : AppCompatActivity() {
     fun goToSettlementPage(view: View) {
         val i = Intent(this@MainActivity, SettlementPage::class.java)
         startActivity(i)
+    }
+
+    fun setActionbarTextColor() {
+        val title: String = currentSession.getCurrentCustomer()
+        val spannableTitle: Spannable = SpannableString("")
+        spannableTitle.setSpan(
+            ForegroundColorSpan(Color.GRAY),
+            0,
+            spannableTitle.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        supportActionBar!!.title = title
+        window.statusBarColor = resources.getColor(R.color.main_activity_statusBar)
+        supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.main_activity_actionBar)))
     }
 }

@@ -21,7 +21,7 @@ class DownloadPriceList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_downlaod_price_list)
-        setActionbarTextColor(Color.GRAY, Color.GRAY, Color.GRAY)
+        setActionbarTextColor()
         startDownloads()
     }
 
@@ -39,17 +39,17 @@ class DownloadPriceList : AppCompatActivity() {
     override fun onBackPressed() {
     }
 
-    fun setActionbarTextColor(statusBarColor: Int, actionBarColor: Int, textColor: Int) {
-        val title: String = supportActionBar!!.title.toString()
-        val spannableTitle: Spannable = SpannableString("fhsb")
+    fun setActionbarTextColor() {
+        val title: String = "Downloading Data"
+        val spannableTitle: Spannable = SpannableString("")
         spannableTitle.setSpan(
-            ForegroundColorSpan(resources.getColor(R.color.black_overlay)),
+            ForegroundColorSpan(Color.GRAY),
             0,
             spannableTitle.length,
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         supportActionBar!!.title = title
-        window.statusBarColor = resources.getColor(R.color.colorAccent)
-        supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.colorPrimaryDark)))
+        window.statusBarColor = resources.getColor(R.color.download_price_statusBar)
+        supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.download_price_actionBar)))
     }
 }

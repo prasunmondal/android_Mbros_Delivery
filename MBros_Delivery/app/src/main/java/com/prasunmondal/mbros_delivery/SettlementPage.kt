@@ -1,9 +1,14 @@
 package com.prasunmondal.mbros_delivery
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
+import android.text.Spannable
+import android.text.SpannableString
 import android.text.TextWatcher
+import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -20,12 +25,8 @@ class SettlementPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settlement_page)
         setSupportActionBar(toolbar)
-
-//        fab.setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show()
-//        }
         initiallize()
+        setActionbarTextColor()
     }
 
     fun initiallize() {
@@ -84,5 +85,19 @@ class SettlementPage : AppCompatActivity() {
     fun goToSendMail(view: View) {
         val i = Intent(this@SettlementPage, SendMail::class.java)
         startActivity(i)
+    }
+
+    fun setActionbarTextColor() {
+        val title: String = "Bill"
+        val spannableTitle: Spannable = SpannableString("")
+        spannableTitle.setSpan(
+            ForegroundColorSpan(Color.GRAY),
+            0,
+            spannableTitle.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        supportActionBar!!.title = title
+        window.statusBarColor = resources.getColor(R.color.settlement_page_statusBar)
+        supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.settlement_page_actionBar)))
     }
 }

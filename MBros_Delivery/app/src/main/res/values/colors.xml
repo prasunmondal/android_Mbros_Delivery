@@ -8,4 +8,24 @@
 
     <color name="black_overlay">#66000000</color>
     <color name="white">#FFFFFF</color>
+
+    <color name="download_price_background">#FAA825</color>
+    <color name="download_price_actionBar">#CE7E03</color>
+    <color name="download_price_statusBar">#815002</color>
+
+    <color name="main_activity_background">#000000</color>
+    <color name="main_activity_actionBar">#1B59C3</color>
+    <color name="main_activity_statusBar">#023080</color>
+
+    <color name="selectCustomer_background">#000000</color>
+    <color name="selectCustomer_actionBar">#1B1B1B</color>
+    <color name="selectCustomer_statusBar">#292828</color>
+
+    <color name="sendMail_background">#2D7EE7</color>
+    <color name="sendMail_actionBar">#1B59C3</color>
+    <color name="sendMail_statusBar">#023080</color>
+
+    <color name="settlement_page_background">#D8ABAA</color>
+    <color name="settlement_page_actionBar">#DC5553</color>
+    <color name="settlement_page_statusBar">#DA403D</color>
 </resources>
