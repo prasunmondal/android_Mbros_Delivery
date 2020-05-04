@@ -13,6 +13,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.prasunmondal.mbros_delivery.MailUtils.Mail
 import com.prasunmondal.mbros_delivery.MailUtils.SendEmailAsyncTask
+import java.text.SimpleDateFormat
+import java.util.*
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 
 class SendMail : AppCompatActivity() {
@@ -36,6 +38,10 @@ class SendMail : AppCompatActivity() {
         str += "\nToday's Amount: " + currentSession.getCurrentCustomer_todaysBillAmount()
         str += "\nPaid Amount: " + currentSession.getCurrentCustomer_paid()
         str += "\nNew Balance: " + currentSession.getCurrentCustomer_newBalance()
+        str += "\n\n\nDate: " + SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
+        str += "\nTime: " + SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+            .format(Date())
+
         Log.d("Mail body:\n", str)
         return str
     }
@@ -50,7 +56,7 @@ class SendMail : AppCompatActivity() {
         val email =
             SendEmailAsyncTask()
         email.activity = this
-        email.m = Mail("prsn.online@gmail.com", "7727861666325")
+        email.m = Mail("prsn.online@gmail.com", "pgrgewhikkeocgsx")
         email.m!!.set_from("prsn.online@gmail.com")
         email.m!!.body = getMailBody()
         email.m!!.set_to(recipients)
