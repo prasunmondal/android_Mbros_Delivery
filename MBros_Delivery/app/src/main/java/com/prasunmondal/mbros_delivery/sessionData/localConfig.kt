@@ -8,6 +8,7 @@ import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instanc
 class LocalConfig {
 
     val USERNAME= "username"
+    val IS_LOGGED_IN= "isLoggedIn?"
 
     private var localConfigMap: MutableMap<String, String> = mutableMapOf()
 

@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.prasunmondal.mbros_delivery.sessionData.LocalConfig.Singleton.instance as localConfig
 import com.prasunmondal.mbros_delivery.ui.home.SelectCurrentUser
 
 import kotlinx.android.synthetic.main.activity_login.*
@@ -26,6 +27,7 @@ class Login : AppCompatActivity() {
 
     fun onClickLogin(view: View) {
         if(isCorrectCredential()) {
+            localConfig.setValue(localConfig.IS_LOGGED_IN, "true")
             goToCustomerSelctionPage()
         } else {
             Toast.makeText(this, "Wrong Password", Toast.LENGTH_LONG).show()
