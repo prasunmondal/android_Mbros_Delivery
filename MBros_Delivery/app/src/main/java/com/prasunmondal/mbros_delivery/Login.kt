@@ -1,5 +1,6 @@
 package com.prasunmondal.mbros_delivery
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -30,20 +31,20 @@ class Login : AppCompatActivity() {
     fun onClickLogin(view: View) {
         if(isValidName()) {
             val recipients =
-                arrayOf<String>("prsn.online@gmail.com")
-            SendMailTrigger().sendMessage(recipients, getSubject(), getMailBody(), findViewById(R.id.loginPassword), "Sending Request...", "Request Sent...")
+                arrayOf("prsn.online@gmail.com")
+            SendMailTrigger().sendMessage(recipients, getSubject(), getMailBody(), view, "Sending Request...", "Request Sent.")
         } else {
             Toast.makeText(this, "Enter a Valid Name", Toast.LENGTH_LONG).show()
         }
     }
 
     private fun isValidName(): Boolean {
-        var password = findViewById<EditText>(R.id.loginPassword).text.toString()
-        return !password.equals("")
+        val password = findViewById<EditText>(R.id.loginPassword).text.toString()
+        return password != ""
     }
 
-    fun setActionbarTextColor() {
-        val title: String = "Login"
+    private fun setActionbarTextColor() {
+        val title = "Login"
         val spannableTitle: Spannable = SpannableString("")
         spannableTitle.setSpan(
             ForegroundColorSpan(Color.GRAY),
@@ -56,14 +57,14 @@ class Login : AppCompatActivity() {
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.sendMail_actionBar)))
     }
 
+    @SuppressLint("HardwareIds")
     fun generateDeviceId(): String {
         val macAddr: String
-        val androidId: String
         val wifiMan =
             AppContext.Singleton.instance.getLoginCheckActivity().getSystemService(Context.WIFI_SERVICE) as WifiManager
         val wifiInf = wifiMan.connectionInfo
         macAddr = wifiInf.macAddress
-        androidId = "" + Settings.Secure.getString(
+        val androidId: String = "" + Settings.Secure.getString(
             contentResolver,
             Settings.Secure.ANDROID_ID
         )
@@ -71,12 +72,12 @@ class Login : AppCompatActivity() {
         return deviceUuid.toString()
     }
 
-    fun getMailBody(): String {
-        return findViewById<EditText>(R.id.loginPassword).text.toString() + ": "+ generateDeviceId().toString()
+    private fun getMailBody(): String {
+        return findViewById<EditText>(R.id.loginPassword).text.toString() + ": "+ generateDeviceId()
     }
 
 
-    fun getSubject(): String {
+    private fun getSubject(): String {
         return "MBros: Device Registration"
     }
 }
