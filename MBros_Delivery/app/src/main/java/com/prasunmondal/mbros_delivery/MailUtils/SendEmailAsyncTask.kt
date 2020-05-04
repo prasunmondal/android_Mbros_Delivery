@@ -2,14 +2,13 @@ package com.prasunmondal.mbros_delivery.MailUtils
 
 import android.os.AsyncTask
 import android.util.Log
-import com.prasunmondal.mbros_delivery.SendMail
 import javax.mail.AuthenticationFailedException
 import javax.mail.MessagingException
 
 internal class SendEmailAsyncTask :
     AsyncTask<Void?, Void?, Boolean>() {
     var m: Mail? = null
-    var activity: SendMail? = null
+    var activity: SendMailTrigger? = null
 
     override fun doInBackground(vararg params: Void?): Boolean {
         return try {

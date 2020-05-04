@@ -10,9 +10,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.prasunmondal.mbros_delivery.MailUtils.Mail
-import com.prasunmondal.mbros_delivery.MailUtils.SendEmailAsyncTask
+import com.prasunmondal.mbros_delivery.MailUtils.SendMailTrigger
 import java.text.SimpleDateFormat
 import java.util.*
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
@@ -50,27 +48,10 @@ class SendMail : AppCompatActivity() {
         return "Delivered to: " + currentSession.getCurrentCustomer_name()
     }
 
-    private fun sendMessage() {
+    fun onClickSendMail(view: View) {
         val recipients =
             arrayOf<String>("prsn.online@gmail.com")
-        val email =
-            SendEmailAsyncTask()
-        email.activity = this
-        email.m = Mail("prsn.online@gmail.com", "pgrgewhikkeocgsx")
-        email.m!!.set_from("prsn.online@gmail.com")
-        email.m!!.body = getMailBody()
-        email.m!!.set_to(recipients)
-        email.m!!.set_subject(getSubject())
-        email.execute()
-    }
-
-    fun onClickSendMail(view: View) {
-        sendMessage()
-    }
-
-    fun displayMessage(message: String) {
-        Snackbar.make(findViewById(R.id.send_mail), message, Snackbar.LENGTH_INDEFINITE)
-            .setAction("Action", null).show()
+        SendMailTrigger().sendMessage(recipients, getSubject(), getMailBody(), findViewById(R.id.send_mail))
     }
 
     fun setActionbarTextColor() {

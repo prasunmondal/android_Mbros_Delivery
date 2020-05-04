@@ -13,8 +13,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.prasunmondal.mbros_delivery.MailUtils.Mail
-import com.prasunmondal.mbros_delivery.MailUtils.SendEmailAsyncTask
+import com.prasunmondal.mbros_delivery.MailUtils.SendMailTrigger
 import com.prasunmondal.mbros_delivery.sessionData.AppContext
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
@@ -30,7 +29,10 @@ class Login : AppCompatActivity() {
 
     fun onClickLogin(view: View) {
         if(isValidName()) {
-            sendMessage()
+//            sendMessage()
+            val recipients =
+                arrayOf<String>("prsn.online@gmail.com")
+            SendMailTrigger().sendMessage(recipients, getSubject(), getMailBody(), findViewById(R.id.loginPassword))
         } else {
             Toast.makeText(this, "Enter a Valid Name", Toast.LENGTH_LONG).show()
         }
@@ -77,18 +79,5 @@ class Login : AppCompatActivity() {
 
     fun getSubject(): String {
         return "MBros: Device Registration"
-    }
-
-    private fun sendMessage() {
-        val recipients =
-            arrayOf<String>("prsn.online@gmail.com")
-        val email =
-            SendEmailAsyncTask()
-        email.m = Mail("prsn.online@gmail.com", "pgrgewhikkeocgsx")
-        email.m!!.set_from("prsn.online@gmail.com")
-        email.m!!.body = getMailBody()
-        email.m!!.set_to(recipients)
-        email.m!!.set_subject(getSubject())
-        email.execute()
     }
 }
