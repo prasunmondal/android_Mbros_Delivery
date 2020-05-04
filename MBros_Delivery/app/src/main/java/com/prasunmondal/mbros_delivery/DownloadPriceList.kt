@@ -13,7 +13,6 @@ import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.Utils.DownloadRateList
 import com.prasunmondal.mbros_delivery.sessionData.HardData
-import com.prasunmondal.mbros_delivery.ui.home.SelectCurrentUser
 import com.prasunmondal.mbros_delivery.Utils.ToolbarUtils.Singleton.instance as toolbarUtils
 
 
@@ -32,7 +31,7 @@ class DownloadPriceList : AppCompatActivity() {
     }
 
     fun goToSelectCustomerPage() {
-        val i = Intent(this@DownloadPriceList, SelectCurrentUser::class.java)
+        val i = Intent(this@DownloadPriceList, selectCustomer::class.java)
         startActivity(i)
         finish()
     }
