@@ -43,4 +43,5 @@
     <string name="title_activity_settlement_page">SettlementPage</string>
     <string name="title_activity_weighing_page">WeighingPage</string>
     <string name="title_activity_select_current_user">SelectCurrentUser</string>
+    <string name="title_activity_login">Login</string>
 </resources>

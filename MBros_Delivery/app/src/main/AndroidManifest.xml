@@ -17,30 +17,35 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.home.SelectCurrentUser"
-            android:label="MBros_Delivery"
+            android:name=".Login"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".LoginCheck"
+            android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.home.SelectCurrentUser"
+            android:label="MBros_Delivery"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
             android:name=".WeighingPage"
             android:label="@string/title_activity_weighing_page"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".DownloadPriceList" />
         <activity android:name=".SendMail" />
         <activity
             android:name=".SettlementPage"
             android:label="@string/title_activity_settlement_page"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".selectCustomer">
-
-        </activity>
+        <activity android:name=".selectCustomer" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
