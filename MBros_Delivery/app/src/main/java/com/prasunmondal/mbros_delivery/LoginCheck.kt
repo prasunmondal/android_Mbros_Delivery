@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagerUtil
 import com.prasunmondal.mbros_delivery.sessionData.LocalConfig.Singleton.instance as localConfig
 import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as appContext
-import com.prasunmondal.mbros_delivery.ui.home.SelectCurrentUser
 
 import kotlinx.android.synthetic.main.activity_login_check.*
 

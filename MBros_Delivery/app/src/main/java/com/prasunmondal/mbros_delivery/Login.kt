@@ -12,7 +12,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.sessionData.LocalConfig.Singleton.instance as localConfig
-import com.prasunmondal.mbros_delivery.ui.home.SelectCurrentUser
 
 import kotlinx.android.synthetic.main.activity_login.*
 

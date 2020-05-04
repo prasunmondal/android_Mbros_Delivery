@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/selectCustomer_background"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ui.home.SelectCurrentUser"
+    tools:context=".SelectCurrentUser"
     tools:showIn="@layout/activity_select_current_user">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

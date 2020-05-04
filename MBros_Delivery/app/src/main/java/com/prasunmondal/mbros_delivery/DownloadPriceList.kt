@@ -1,20 +1,15 @@
 package com.prasunmondal.mbros_delivery
 
 import android.content.Intent
-import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import android.view.Window
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.Utils.DownloadRateList
 import com.prasunmondal.mbros_delivery.sessionData.HardData
-import com.prasunmondal.mbros_delivery.ui.home.SelectCurrentUser
-import com.prasunmondal.mbros_delivery.Utils.ToolbarUtils.Singleton.instance as toolbarUtils
 
 
 class DownloadPriceList : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.prasunmondal.mbros_delivery.ui.home
+package com.prasunmondal.mbros_delivery
 
 import android.content.Intent
 import android.graphics.Color
@@ -12,9 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.prasunmondal.mbros_delivery.DownloadPriceList
-import com.prasunmondal.mbros_delivery.R
-import com.prasunmondal.mbros_delivery.WeighingPage
+import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagerUtil
 import com.prasunmondal.mbros_delivery.sessionData.AppContext
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession
 import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList
@@ -30,6 +28,7 @@ class SelectCurrentUser : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         AppContext.Singleton.instance.setCustomerSelectionActivity(this)
+        checkForDataExistence()
         populateCustomerListSpinner()
         setActionbarTextColor()
     }
@@ -47,6 +46,12 @@ class SelectCurrentUser : AppCompatActivity() {
         } else {
             val i = Intent(this@SelectCurrentUser, WeighingPage::class.java)
             startActivity(i)
+        }
+    }
+
+    fun checkForDataExistence() {
+        if (!fileManagerUtil.doesFileExist(fileManagerUtil.storageLink_RateList)) {
+            goToDownloadPriceList()
         }
     }
 
