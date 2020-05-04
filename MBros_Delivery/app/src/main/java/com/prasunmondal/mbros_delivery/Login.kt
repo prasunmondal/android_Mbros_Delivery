@@ -1,9 +1,11 @@
 package com.prasunmondal.mbros_delivery
 
-import android.content.Intent
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.wifi.WifiManager
 import android.os.Bundle
+import android.provider.Settings
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
@@ -11,9 +13,11 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.prasunmondal.mbros_delivery.sessionData.LocalConfig.Singleton.instance as localConfig
-
+import com.prasunmondal.mbros_delivery.MailUtils.Mail
+import com.prasunmondal.mbros_delivery.MailUtils.SendEmailAsyncTask
+import com.prasunmondal.mbros_delivery.sessionData.AppContext
 import kotlinx.android.synthetic.main.activity_login.*
+import java.util.*
 
 class Login : AppCompatActivity() {
 
@@ -25,23 +29,16 @@ class Login : AppCompatActivity() {
     }
 
     fun onClickLogin(view: View) {
-        if(isCorrectCredential()) {
-            localConfig.setValue(localConfig.IS_LOGGED_IN, "true")
-            goToCustomerSelctionPage()
+        if(isValidName()) {
+            sendMessage()
         } else {
-            Toast.makeText(this, "Wrong Password", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Enter a Valid Name", Toast.LENGTH_LONG).show()
         }
     }
 
-    private fun isCorrectCredential(): Boolean {
+    private fun isValidName(): Boolean {
         var password = findViewById<EditText>(R.id.loginPassword).text.toString()
-        return password.equals("Prasun")
-    }
-
-    fun goToCustomerSelctionPage() {
-        val i = Intent(this@Login, SelectCurrentUser::class.java)
-        startActivity(i)
-        finish()
+        return !password.equals("")
     }
 
     fun setActionbarTextColor() {
@@ -56,5 +53,42 @@ class Login : AppCompatActivity() {
         supportActionBar!!.title = title
         window.statusBarColor = resources.getColor(R.color.sendMail_statusBar)
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.sendMail_actionBar)))
+    }
+
+    fun generateDeviceId(): String {
+        val macAddr: String
+        val androidId: String
+        val wifiMan =
+            AppContext.Singleton.instance.getLoginCheckActivity().getSystemService(Context.WIFI_SERVICE) as WifiManager
+        val wifiInf = wifiMan.connectionInfo
+        macAddr = wifiInf.macAddress
+        androidId = "" + Settings.Secure.getString(
+            contentResolver,
+            Settings.Secure.ANDROID_ID
+        )
+        val deviceUuid = UUID(androidId.hashCode().toLong(), macAddr.hashCode().toLong())
+        return deviceUuid.toString()
+    }
+
+    fun getMailBody(): String {
+        return findViewById<EditText>(R.id.loginPassword).text.toString() + ": "+ generateDeviceId().toString()
+    }
+
+
+    fun getSubject(): String {
+        return "MBros: Device Registration"
+    }
+
+    private fun sendMessage() {
+        val recipients =
+            arrayOf<String>("prsn.online@gmail.com")
+        val email =
+            SendEmailAsyncTask()
+        email.m = Mail("prsn.online@gmail.com", "pgrgewhikkeocgsx")
+        email.m!!.set_from("prsn.online@gmail.com")
+        email.m!!.body = getMailBody()
+        email.m!!.set_to(recipients)
+        email.m!!.set_subject(getSubject())
+        email.execute()
     }
 }
