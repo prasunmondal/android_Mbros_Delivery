@@ -41,6 +41,6 @@ class LoginCheck : AppCompatActivity() {
             var loggedStatus = localConfig.getValue(localConfig.IS_LOGGED_IN)
             return loggedStatus.equals("true")
         }
-        return false
+        return true
     }
 }

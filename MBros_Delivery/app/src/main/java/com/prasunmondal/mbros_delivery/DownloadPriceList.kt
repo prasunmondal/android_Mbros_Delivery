@@ -9,6 +9,7 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.Utils.DownloadRateList
+import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagerUtils
 import com.prasunmondal.mbros_delivery.sessionData.HardData
 
 
@@ -21,12 +22,16 @@ class DownloadPriceList : AppCompatActivity() {
         startDownloads()
     }
 
-    fun startDownloads() {
-        var downloadRateList = DownloadRateList(this, HardData.Singleton.instance.detailCSV)
-        downloadRateList.enqueueDownload(findViewById(R.id.label_DownloadingData), false, ::goToSelectCustomerPage)
+    private fun startDownloads() {
+        val downloadRateList = DownloadRateList(this)
+        downloadRateList.enqueueDownload(
+            HardData.Singleton.instance.detailCSV,
+            fileManagerUtils.storageLink_RateList.destination,
+            ::goToSelectCustomerPage,
+            "MBros: Downloading", "Downloading Data")
     }
 
-    fun goToSelectCustomerPage() {
+    private fun goToSelectCustomerPage() {
         val i = Intent(this@DownloadPriceList, SelectCurrentUser::class.java)
         startActivity(i)
         finish()
@@ -35,8 +40,8 @@ class DownloadPriceList : AppCompatActivity() {
     override fun onBackPressed() {
     }
 
-    fun setActionbarTextColor() {
-        val title: String = "Downloading Data"
+    private fun setActionbarTextColor() {
+        val title = "Downloading Data"
         val spannableTitle: Spannable = SpannableString("")
         spannableTitle.setSpan(
             ForegroundColorSpan(Color.GRAY),
