@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/kgView"
-        android:layout_width="82dp"
+        android:layout_width="80dp"
         android:layout_height="38dp"
         android:layout_marginStart="24dp"
         android:text="TextView"
@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/priceView"
-        android:layout_width="96dp"
+        android:layout_width="80dp"
         android:layout_height="38dp"
         android:text="TextView"
         android:textSize="24sp"
@@ -30,7 +30,7 @@
 
     <TextView
         android:id="@+id/todayPriceView"
-        android:layout_width="136dp"
+        android:layout_width="120dp"
         android:layout_height="38dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="24dp"
@@ -41,7 +41,7 @@
 
     <TextView
         android:id="@+id/prevBalanceView"
-        android:layout_width="136dp"
+        android:layout_width="120dp"
         android:layout_height="38dp"
         android:layout_marginTop="10dp"
         android:text="TextView"
@@ -52,7 +52,7 @@
 
     <TextView
         android:id="@+id/toPayView"
-        android:layout_width="136dp"
+        android:layout_width="120dp"
         android:layout_height="38dp"
         android:layout_marginTop="30dp"
         android:text="TextView"
@@ -65,7 +65,7 @@
 
     <EditText
         android:id="@+id/paidTodayView"
-        android:layout_width="138dp"
+        android:layout_width="120dp"
         android:layout_height="53dp"
         android:layout_marginTop="10dp"
         android:ems="10"
@@ -79,7 +79,7 @@
 
     <TextView
         android:id="@+id/newBalanceView"
-        android:layout_width="136dp"
+        android:layout_width="120dp"
         android:layout_height="38dp"
         android:layout_marginTop="30dp"
         android:text="TextView"
@@ -88,6 +88,40 @@
         app:layout_constraintEnd_toEndOf="@+id/todayPriceView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/todayPriceView"
+        app:layout_constraintTop_toBottomOf="@+id/paidTodayView" />
+
+    <View
+        android:id="@+id/VDivider1"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:background="@color/settlement_page_divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/paidTodayView"
+        app:layout_constraintStart_toEndOf="@+id/priceView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/HDivider1"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/settlement_page_divider"
+        app:layout_constraintBottom_toTopOf="@+id/toPayView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/VDivider1"
+        app:layout_constraintTop_toBottomOf="@+id/prevBalanceView" />
+
+    <View
+        android:id="@+id/HDivider2"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/settlement_page_divider"
+        app:layout_constraintBottom_toTopOf="@+id/newBalanceView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/VDivider1"
         app:layout_constraintTop_toBottomOf="@+id/paidTodayView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

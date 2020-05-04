@@ -32,4 +32,6 @@
     <color name="settlement_page_actionBar">#DC5553</color>
     <color name="settlement_page_statusBar">#DA403D</color>
     <color name="settlement_page_button">#DBC4C3</color>
+    <color name="settlement_page_divider">#441613</color>
+
 </resources>
