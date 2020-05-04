@@ -9,14 +9,16 @@
     <color name="black_overlay">#66000000</color>
     <color name="white">#FFFFFF</color>
 
-    <color name="download_price_background">#FAA825</color>
-    <color name="download_price_actionBar">#CE7E03</color>
     <color name="download_price_statusBar">#815002</color>
+    <color name="download_price_actionBar">#CE7E03</color>
+    <color name="download_price_background_end">#FACE4A</color>
+    <color name="download_price_background_middle">#FFF176</color>
+    <color name="download_price_background_start">#FFFFFF</color>
 
-    <color name="main_activity_button">#D9E0E7</color>
-    <color name="main_activity_background">#000000</color>
-    <color name="main_activity_actionBar">#1B59C3</color>
     <color name="main_activity_statusBar">#023080</color>
+    <color name="main_activity_actionBar">#1B59C3</color>
+    <color name="main_activity_background">#000000</color>
+    <color name="main_activity_button">#D9E0E7</color>
 
     <color name="selectCustomer_background">#000000</color>
     <color name="selectCustomer_actionBar">#1B1B1B</color>
