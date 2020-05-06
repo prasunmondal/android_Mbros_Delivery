@@ -8,7 +8,7 @@
     tools:context=".DownloadPriceList">
 
     <TextView
-        android:id="@+id/label_DownloadingData"
+        android:id="@+id/label_confirm_name"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="Downloading Data..."

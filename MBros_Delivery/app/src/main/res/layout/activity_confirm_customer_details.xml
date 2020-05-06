@@ -4,7 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectCurrentUser">
+    tools:context=".ConfirmCustomerDetails">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_margin="8dp"
+        android:layout_gravity="right|top"
+        android:clickable="true"
+        android:onClick="onClickNextButton"
+        app:elevation="20dp"
+        app:backgroundTint="@color/main_activity_button"
+        app:srcCompat="@drawable/ic_menu_send"
+        app:fabCustomSize="@dimen/goToSendPage_fab_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -20,22 +36,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:layout_margin="8dp"
-        android:layout_gravity="end|top"
-        android:clickable="true"
-        android:onClick="onClickSaveUsername"
-        app:elevation="20dp"
-        app:backgroundTint="@color/main_activity_button"
-        app:srcCompat="@drawable/ic_menu_send"
-        app:fabCustomSize="@dimen/goToSendPage_fab_size"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <include layout="@layout/content_select_current_user" />
+    <include layout="@layout/content_confirm_customer_details" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

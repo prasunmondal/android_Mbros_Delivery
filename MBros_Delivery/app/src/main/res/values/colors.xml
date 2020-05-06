@@ -25,6 +25,9 @@
     <color name="selectCustomer_statusBar">#292828</color>
     <color name="selectCustomer_button">#292828</color>
 
+    <color name="confirm_customer_statusBar">#023080</color>
+    <color name="confirm_custome_actionBar">#1B59C3</color>
+    <color name="confirm_custome_background">#000000</color>
 
     <color name="sendMail_background">#2D7EE7</color>
     <color name="sendMail_actionBar">#1B59C3</color>

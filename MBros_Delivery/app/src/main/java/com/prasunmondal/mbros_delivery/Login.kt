@@ -43,20 +43,6 @@ class Login : AppCompatActivity() {
         return password != ""
     }
 
-    private fun setActionbarTextColor() {
-        val title = "Login"
-        val spannableTitle: Spannable = SpannableString("")
-        spannableTitle.setSpan(
-            ForegroundColorSpan(Color.GRAY),
-            0,
-            spannableTitle.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        supportActionBar!!.title = title
-        window.statusBarColor = resources.getColor(R.color.sendMail_statusBar)
-        supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.sendMail_actionBar)))
-    }
-
     @SuppressLint("HardwareIds")
     fun generateDeviceId(): String {
         val macAddr: String
@@ -79,5 +65,19 @@ class Login : AppCompatActivity() {
 
     private fun getSubject(): String {
         return "MBros: Device Registration"
+    }
+
+    private fun setActionbarTextColor() {
+        val title = "Login"
+        val spannableTitle: Spannable = SpannableString("")
+        spannableTitle.setSpan(
+            ForegroundColorSpan(Color.GRAY),
+            0,
+            spannableTitle.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        supportActionBar!!.title = title
+        window.statusBarColor = resources.getColor(R.color.sendMail_statusBar)
+        supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.sendMail_actionBar)))
     }
 }

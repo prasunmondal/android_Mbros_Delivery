@@ -37,14 +37,14 @@ class SelectCurrentUser : AppCompatActivity() {
         val customerSelector = findViewById<Spinner>(R.id.customerSelector)
         val customerName: String = customerSelector.selectedItem.toString()
         CurrentSession.Singleton.instance.setCurrentCustomer_name(customerName)
-        goToCalculatingPage()
+        goToConfirmPage()
     }
 
-    fun goToCalculatingPage() {
+    private fun goToConfirmPage() {
         if(CurrentSession.Singleton.instance.getCurrentCustomer_name().equals(text_NoCustomerToSelect)) {
             Toast.makeText(this, "Select valid customer", Toast.LENGTH_LONG).show()
         } else {
-            val i = Intent(this@SelectCurrentUser, WeighingPage::class.java)
+            val i = Intent(this@SelectCurrentUser, ConfirmCustomerDetails::class.java)
             startActivity(i)
         }
     }
