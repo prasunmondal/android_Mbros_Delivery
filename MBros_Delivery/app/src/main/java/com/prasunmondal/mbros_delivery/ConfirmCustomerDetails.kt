@@ -28,7 +28,7 @@ class ConfirmCustomerDetails : AppCompatActivity() {
         var nameLabel = findViewById<TextView>(R.id.label_confirm_name)
         nameLabel.text = currentSession.getCurrentCustomer_name()
         var KGLabel = findViewById<TextView>(R.id.label_confirm_KG)
-        KGLabel.text = "500 Kg"
+        KGLabel.text = "500 kg"
     }
 
     fun goToWeighingPage() {
