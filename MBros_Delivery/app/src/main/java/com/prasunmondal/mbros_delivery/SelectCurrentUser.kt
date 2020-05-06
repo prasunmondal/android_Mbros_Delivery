@@ -16,8 +16,11 @@ import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instanc
 import com.prasunmondal.mbros_delivery.sessionData.AppContext
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession
 import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList
+import com.prasunmondal.mbros_delivery.sessionData.LocalConfig.Singleton.instance as localConfig
 
 import kotlinx.android.synthetic.main.activity_select_current_user.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SelectCurrentUser : AppCompatActivity() {
 
@@ -31,6 +34,7 @@ class SelectCurrentUser : AppCompatActivity() {
         checkForDataExistence()
         populateCustomerListSpinner()
         setActionbarTextColor()
+        updateSessionDetails()
     }
 
     fun onClickSaveUsername(view: View) {
@@ -78,7 +82,7 @@ class SelectCurrentUser : AppCompatActivity() {
     }
 
     fun setActionbarTextColor() {
-        val title: String = "Mondal Bros."
+        val title = "Mondal Bros."
         val spannableTitle: Spannable = SpannableString("")
         spannableTitle.setSpan(
             ForegroundColorSpan(Color.GRAY),
@@ -89,5 +93,11 @@ class SelectCurrentUser : AppCompatActivity() {
         supportActionBar!!.title = title
         window.statusBarColor = resources.getColor(R.color.selectCustomer_statusBar)
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.selectCustomer_actionBar)))
+    }
+
+    private fun updateSessionDetails() {
+        var dateTime = SimpleDateFormat(localConfig.LOG_TIME_FORMAT, Locale.getDefault()).format(Date())
+        localConfig.setValue(localConfig.LAST_LOGGED_IN_TIME, dateTime)
+        println("Last logged in: " + localConfig.getValue(localConfig.LAST_LOGGED_IN_TIME))
     }
 }

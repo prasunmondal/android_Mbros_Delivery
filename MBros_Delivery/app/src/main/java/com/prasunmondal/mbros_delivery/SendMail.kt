@@ -37,8 +37,7 @@ class SendMail : AppCompatActivity() {
         str += "\nPaid Amount: " + currentSession.getCurrentCustomer_paid()
         str += "\nNew Balance: " + currentSession.getCurrentCustomer_newBalance()
         str += "\n\n\nDate: " + SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
-        str += "\nTime: " + SimpleDateFormat("HH:mm:ss", Locale.getDefault())
-            .format(Date())
+        str += "\nTime: " + SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
 
         Log.d("Mail body:\n", str)
         return str
