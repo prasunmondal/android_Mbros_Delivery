@@ -7,8 +7,10 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.prasunmondal.mbros_delivery.Utils.DownloadRateList
+import com.prasunmondal.mbros_delivery.Utils.DownloadUtils
+import com.prasunmondal.mbros_delivery.sessionData.AppContext
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagerUtils
 import com.prasunmondal.mbros_delivery.sessionData.HardData
 
@@ -23,8 +25,8 @@ class DownloadPriceList : AppCompatActivity() {
     }
 
     private fun startDownloads() {
-        val downloadRateList = DownloadRateList(this)
-        downloadRateList.enqueueDownload(
+        val downloadRecord = DownloadUtils(this)
+        downloadRecord.enqueueDownload(
             HardData.Singleton.instance.detailCSV,
             fileManagerUtils.storageLink_RateList.destination,
             ::goToSelectCustomerPage,
@@ -32,6 +34,7 @@ class DownloadPriceList : AppCompatActivity() {
     }
 
     private fun goToSelectCustomerPage() {
+        Toast.makeText(AppContext.Singleton.instance.getCustomerSelectionActivity(), "Download Complete", Toast.LENGTH_SHORT).show()
         val i = Intent(this@DownloadPriceList, SelectCurrentUser::class.java)
         startActivity(i)
         finish()

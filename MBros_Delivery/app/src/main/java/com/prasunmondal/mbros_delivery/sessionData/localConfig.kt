@@ -1,8 +1,8 @@
 package com.prasunmondal.mbros_delivery.sessionData
 
 import java.io.File
-import com.prasunmondal.mbros_delivery.Utils.FileReadUtil.Singleton.instance as FileReadUtils
-import com.prasunmondal.mbros_delivery.Utils.FileWriteUtil.Singleton.instance as FileWriteUtils
+import com.prasunmondal.mbros_delivery.Utils.FileReadUtils.Singleton.instance as FileReadUtils
+import com.prasunmondal.mbros_delivery.Utils.FileWriteUtils.Singleton.instance as FileWriteUtils
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as FileManagerUtils
 
 class LocalConfig {

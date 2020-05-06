@@ -1,6 +1,6 @@
 package com.prasunmondal.mbros_delivery.sessionData
 
-import com.prasunmondal.mbros_delivery.Utils.FileReadUtil.Singleton.instance as fileReadUtils
+import com.prasunmondal.mbros_delivery.Utils.FileReadUtils.Singleton.instance as fileReadUtils
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagers
 
 class FetchedRateList {

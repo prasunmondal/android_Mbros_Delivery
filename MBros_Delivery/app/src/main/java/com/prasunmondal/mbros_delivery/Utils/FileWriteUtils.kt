@@ -5,10 +5,10 @@ import com.prasunmondal.mbros_delivery.appData.FilePaths
 import java.io.File
 import java.io.FileWriter
 
-class FileWriteUtil {
+class FileWriteUtils {
 
     object Singleton {
-        var instance = FileWriteUtil()
+        var instance = FileWriteUtils()
     }
 
     fun writeToInternalFile(filepath: FilePaths, writeString: String): Boolean {

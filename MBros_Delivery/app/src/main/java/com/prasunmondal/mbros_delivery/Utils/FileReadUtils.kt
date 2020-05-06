@@ -6,10 +6,10 @@ import java.io.File
 import java.io.FileReader
 import java.io.IOException
 
-class FileReadUtil {
+class FileReadUtils {
 
     object Singleton {
-        var instance = FileReadUtil()
+        var instance = FileReadUtils()
     }
 
     fun readPairCSVnPopulateMap(map: MutableMap<String, String>, fileName: FilePaths) {

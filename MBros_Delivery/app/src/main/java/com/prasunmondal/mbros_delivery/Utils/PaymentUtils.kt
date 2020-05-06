@@ -3,10 +3,10 @@ package com.prasunmondal.mbros_delivery.Utils
 import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList.Singleton.instance as fetchedRateLists
 import com.prasunmondal.mbros_delivery.sessionData.LocalConfig.Singleton.instance as localConfigs
 
-class PaymentUtil {
+class PaymentUtils {
 
     object Singleton {
-        var instance = PaymentUtil()
+        var instance = PaymentUtils()
     }
 
     fun isPayOptionEnabled(): Boolean {
