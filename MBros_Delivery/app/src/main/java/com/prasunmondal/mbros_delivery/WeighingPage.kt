@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
@@ -114,6 +115,11 @@ class WeighingPage : AppCompatActivity() {
         currentSession.setCurrentCustomer_totalPCs(total_Pieces.toString())
         labelPc.setText(currentSession.getCurrentCustomer_totalPCs())
         labelKG.setText(currentSession.getCurrentCustomer_totalKG())
+
+
+        var per = (total_KGs / 500 * 100)
+        var pb = findViewById<ProgressBar>(R.id.weighProgress)
+        pb.progress = per.toInt()
     }
 
     fun goToSettlementPage(view: View) {
