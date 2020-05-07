@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Utils.TryLogingIn"
+            android:name=".TryLogingIn"
             android:label="@string/title_activity_try_loging_in"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity

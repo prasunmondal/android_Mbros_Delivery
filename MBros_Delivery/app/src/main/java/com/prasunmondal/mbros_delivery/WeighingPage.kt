@@ -32,6 +32,7 @@ class WeighingPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_weighing_page)
         setSupportActionBar(toolbar)
+        setActionbarTextColor()
 
 //        setActionbarTextColor()
         for(i in 1..10) {

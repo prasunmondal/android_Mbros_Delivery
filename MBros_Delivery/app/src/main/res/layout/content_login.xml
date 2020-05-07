@@ -4,18 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Login"
     tools:showIn="@layout/activity_login">
 
-    <EditText
-        android:id="@+id/loginPassword"
-        android:layout_width="267dp"
-        android:layout_height="53dp"
-        android:ems="10"
-        android:inputType="text"
+    <LinearLayout
+        android:layout_width="413dp"
+        android:layout_height="112dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="#F5E7BC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/enterOTPlabel"
+            android:layout_width="134dp"
+            android:layout_height="53dp"
+            android:gravity="center"
+            android:text="Enter OTP:"
+            android:textColor="#6D240505"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/loginPassword"
+            android:layout_width="162dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="text"
+            android:shadowColor="#04495E"
+            android:src="@drawable/edittext_white"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

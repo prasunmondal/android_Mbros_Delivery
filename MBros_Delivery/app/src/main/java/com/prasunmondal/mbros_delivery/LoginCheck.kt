@@ -1,15 +1,9 @@
 package com.prasunmondal.mbros_delivery
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.prasunmondal.mbros_delivery.Utils.TryLogingIn
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagerUtil
 import com.prasunmondal.mbros_delivery.Utils.DateTimeUtil.Singleton.instance as dateTimeUtil
 import com.prasunmondal.mbros_delivery.sessionData.LocalConfig.Singleton.instance as localConfig
