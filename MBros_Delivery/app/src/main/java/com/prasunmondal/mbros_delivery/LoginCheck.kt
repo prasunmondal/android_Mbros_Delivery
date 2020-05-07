@@ -63,7 +63,7 @@ class LoginCheck : AppCompatActivity() {
 //            var loggedStatus = localConfig.getValue(localConfig.)
 //            return loggedStatus.equals("true")
 ////        }
-//        return true
+        return true
     }
 
     private fun goToCustomerSelctionPage() {
