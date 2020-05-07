@@ -16,15 +16,13 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.MailUtils.SendMailTrigger
-import com.prasunmondal.mbros_delivery.Utils.DownloadUtils
-import com.prasunmondal.mbros_delivery.sessionData.AppContext
-import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagerUtil
 import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as appContext
-import com.prasunmondal.mbros_delivery.sessionData.HardData.Singleton.instance as hardData
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
 
 class Login : AppCompatActivity() {
+
+    val OTP_LENGTH = 6
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +44,24 @@ class Login : AppCompatActivity() {
 
     private fun isValidName(): Boolean {
         val password = findViewById<EditText>(R.id.loginPassword).text.toString()
-        return password != ""
+        if(password.length == OTP_LENGTH)
+            return decrypt(password.toInt())
+        return false
+    }
+
+    private fun decrypt(value: Int): Boolean {
+        val array = arrayOf(2,3,5,7)
+        var temp = value
+        var index = 0
+        while(temp!=0 && index<array.size) {
+            if(temp%array[index]==0) {
+                temp /= array[index]
+                index = 0
+            }
+            else
+                index++
+        }
+        return temp==1
     }
 
     @SuppressLint("HardwareIds")
