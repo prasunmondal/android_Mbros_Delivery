@@ -51,7 +51,7 @@ class TryLogingIn : AppCompatActivity() {
             3,
             generateDeviceId(), 2)
         println("got the key value: " + isActiveToday)
-        return isActiveToday!!.toLowerCase() == "true"
+        return !isActiveToday.isNullOrEmpty() && isActiveToday!!.toLowerCase() == "true"
     }
 
     private fun goToLoginPage() {
