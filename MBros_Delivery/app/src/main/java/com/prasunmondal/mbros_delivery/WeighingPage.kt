@@ -117,7 +117,7 @@ class WeighingPage : AppCompatActivity() {
         labelKG.setText(currentSession.getCurrentCustomer_totalKG())
 
 
-        var per = (total_KGs / 500 * 100)
+        var per = (total_KGs / currentSession.getCurrentCustomer_orderedQty().toFloat() * 100)
         var pb = findViewById<ProgressBar>(R.id.weighProgress)
         pb.progress = per.toInt()
     }

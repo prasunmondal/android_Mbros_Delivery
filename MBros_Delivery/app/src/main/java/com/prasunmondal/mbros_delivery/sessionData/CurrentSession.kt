@@ -8,6 +8,7 @@ class CurrentSession {
     }
 
     private lateinit var currentCustomer_name: String
+    private lateinit var currentCustomer_orderedQty: String
     private lateinit var currentCustomer_totalPCs: String
     private lateinit var currentCustomer_totalKG: String
     private lateinit var currentCustomer_todaysUnitPrice: String
@@ -80,6 +81,14 @@ class CurrentSession {
 
     fun getCurrentCustomer_newBalance(): String {
         return currentCustomer_newBalance
+    }
+
+    fun setCurrentCustomer_orderedQty(value: String) {
+        currentCustomer_orderedQty = value
+    }
+
+    fun getCurrentCustomer_orderedQty(): String {
+        return currentCustomer_orderedQty
     }
 
 }

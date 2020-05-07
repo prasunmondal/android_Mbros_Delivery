@@ -10,6 +10,8 @@ import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.prasunmondal.mbros_delivery.Utils.FileReadUtils
+import com.prasunmondal.mbros_delivery.appData.FileManagerUtil
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 
 import kotlinx.android.synthetic.main.activity_confirm_customer_details.*
@@ -28,7 +30,8 @@ class ConfirmCustomerDetails : AppCompatActivity() {
         var nameLabel = findViewById<TextView>(R.id.label_confirm_name)
         nameLabel.text = currentSession.getCurrentCustomer_name()
         var KGLabel = findViewById<TextView>(R.id.label_confirm_KG)
-        KGLabel.text = "500 kg"
+        currentSession.setCurrentCustomer_orderedQty(FileReadUtils.Singleton.instance.getValue_forKey(FileManagerUtil.Singleton.instance.storageLink_RateList,0,currentSession.getCurrentCustomer_name(),5)!!)
+        KGLabel.text = currentSession.getCurrentCustomer_orderedQty()
     }
 
     fun goToWeighingPage() {
