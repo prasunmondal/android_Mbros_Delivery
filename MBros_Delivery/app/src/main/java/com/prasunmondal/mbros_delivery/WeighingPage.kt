@@ -33,7 +33,7 @@ class WeighingPage : AppCompatActivity() {
         setContentView(R.layout.activity_weighing_page)
         setSupportActionBar(toolbar)
 
-        setActionbarTextColor()
+//        setActionbarTextColor()
         for(i in 1..10) {
             addTransactionRow()
         }

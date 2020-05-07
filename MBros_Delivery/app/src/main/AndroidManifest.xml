@@ -18,9 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Utils.TryLogingIn"
+            android:label="@string/title_activity_try_loging_in"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".ConfirmCustomerDetails"
             android:label="@string/title_activity_confirm_customer_details"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Login"
             android:label="@string/title_activity_login"
@@ -38,7 +42,7 @@
         <activity
             android:name=".SelectCurrentUser"
             android:label="MBros_Delivery"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".WeighingPage"
             android:label="@string/title_activity_weighing_page"

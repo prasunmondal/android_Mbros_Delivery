@@ -2,6 +2,7 @@ package com.prasunmondal.mbros_delivery
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.wifi.WifiManager
@@ -15,7 +16,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.MailUtils.SendMailTrigger
+import com.prasunmondal.mbros_delivery.Utils.DownloadUtils
 import com.prasunmondal.mbros_delivery.sessionData.AppContext
+import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagerUtil
+import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as appContext
+import com.prasunmondal.mbros_delivery.sessionData.HardData.Singleton.instance as hardData
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
 
@@ -26,10 +31,25 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         setSupportActionBar(toolbar)
         setActionbarTextColor()
+        getLoginData()
+    }
+
+    private fun getLoginData() {
+        // download file
+        DownloadUtils(this).enqueueDownload(hardData.CSV_settings,
+            fileManagerUtil.storageLink_CSV_Settings.destination,
+            ::checkForLoginPermission,
+            "MBros: Getting Login Info", "fetching data...")
+        // if credential available or pin matches - proceed
+    }
+
+    fun checkForLoginPermission() {
+
     }
 
     fun onClickLogin(view: View) {
         if(isValidName()) {
+            goToSelectCustomerPage()
             val recipients =
                 arrayOf("prsn.online@gmail.com")
             SendMailTrigger().sendMessage(recipients, getSubject(), getMailBody(), view, "Sending Request...", "Request Sent.")
@@ -47,7 +67,7 @@ class Login : AppCompatActivity() {
     fun generateDeviceId(): String {
         val macAddr: String
         val wifiMan =
-            AppContext.Singleton.instance.getLoginCheckActivity().getSystemService(Context.WIFI_SERVICE) as WifiManager
+            appContext.getLoginCheckActivity().getSystemService(Context.WIFI_SERVICE) as WifiManager
         val wifiInf = wifiMan.connectionInfo
         macAddr = wifiInf.macAddress
         val androidId: String = "" + Settings.Secure.getString(
@@ -79,5 +99,11 @@ class Login : AppCompatActivity() {
         supportActionBar!!.title = title
         window.statusBarColor = resources.getColor(R.color.sendMail_statusBar)
         supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.sendMail_actionBar)))
+    }
+
+    private fun goToSelectCustomerPage() {
+        val i = Intent(this@Login, SelectCurrentUser::class.java)
+        startActivity(i)
+        finish()
     }
 }

@@ -16,4 +16,6 @@ class HardData {
         "https://docs.google.com/spreadsheets/d/e/2PACX-1vRZQ28x7jpdIOzT2PA6iTCTcyTHM9tVPkv2ezuqd4LFOWu9SJqImGM7ML8ejdQB01SdjfTZnoHogzUt/pubhtml?gid=16104355&single=true"
     val detailCSV =
         "https://docs.google.com/spreadsheets/d/e/2PACX-1vSKg1LbvkVXimPArqLfg3yHNS3947Zi3hxfhvknH6AzR35D-NvqM-Cq3sjqUFUkiavChzFcP4CzvNUa/pub?gid=0&single=true&output=csv"
+    val CSV_settings =
+        "https://docs.google.com/spreadsheets/d/e/2PACX-1vSKg1LbvkVXimPArqLfg3yHNS3947Zi3hxfhvknH6AzR35D-NvqM-Cq3sjqUFUkiavChzFcP4CzvNUa/pub?gid=1442543504&single=true&output=csv"
 }

@@ -30,8 +30,8 @@
     </style>
 
 
-    <style name="Widget">
-    </style>
+    <style name="Widget"></style>
+
     <style name="Widget.ProgressBar">
         <item name="android:indeterminateOnly">true</item>
         <item name="android:indeterminateBehavior">repeat</item>
@@ -41,10 +41,13 @@
         <item name="android:minHeight">48dip</item>
         <item name="android:maxHeight">48dip</item>
     </style>
+
     <style name="Widget.ProgressBar.Vertical">
         <item name="android:indeterminateOnly">false</item>
         <item name="android:progressDrawable">@drawable/vertical_progress_bar</item>
-        <item name="android:indeterminateDrawable">@android:drawable/progress_indeterminate_horizontal</item>
+        <item name="android:indeterminateDrawable">
+            @android:drawable/progress_indeterminate_horizontal
+        </item>
     </style>
 
 </resources>
