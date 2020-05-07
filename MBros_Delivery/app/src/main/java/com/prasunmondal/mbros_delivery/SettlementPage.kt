@@ -31,6 +31,7 @@ class SettlementPage : AppCompatActivity() {
     fun initiallize() {
         var currentUser = currentSession.getCurrentCustomer_name()
         var totalKG = currentSession.getCurrentCustomer_totalKG().toFloat()
+        var totalPCs = currentSession.getCurrentCustomer_totalPCs()
         var pricePerKG  = fetchedRateList.getPricePerKg(currentUser).toFloat()
         var todaysPrice = (totalKG.toFloat() * pricePerKG).toInt()
         var prevBalance = fetchedRateList.getPrevBal(currentUser).toInt()
@@ -40,7 +41,7 @@ class SettlementPage : AppCompatActivity() {
         currentSession.setCurrentCustomer_todaysBillAmount(todaysPrice.toString())
 
         findViewById<TextView>(R.id.kgView).text = tryNRemoveDecimal(totalKG)
-        findViewById<TextView>(R.id.priceView).text = tryNRemoveDecimal(pricePerKG)
+        findViewById<TextView>(R.id.pieceView).text = totalPCs
         findViewById<TextView>(R.id.todayPriceView).text = todaysPrice.toString()
         findViewById<TextView>(R.id.prevBalanceView).text = prevBalance.toString()
         findViewById<TextView>(R.id.toPayView).text = toPay.toString()
@@ -90,8 +91,9 @@ class SettlementPage : AppCompatActivity() {
     }
 
     fun cacheAllData() {
+//        currentSession.setCurrentCustomer_totalPCs(findViewById<TextView>(R.id.pi).text.toString())
         currentSession.setCurrentCustomer_totalKG(findViewById<TextView>(R.id.kgView).text.toString())
-        currentSession.setCurrentCustomer_todaysUnitPrice(findViewById<TextView>(R.id.priceView).text.toString())
+        currentSession.setCurrentCustomer_todaysUnitPrice(findViewById<TextView>(R.id.pieceView).text.toString())
         currentSession.setCurrentCustomer_todaysBillAmount(findViewById<TextView>(R.id.todayPriceView).text.toString())
         currentSession.setCurrentCustomer_prevBalance(findViewById<TextView>(R.id.prevBalanceView).text.toString())
         currentSession.setCurrentCustomer_paid(findViewById<EditText>(R.id.paidTodayView).text.toString())
