@@ -31,20 +31,6 @@ class Login : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         setSupportActionBar(toolbar)
         setActionbarTextColor()
-        getLoginData()
-    }
-
-    private fun getLoginData() {
-        // download file
-        DownloadUtils(this).enqueueDownload(hardData.CSV_settings,
-            fileManagerUtil.storageLink_CSV_Settings.destination,
-            ::checkForLoginPermission,
-            "MBros: Getting Login Info", "fetching data...")
-        // if credential available or pin matches - proceed
-    }
-
-    fun checkForLoginPermission() {
-
     }
 
     fun onClickLogin(view: View) {
