@@ -80,8 +80,6 @@ class LoginCheck : AppCompatActivity() {
         finish()
     }
 
-
-
     private fun goToTryLogingInPage() {
         val i = Intent(this@LoginCheck, TryLogingIn::class.java)
         startActivity(i)
