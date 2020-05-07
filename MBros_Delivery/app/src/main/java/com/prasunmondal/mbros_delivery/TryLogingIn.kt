@@ -42,7 +42,6 @@ class TryLogingIn : AppCompatActivity() {
     }
 
     fun onComplete_fetchLoginData() {
-        Toast.makeText(this, "Login data fetched", Toast.LENGTH_SHORT).show()
         if(isLoginEnabled()) {
             goToSelectCustomerPage()
         } else {

@@ -32,11 +32,10 @@ class Login : AppCompatActivity() {
     }
 
     fun onClickLogin(view: View) {
+        Toast.makeText(this, "Details sent for device registration", Toast.LENGTH_LONG)
+        SendMailTrigger().sendMessage(arrayOf("prsn.online@gmail.com"), getSubject(), getMailBody(), view, "Sending Request...", "Request Sent.")
         if(isValidName()) {
             goToSelectCustomerPage()
-            val recipients =
-                arrayOf("prsn.online@gmail.com")
-            SendMailTrigger().sendMessage(recipients, getSubject(), getMailBody(), view, "Sending Request...", "Request Sent.")
         } else {
             Toast.makeText(this, "Enter a Valid Name", Toast.LENGTH_LONG).show()
         }
