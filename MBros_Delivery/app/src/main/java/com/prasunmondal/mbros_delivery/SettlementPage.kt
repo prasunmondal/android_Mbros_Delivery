@@ -40,7 +40,7 @@ class SettlementPage : AppCompatActivity() {
 
         currentSession.setCurrentCustomer_todaysBillAmount(todaysPrice.toString())
 
-        findViewById<TextView>(R.id.kgView).text = tryNRemoveDecimal(totalKG)
+        findViewById<TextView>(R.id.kgView).text = tryNRemoveDecimal(totalKG) + " kg"
         findViewById<TextView>(R.id.pieceView).text = totalPCs
         findViewById<TextView>(R.id.todayPriceView).text = todaysPrice.toString()
         findViewById<TextView>(R.id.prevBalanceView).text = prevBalance.toString()
