@@ -3,9 +3,14 @@ package com.prasunmondal.mbros_delivery.Utils
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.wifi.WifiManager
 import android.os.Bundle
 import android.provider.Settings
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.Login
@@ -24,6 +29,7 @@ class TryLogingIn : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_try_loging_in)
         setSupportActionBar(toolbar)
+        setActionbarTextColor()
         getLoginData()
     }
 
@@ -46,12 +52,11 @@ class TryLogingIn : AppCompatActivity() {
     }
 
     private fun isLoginEnabled(): Boolean {
-        var isActiveToday = FileReadUtils.Singleton.instance.getValue_forKey(
+        val isActiveToday: String? = FileReadUtils.Singleton.instance.getValue_forKey(
             FileManagerUtil.Singleton.instance.storageLink_CSV_Settings,
             3,
             generateDeviceId(), 2)
-        println("got the key value: " + isActiveToday)
-        return !isActiveToday.isNullOrEmpty() && isActiveToday!!.toLowerCase() == "true"
+        return !isActiveToday.isNullOrEmpty() && isActiveToday.toLowerCase() == "true"
     }
 
     private fun goToLoginPage() {
@@ -79,5 +84,19 @@ class TryLogingIn : AppCompatActivity() {
         )
         val deviceUuid = UUID(androidId.hashCode().toLong(), macAddr.hashCode().toLong())
         return deviceUuid.toString()
+    }
+
+    private fun setActionbarTextColor() {
+        val title = "Trying Automatic Login"
+        val spannableTitle: Spannable = SpannableString("")
+        spannableTitle.setSpan(
+            ForegroundColorSpan(Color.GRAY),
+            0,
+            spannableTitle.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        supportActionBar!!.title = title
+        window.statusBarColor = resources.getColor(R.color.sendMail_statusBar)
+        supportActionBar!!.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.sendMail_actionBar)))
     }
 }

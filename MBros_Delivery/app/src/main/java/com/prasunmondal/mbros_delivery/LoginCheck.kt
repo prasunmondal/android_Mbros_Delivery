@@ -1,7 +1,12 @@
 package com.prasunmondal.mbros_delivery
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.Utils.TryLogingIn
@@ -64,14 +69,6 @@ class LoginCheck : AppCompatActivity() {
     private fun deleteAllData() {
         fileManagerUtil.deleteFile(fileManagerUtil.localConfigurationStorage)
         fileManagerUtil.deleteFile(fileManagerUtil.storageLink_RateList)
-    }
-
-    private fun isLoggedIn(): Boolean {
-//        if(fileManagerUtil.doesFileExist(fileManagerUtil.localConfigurationStorage)) {
-//            var loggedStatus = localConfig.getValue(localConfig.)
-//            return loggedStatus.equals("true")
-////        }
-        return false
     }
 
     private fun goToCustomerSelctionPage() {
