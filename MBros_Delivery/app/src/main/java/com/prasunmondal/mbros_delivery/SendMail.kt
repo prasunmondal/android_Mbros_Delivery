@@ -30,6 +30,8 @@ class SendMail : AppCompatActivity() {
         var str: String = "Delivered to: " + currentSession.getCurrentCustomer_name()
         str += "\nPieces: " + currentSession.getCurrentCustomer_totalPCs()
         str += "\nWeight: " + currentSession.getCurrentCustomer_totalKG()
+        println("kg ----------------" + currentSession.getCurrentCustomer_totalKG())
+        println("pc ----------------" + currentSession.getCurrentCustomer_totalPCs())
         str += "\nAvg body weight: " + (currentSession.getCurrentCustomer_totalKG().toFloat() / currentSession.getCurrentCustomer_totalPCs().toInt()).toString()
         str += "\n\nUnit Price: " + currentSession.getCurrentCustomer_todaysUnitPrice()
         str += "\n\nPrevious Pending: " + currentSession.getCurrentCustomer_prevBalance()
