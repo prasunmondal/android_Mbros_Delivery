@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.prasunmondal.mbros_delivery.Utils.DateTimeUtil.Singleton.instance as dateTimeUtil
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagerUtil
 import com.prasunmondal.mbros_delivery.sessionData.AppContext
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession
@@ -96,7 +97,7 @@ class SelectCurrentUser : AppCompatActivity() {
     }
 
     private fun updateSessionDetails() {
-        var dateTime = SimpleDateFormat(localConfig.LOG_TIME_FORMAT, Locale.getDefault()).format(Date())
+        var dateTime = SimpleDateFormat(dateTimeUtil.FORMAT_DATETIME, Locale.getDefault()).format(Date())
         localConfig.setValue(localConfig.LAST_LOGGED_IN_TIME, dateTime)
         println("Last logged in: " + localConfig.getValue(localConfig.LAST_LOGGED_IN_TIME))
     }

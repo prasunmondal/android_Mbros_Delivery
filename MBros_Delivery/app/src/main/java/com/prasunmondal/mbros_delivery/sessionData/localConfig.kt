@@ -9,8 +9,6 @@ class LocalConfig {
 
     val USERNAME= "username"
     val LAST_LOGGED_IN_TIME = "lastLoggedInTime"
-    val LOG_TIME_FORMAT = "dd-MM-yyyy HH:mm:ss"
-    val IS_LOGGED_IN= "isLoggedIn?"
 
     private var localConfigMap: MutableMap<String, String> = mutableMapOf()
 

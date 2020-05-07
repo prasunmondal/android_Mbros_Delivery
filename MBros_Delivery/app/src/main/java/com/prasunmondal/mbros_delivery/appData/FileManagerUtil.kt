@@ -27,4 +27,9 @@ class FileManagerUtil {
         val file = File(filename.destination)
         return file.exists()
     }
+
+    fun deleteFile(filename: FilePaths) {
+        val file = File(filename.destination)
+        if (file.exists()) file.delete()
+    }
 }
