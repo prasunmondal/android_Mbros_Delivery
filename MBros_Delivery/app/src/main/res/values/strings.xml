@@ -46,6 +46,4 @@
     <string name="title_activity_login">Login</string>
     <string name="title_activity_confirm_customer_details">ConfirmCustomerDetails</string>
     <string name="title_activity_try_loging_in">TryLogingIn</string>
-    <string name="title_activity_job_service_demo">JobServiceDemo</string>
-    <string name="title_activity_domru">domru</string>
 </resources>

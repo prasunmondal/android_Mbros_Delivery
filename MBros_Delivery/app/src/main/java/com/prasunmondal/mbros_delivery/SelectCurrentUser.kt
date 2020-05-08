@@ -12,8 +12,6 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.prasunmondal.mbros_delivery.LocationService.JobServiceDemo
-import com.prasunmondal.mbros_delivery.LocationService.JobServiceDemoActivity
 import com.prasunmondal.mbros_delivery.Utils.DateTimeUtil.Singleton.instance as dateTimeUtil
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagerUtil
 import com.prasunmondal.mbros_delivery.sessionData.AppContext
@@ -67,7 +65,7 @@ class SelectCurrentUser : AppCompatActivity() {
     }
 
     fun goToDownloadPriceList() {
-        val i = Intent(this@SelectCurrentUser, domru::class.java)
+        val i = Intent(this@SelectCurrentUser, DownloadPriceList::class.java)
         startActivity(i)
         finish()
     }
