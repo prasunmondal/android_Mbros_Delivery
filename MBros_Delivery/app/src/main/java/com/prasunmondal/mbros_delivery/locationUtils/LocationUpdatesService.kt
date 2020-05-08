@@ -4,6 +4,7 @@ import android.app.Service
 import android.app.job.JobParameters
 import android.app.job.JobService
 import android.content.Intent
+import android.content.res.Configuration
 import android.location.Location
 import android.os.Message
 import android.os.Messenger
@@ -15,7 +16,7 @@ import android.util.Log
  * location update service continues to running and getting location information
  */
 class LocationUpdatesService : JobService(), LocationUpdatesComponent.ILocationProvider {
-    private val MESSENGER_INTENT_KEY = "msg-intent-key"
+    val MESSENGER_INTENT_KEY = "msg-intent-key"
     private var mActivityMessenger: Messenger? = null
     private var locationUpdatesComponent: LocationUpdatesComponent? = null
     override fun onStartJob(params: JobParameters): Boolean {
@@ -38,10 +39,16 @@ class LocationUpdatesService : JobService(), LocationUpdatesComponent.ILocationP
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         Log.i(TAG, "onStartCommand Service started")
-        mActivityMessenger = intent.getParcelableExtra(MESSENGER_INTENT_KEY)
+        if (intent != null) {
+            mActivityMessenger = intent.getParcelableExtra(MESSENGER_INTENT_KEY)
+        }
         //hey request for location updates
         locationUpdatesComponent!!.onStart()
         return Service.START_STICKY
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
     }
 
     override fun onRebind(intent: Intent) {
