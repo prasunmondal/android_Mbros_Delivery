@@ -4,20 +4,17 @@ import android.content.Context
 import android.location.Location
 import android.os.Looper
 import android.util.Log
-import androidx.annotation.NonNull
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 
 
 /**
  * stand alone component for location updates
  */
-class LocationUpdatesComponent(var iLocationProvider: ILocationProvider?) {
+class LocationUpdatesComponent(private var iLocationProvider: ILocationProvider?) {
     private var mLocationRequest: LocationRequest? = null
 
     /**
@@ -46,11 +43,8 @@ class LocationUpdatesComponent(var iLocationProvider: ILocationProvider?) {
         mLocationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 super.onLocationResult(locationResult)
-                Log.i(
-                    TAG,
-                    "onCreate...onLocationResult...............loc " + locationResult.getLastLocation()
-                )
-                onNewLocation(locationResult.getLastLocation())
+                Log.i(TAG, "onCreate...onLocationResult...............loc " + locationResult.lastLocation)
+                onNewLocation(locationResult.lastLocation)
             }
         }
         // create location request
@@ -80,7 +74,7 @@ class LocationUpdatesComponent(var iLocationProvider: ILocationProvider?) {
      * Makes a request for location updates. Note that in this sample we merely log the
      * [SecurityException].
      */
-    fun requestLocationUpdates() {
+    private fun requestLocationUpdates() {
         Log.i(TAG, "Requesting location updates")
         try {
             mFusedLocationClient!!.requestLocationUpdates(
@@ -99,7 +93,7 @@ class LocationUpdatesComponent(var iLocationProvider: ILocationProvider?) {
      * Removes location updates. Note that in this sample we merely log the
      * [SecurityException].
      */
-    fun removeLocationUpdates() {
+    private fun removeLocationUpdates() {
         Log.i(TAG, "Removing location updates")
         try {
             mFusedLocationClient!!.removeLocationUpdates(mLocationCallback)
@@ -117,28 +111,26 @@ class LocationUpdatesComponent(var iLocationProvider: ILocationProvider?) {
     /**
      * get last location
      */
-    fun getLastLocation()
+    private fun getLastLocation()
     {
         try {
-            mFusedLocationClient!!.getLastLocation()
-                .addOnCompleteListener(object : OnCompleteListener<Location?> {
-                    override fun onComplete(@NonNull task: Task<Location?>) {
-                        if (task.isSuccessful() && task.getResult() != null) {
-                            mLocation = task.getResult()
-                            Log.i(
-                                TAG,
-                                "getLastLocation $mLocation"
-                            )
-                            //                                Toast.makeText(getApplicationContext(), "" + mLocation, Toast.LENGTH_SHORT).show();
-                            onNewLocation(mLocation)
-                        } else {
-                            Log.w(
-                                TAG,
-                                "Failed to get location."
-                            )
-                        }
+            mFusedLocationClient!!.lastLocation
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful && task.result != null) {
+                        mLocation = task.result
+                        Log.i(
+                            TAG,
+                            "getLastLocation $mLocation"
+                        )
+                        //                                Toast.makeText(getApplicationContext(), "" + mLocation, Toast.LENGTH_SHORT).show();
+                        onNewLocation(mLocation)
+                    } else {
+                        Log.w(
+                            TAG,
+                            "Failed to get location."
+                        )
                     }
-                })
+                }
         } catch (unlikely: SecurityException) {
             Log.e(
                 TAG,
@@ -161,9 +153,9 @@ class LocationUpdatesComponent(var iLocationProvider: ILocationProvider?) {
      */
     private fun createLocationRequest() {
         val mLocationRequest = LocationRequest()
-        mLocationRequest.setInterval(UPDATE_INTERVAL_IN_MILLISECONDS)
-        mLocationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS)
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+        mLocationRequest.interval = UPDATE_INTERVAL_IN_MILLISECONDS
+        mLocationRequest.fastestInterval = FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS
+        mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
     }
 
     /**
