@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Messenger
 import android.text.Editable
 import android.text.Spannable
 import android.text.SpannableString
@@ -13,6 +14,9 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.prasunmondal.mbros_delivery.locationUtils.IncomingMessageHandler
+import com.prasunmondal.mbros_delivery.locationUtils.JobServiceDemoActivity
+import com.prasunmondal.mbros_delivery.locationUtils.LocationUpdatesService
 import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList.Singleton.instance as fetchedRateList
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 
@@ -24,8 +28,19 @@ class SettlementPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settlement_page)
         setSupportActionBar(toolbar)
+        getLocation()
         initiallize()
         setActionbarTextColor()
+    }
+
+    fun getLocation() {
+        val startServiceIntent = Intent(this@SettlementPage, LocationUpdatesService::class.java)
+        val messengerIncoming = Messenger(IncomingMessageHandler())
+        startServiceIntent.putExtra(
+            JobServiceDemoActivity.MESSENGER_INTENT_KEY,
+            messengerIncoming
+        )
+        startService(startServiceIntent)
     }
 
     fun initiallize() {

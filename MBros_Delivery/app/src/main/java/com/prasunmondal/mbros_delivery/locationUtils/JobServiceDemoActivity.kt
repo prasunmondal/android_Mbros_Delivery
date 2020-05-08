@@ -2,13 +2,9 @@ package com.prasunmondal.mbros_delivery.locationUtils
 
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Location
 import android.os.Bundle
-import android.os.Handler
-import android.os.Message
 import android.os.Messenger
 import android.util.Log
 import androidx.annotation.NonNull
@@ -21,13 +17,13 @@ class JobServiceDemoActivity : AppCompatActivity() {
 
     // as google doc says
     // Handler for incoming messages from the service.
-    private var mHandler: JobServiceDemoActivity.IncomingMessageHandler? = null
+    private var mHandler: IncomingMessageHandler? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_job_service_demo)
         setSupportActionBar(toolbar)
         requestPermissions()
-        mHandler = JobServiceDemoActivity().IncomingMessageHandler()
+//        mHandler =
     }
 
     /**
@@ -51,13 +47,7 @@ class JobServiceDemoActivity : AppCompatActivity() {
                     //  Utils.scheduleJob(this, LocationUpdatesService.class);
                     //doing this way to communicate via messenger
                     // Start service and provide it a way to communicate with this class.
-                    val startServiceIntent = Intent(this@JobServiceDemoActivity, LocationUpdatesService::class.java)
-                    val messengerIncoming = Messenger(mHandler)
-                    startServiceIntent.putExtra(
-                        MESSENGER_INTENT_KEY,
-                        messengerIncoming
-                    )
-                    startService(startServiceIntent)
+//                    getLocation()
                 }
                 else -> {
                     // Permission denied.
@@ -70,20 +60,6 @@ class JobServiceDemoActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         mHandler = null
-    }
-
-    @SuppressLint("HandlerLeak")
-    internal inner class IncomingMessageHandler : Handler() {
-        override fun handleMessage(msg: Message) {
-            Log.i(TAG, "handleMessage...$msg")
-            super.handleMessage(msg)
-            when (msg.what) {
-                LocationUpdatesService.LOCATION_MESSAGE -> {
-                    val obj = msg.obj as Location
-                    println("""LAT :  ${obj.latitude}   LNG : ${obj.longitude}""")
-                }
-            }
-        }
     }
 
     private fun requestPermissions() {
@@ -115,6 +91,8 @@ class JobServiceDemoActivity : AppCompatActivity() {
             )
         }
     }
+
+
 
     companion object {
         private val TAG = JobServiceDemoActivity::class.java.simpleName

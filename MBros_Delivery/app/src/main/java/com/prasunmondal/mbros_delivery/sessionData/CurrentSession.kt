@@ -15,6 +15,8 @@ class CurrentSession {
     private lateinit var currentCustomer_todaysBillAmount: String
     private lateinit var currentCustomer_prevBalance: String
     private lateinit var currentCustomer_paid: String
+    private lateinit var currentLocationLatitude: String
+    private lateinit var currentLocationLongitude: String
 
     private lateinit var currentCustomer_newBalance: String
 
@@ -89,6 +91,22 @@ class CurrentSession {
 
     fun getCurrentCustomer_orderedQty(): String {
         return currentCustomer_orderedQty
+    }
+
+    fun setCurrentLocationLatitude(value: String) {
+        currentLocationLatitude = value
+    }
+
+    fun getCurrentLocationLatitude(): String {
+        return currentLocationLatitude
+    }
+
+    fun setCurrentLocationLongitude(value: String) {
+        currentLocationLongitude = value
+    }
+
+    fun getCurrentLocationLongitude(): String {
+        return currentLocationLongitude
     }
 
 }

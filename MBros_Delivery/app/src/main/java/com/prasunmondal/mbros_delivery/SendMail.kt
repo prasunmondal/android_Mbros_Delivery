@@ -8,6 +8,7 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.prasunmondal.mbros_delivery.MailUtils.SendMailTrigger
@@ -24,6 +25,9 @@ class SendMail : AppCompatActivity() {
         var fab_send = findViewById<FloatingActionButton>(R.id.send_mail)
         fab_send.setRippleColor(Color.parseColor("#000000"))
         setActionbarTextColor()
+        Toast.makeText(this,
+            "Location: " + currentSession.getCurrentLocationLatitude() + ", " + currentSession.getCurrentLocationLongitude(),
+            Toast.LENGTH_LONG).show()
     }
 
     private fun getMailBody(): String {
@@ -40,6 +44,7 @@ class SendMail : AppCompatActivity() {
         str += "\nNew Balance: " + currentSession.getCurrentCustomer_newBalance()
         str += "\n\n\nDate: " + SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
         str += "\nTime: " + SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
+        str += "\n\n\n Location: " + currentSession.getCurrentLocationLatitude() + ", " + currentSession.getCurrentLocationLongitude()
 
         Log.d("Mail body:\n", str)
         return str
