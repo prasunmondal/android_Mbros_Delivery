@@ -43,9 +43,7 @@ class JobServiceDemoActivity : AppCompatActivity() {
                 grantResults.isEmpty() -> {
                     // If user interaction was interrupted, the permission request is cancelled and you
                     // receive empty arrays.
-                    Log.i(
-                        TAG, "User interaction was cancelled."
-                    )
+                    Log.i(TAG, "User interaction was cancelled.")
                     finish()
                 }
                 grantResults[0] == PackageManager.PERMISSION_GRANTED -> {
