@@ -18,9 +18,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".domru"
+            android:label="@string/title_activity_domru"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".LocationService.JobServiceDemo"
+            android:label="@string/title_activity_job_service_demo"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".TryLogingIn"
             android:label="@string/title_activity_try_loging_in"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ConfirmCustomerDetails"
             android:label="@string/title_activity_confirm_customer_details"
