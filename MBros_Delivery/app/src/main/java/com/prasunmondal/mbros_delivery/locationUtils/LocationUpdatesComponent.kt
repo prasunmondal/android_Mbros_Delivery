@@ -82,7 +82,10 @@ class LocationUpdatesComponent(private var iLocationProvider: ILocationProvider?
                 mLocationCallback, Looper.getMainLooper()
             )
         } catch (unlikely: SecurityException) {
-            Log.e(TAG, "Lost location permission. Could not request updates. $unlikely")
+            Log.e(
+                TAG,
+                "Lost location permission. Could not request updates. $unlikely"
+            )
         }
     }
 
@@ -94,10 +97,16 @@ class LocationUpdatesComponent(private var iLocationProvider: ILocationProvider?
         Log.i(TAG, "Removing location updates")
         try {
             mFusedLocationClient!!.removeLocationUpdates(mLocationCallback)
+            //            Utils.setRequestingLocationUpdates(this, false);
+//            stopSelf();
         } catch (unlikely: SecurityException) {
-            Log.e(TAG, "Lost location permission. Could not remove updates. $unlikely")
+//            Utils.setRequestingLocationUpdates(this, true);
+            Log.e(
+                TAG,
+                "Lost location permission. Could not remove updates. $unlikely"
+            )
         }
-    }
+    }//                                Toast.makeText(getApplicationContext(), "" + mLocation, Toast.LENGTH_SHORT).show();
 
     /**
      * get last location
@@ -109,19 +118,30 @@ class LocationUpdatesComponent(private var iLocationProvider: ILocationProvider?
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful && task.result != null) {
                         mLocation = task.result
-                        Log.i(TAG, "getLastLocation $mLocation")
+                        Log.i(
+                            TAG,
+                            "getLastLocation $mLocation"
+                        )
+                        //                                Toast.makeText(getApplicationContext(), "" + mLocation, Toast.LENGTH_SHORT).show();
                         onNewLocation(mLocation)
                     } else {
-                        Log.w(TAG, "Failed to get location.")
+                        Log.w(
+                            TAG,
+                            "Failed to get location."
+                        )
                     }
                 }
         } catch (unlikely: SecurityException) {
-            Log.e(TAG, "Lost location permission.$unlikely")
+            Log.e(
+                TAG,
+                "Lost location permission.$unlikely"
+            )
         }
     }
 
     private fun onNewLocation(location: Location?) {
         Log.i(TAG, "New location: $location")
+        //        Toast.makeText(getApplicationContext(), "onNewLocation " + location, Toast.LENGTH_LONG).show();
         mLocation = location
         if (iLocationProvider != null) {
             iLocationProvider!!.onLocationUpdate(mLocation)
@@ -160,4 +180,5 @@ class LocationUpdatesComponent(private var iLocationProvider: ILocationProvider?
         private const val FASTEST_UPDATE_INTERVAL_IN_MILLISECONDS =
             UPDATE_INTERVAL_IN_MILLISECONDS / 2
     }
+
 }

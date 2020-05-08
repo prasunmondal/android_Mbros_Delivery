@@ -20,6 +20,7 @@ class LocationUpdatesService : JobService(), LocationUpdatesComponent.ILocationP
     private var locationUpdatesComponent: LocationUpdatesComponent? = null
     override fun onStartJob(params: JobParameters): Boolean {
         Log.i(TAG, "onStartJob....")
+        //        Utils.scheduleJob(getApplicationContext(), LocationUpdatesService.class);
         return true
     }
 
@@ -56,6 +57,10 @@ class LocationUpdatesService : JobService(), LocationUpdatesComponent.ILocationP
         return true // Ensures onRebind() is called when a client re-binds.
     }
 
+    override fun onDestroy() {
+        Log.i(TAG, "onDestroy....")
+    }
+
     /**
      * send message by using messenger
      *
@@ -65,7 +70,10 @@ class LocationUpdatesService : JobService(), LocationUpdatesComponent.ILocationP
         // If this service is launched by the JobScheduler, there's no callback Messenger. It
         // only exists when the MainActivity calls startService() with the callback in the Intent.
         if (mActivityMessenger == null) {
-            Log.d(TAG, "Service is bound, not started. There's no callback to send a message to.")
+            Log.d(
+                TAG,
+                "Service is bound, not started. There's no callback to send a message to."
+            )
             return
         }
         val m = Message.obtain()
@@ -74,7 +82,10 @@ class LocationUpdatesService : JobService(), LocationUpdatesComponent.ILocationP
         try {
             mActivityMessenger!!.send(m)
         } catch (e: RemoteException) {
-            Log.e(TAG, "Error passing service object back to activity.")
+            Log.e(
+                TAG,
+                "Error passing service object back to activity."
+            )
         }
     }
 
