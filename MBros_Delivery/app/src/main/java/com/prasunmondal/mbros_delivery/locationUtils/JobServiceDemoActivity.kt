@@ -45,13 +45,14 @@ class JobServiceDemoActivity : AppCompatActivity() {
         requestCode: Int, @NonNull permissions: Array<String?>,
         @NonNull grantResults: IntArray
     ) {
-        Log.i(TAG, "onRequestPermissionResult")
+        Log.i(JobServiceDemoActivity.Companion.TAG, "onRequestPermissionResult")
         if (requestCode == JobServiceDemoActivity.Companion.REQUEST_PERMISSIONS_REQUEST_CODE) {
             if (grantResults.size <= 0) {
                 // If user interaction was interrupted, the permission request is cancelled and you
                 // receive empty arrays.
                 Log.i(
-                    TAG, "User interaction was cancelled."
+                    JobServiceDemoActivity.Companion.TAG,
+                    "User interaction was cancelled."
                 )
                 finish()
             } else if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -116,7 +117,14 @@ class JobServiceDemoActivity : AppCompatActivity() {
                     val obj = msg.obj as Location
                     val currentDateTimeString =
                         DateFormat.getDateTimeInstance().format(Date())
-                    println("""LAT :  ${obj.latitude}   LNG : ${obj.longitude}""")
+                    println("Got it!!!!!!!!")
+//                    locationMsg!!.text = """LAT :  ${obj.latitude}
+//LNG : ${obj.longitude}
+//
+//$obj
+//
+//
+//Last updated- $currentDateTimeString"""
                 }
             }
         }
@@ -133,13 +141,14 @@ class JobServiceDemoActivity : AppCompatActivity() {
         // request previously, but didn't check the "Don't ask again" checkbox.
         if (shouldProvideRationale) {
             Log.i(
-                TAG, "Displaying permission rationale to provide additional context."
+                JobServiceDemoActivity.Companion.TAG,
+                "Displaying permission rationale to provide additional context."
             )
             // Request permission
             ActivityCompat.requestPermissions(
                 this@JobServiceDemoActivity,
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                REQUEST_PERMISSIONS_REQUEST_CODE
+                JobServiceDemoActivity.Companion.REQUEST_PERMISSIONS_REQUEST_CODE
             )
         } else {
             Log.i(JobServiceDemoActivity.Companion.TAG, "Requesting permission")
@@ -149,7 +158,7 @@ class JobServiceDemoActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(
                 this@JobServiceDemoActivity,
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                REQUEST_PERMISSIONS_REQUEST_CODE
+                JobServiceDemoActivity.Companion.REQUEST_PERMISSIONS_REQUEST_CODE
             )
         }
     }
