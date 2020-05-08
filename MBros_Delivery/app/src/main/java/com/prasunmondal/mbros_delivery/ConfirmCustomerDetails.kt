@@ -28,10 +28,10 @@ class ConfirmCustomerDetails : AppCompatActivity() {
 
     fun updateLabels() {
         var nameLabel = findViewById<TextView>(R.id.label_confirm_name)
-        nameLabel.text = currentSession.getCurrentCustomer_name()
+        nameLabel.text = currentSession.currentCustomer_name
         var KGLabel = findViewById<TextView>(R.id.label_confirm_KG)
-        currentSession.setCurrentCustomer_orderedQty(FileReadUtils.Singleton.instance.getValue_forKey(FileManagerUtil.Singleton.instance.storageLink_RateList,0,currentSession.getCurrentCustomer_name(),5)!!)
-        KGLabel.text = currentSession.getCurrentCustomer_orderedQty() + " kg"
+        currentSession.currentCustomer_orderedQty = FileReadUtils.Singleton.instance.getValue_forKey(FileManagerUtil.Singleton.instance.storageLink_RateList,0,currentSession.currentCustomer_name,5)!!
+        KGLabel.text = currentSession.currentCustomer_orderedQty + " kg"
     }
 
     fun goToWeighingPage() {

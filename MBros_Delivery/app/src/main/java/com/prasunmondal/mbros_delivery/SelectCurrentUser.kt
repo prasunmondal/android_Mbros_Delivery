@@ -42,12 +42,12 @@ class SelectCurrentUser : AppCompatActivity() {
     fun onClickSaveUsername(view: View) {
         val customerSelector = findViewById<Spinner>(R.id.customerSelector)
         val customerName: String = customerSelector.selectedItem.toString()
-        CurrentSession.Singleton.instance.setCurrentCustomer_name(customerName)
+        CurrentSession.Singleton.instance.currentCustomer_name = customerName
         goToConfirmPage()
     }
 
     private fun goToConfirmPage() {
-        if(CurrentSession.Singleton.instance.getCurrentCustomer_name().equals(text_NoCustomerToSelect)) {
+        if(CurrentSession.Singleton.instance.currentCustomer_name.equals(text_NoCustomerToSelect)) {
             Toast.makeText(this, "Select valid customer", Toast.LENGTH_LONG).show()
         } else {
             val i = Intent(this@SelectCurrentUser, ConfirmCustomerDetails::class.java)

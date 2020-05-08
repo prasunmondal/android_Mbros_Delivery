@@ -26,32 +26,32 @@ class SendMail : AppCompatActivity() {
         fab_send.setRippleColor(Color.parseColor("#000000"))
         setActionbarTextColor()
         Toast.makeText(this,
-            "Location: " + currentSession.getCurrentLocationLatitude() + ", " + currentSession.getCurrentLocationLongitude(),
+            "Location: " + currentSession.currentLocationLatitude + ", " + currentSession.currentLocationLongitude,
             Toast.LENGTH_LONG).show()
     }
 
     private fun getMailBody(): String {
-        var str: String = "Delivered to: " + currentSession.getCurrentCustomer_name()
-        str += "\nPieces: " + currentSession.getCurrentCustomer_totalPCs()
-        str += "\nWeight: " + currentSession.getCurrentCustomer_totalKG()
-        println("kg ----------------" + currentSession.getCurrentCustomer_totalKG())
-        println("pc ----------------" + currentSession.getCurrentCustomer_totalPCs())
-        str += "\nAvg body weight: " + (currentSession.getCurrentCustomer_totalKG().toFloat() / currentSession.getCurrentCustomer_totalPCs().toInt()).toString()
-        str += "\n\nUnit Price: " + currentSession.getCurrentCustomer_todaysUnitPrice()
-        str += "\n\nPrevious Pending: " + currentSession.getCurrentCustomer_prevBalance()
-        str += "\nToday's Amount: " + currentSession.getCurrentCustomer_todaysBillAmount()
-        str += "\nPaid Amount: " + currentSession.getCurrentCustomer_paid()
-        str += "\nNew Balance: " + currentSession.getCurrentCustomer_newBalance()
+        var str: String = "Delivered to: " + currentSession.currentCustomer_name
+        str += "\nPieces: " + currentSession.currentCustomer_totalPCs
+        str += "\nWeight: " + currentSession.currentCustomer_totalKG
+        println("kg ----------------" + currentSession.currentCustomer_totalKG)
+        println("pc ----------------" + currentSession.currentCustomer_totalPCs)
+        str += "\nAvg body weight: " + (currentSession.currentCustomer_totalKG.toFloat() / currentSession.currentCustomer_totalPCs.toInt()).toString()
+        str += "\n\nUnit Price: " + currentSession.currentCustomer_todaysUnitPrice
+        str += "\n\nPrevious Pending: " + currentSession.currentCustomer_prevBalance
+        str += "\nToday's Amount: " + currentSession.currentCustomer_todaysBillAmount
+        str += "\nPaid Amount: " + currentSession.currentCustomer_paid
+        str += "\nNew Balance: " + currentSession.currentCustomer_newBalance
         str += "\n\n\nDate: " + SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
         str += "\nTime: " + SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
-        str += "\n\n\n Location: " + currentSession.getCurrentLocationLatitude() + ", " + currentSession.getCurrentLocationLongitude()
+        str += "\n\n\n Location: " + currentSession.currentLocationLatitude + ", " + currentSession.currentLocationLongitude
 
         Log.d("Mail body:\n", str)
         return str
     }
 
     private fun getSubject(): String {
-        return "Delivered to: " + currentSession.getCurrentCustomer_name()
+        return "Delivered to: " + currentSession.currentCustomer_name
     }
 
     fun onClickSendMail(view: View) {

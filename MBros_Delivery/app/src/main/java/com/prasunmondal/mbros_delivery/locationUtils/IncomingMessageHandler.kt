@@ -12,8 +12,8 @@ class IncomingMessageHandler : Handler() {
             LocationUpdatesService.LOCATION_MESSAGE -> {
                 val obj = msg.obj as Location
                 println("""LAT :  ${obj.latitude}   LNG : ${obj.longitude}""")
-                CurrentSession.Singleton.instance.setCurrentLocationLatitude(obj.latitude.toString())
-                CurrentSession.Singleton.instance.setCurrentLocationLongitude(obj.longitude.toString())
+                CurrentSession.Singleton.instance.currentLocationLatitude = obj.latitude.toString()
+                CurrentSession.Singleton.instance.currentLocationLongitude = obj.longitude.toString()
             }
         }
     }

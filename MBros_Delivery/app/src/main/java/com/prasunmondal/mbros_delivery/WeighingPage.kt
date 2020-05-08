@@ -38,8 +38,8 @@ class WeighingPage : AppCompatActivity() {
         for(i in 1..10) {
             addTransactionRow()
         }
-        currentSession.setCurrentCustomer_totalKG("0")
-        currentSession.setCurrentCustomer_totalPCs("0")
+        currentSession.currentCustomer_totalKG = "0"
+        currentSession.currentCustomer_totalPCs = "0"
         updateLabels()
     }
 
@@ -112,13 +112,13 @@ class WeighingPage : AppCompatActivity() {
         var labelPc = findViewById<TextView>(R.id.editText8)
         var labelKG = findViewById<TextView>(R.id.editText9)
 
-        currentSession.setCurrentCustomer_totalKG(total_KGs.toString())
-        currentSession.setCurrentCustomer_totalPCs(total_Pieces.toString())
-        labelPc.setText(currentSession.getCurrentCustomer_totalPCs())
-        labelKG.setText(currentSession.getCurrentCustomer_totalKG())
+        currentSession.currentCustomer_totalKG = total_KGs.toString()
+        currentSession.currentCustomer_totalPCs = total_Pieces.toString()
+        labelPc.setText(currentSession.currentCustomer_totalPCs)
+        labelKG.setText(currentSession.currentCustomer_totalKG)
 
 
-        var per = (total_KGs / currentSession.getCurrentCustomer_orderedQty().toFloat() * 100)
+        var per = (total_KGs / currentSession.currentCustomer_orderedQty.toFloat() * 100)
         var pb = findViewById<ProgressBar>(R.id.weighProgress)
         pb.progress = per.toInt()
     }
@@ -129,7 +129,7 @@ class WeighingPage : AppCompatActivity() {
     }
 
     fun setActionbarTextColor() {
-        val title: String = currentSession.getCurrentCustomer_name()
+        val title: String = currentSession.currentCustomer_name
         val spannableTitle: Spannable = SpannableString("")
         spannableTitle.setSpan(
             ForegroundColorSpan(Color.GRAY),

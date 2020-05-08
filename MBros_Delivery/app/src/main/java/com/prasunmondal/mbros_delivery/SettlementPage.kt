@@ -44,18 +44,18 @@ class SettlementPage : AppCompatActivity() {
     }
 
     fun initiallize() {
-        var currentUser = currentSession.getCurrentCustomer_name()
-        var totalKG = currentSession.getCurrentCustomer_totalKG().toFloat()
-        var totalPCs = currentSession.getCurrentCustomer_totalPCs()
+        var currentUser = currentSession.currentCustomer_name
+        var totalKG = currentSession.currentCustomer_totalKG.toFloat()
+        var totalPCs = currentSession.currentCustomer_totalPCs
         var pricePerKG  = fetchedRateList.getPricePerKg(currentUser).toFloat()
         var todaysPrice = (totalKG * pricePerKG).toInt()
         var prevBalance = fetchedRateList.getPrevBal(currentUser).toInt()
         var toPay = todaysPrice + prevBalance
         var newBalance = toPay - 0
 
-        currentSession.setCurrentCustomer_todaysUnitPrice(pricePerKG.toString())
-        currentSession.setCurrentCustomer_prevBalance(fetchedRateList.getPrevBal(currentUser).toInt().toString())
-        currentSession.setCurrentCustomer_todaysBillAmount(todaysPrice.toString())
+        currentSession.currentCustomer_todaysUnitPrice = pricePerKG.toString()
+        currentSession.currentCustomer_prevBalance = fetchedRateList.getPrevBal(currentUser).toInt().toString()
+        currentSession.currentCustomer_todaysBillAmount = todaysPrice.toString()
 
         findViewById<TextView>(R.id.kgView).text = tryNRemoveDecimal(totalKG) + " kg"
         findViewById<TextView>(R.id.pieceView).text = totalPCs
@@ -113,8 +113,8 @@ class SettlementPage : AppCompatActivity() {
 //        currentSession.setCurrentCustomer_todaysUnitPrice(findViewById<TextView>(R.id.pieceView).text.toString())
 //        currentSession.setCurrentCustomer_todaysBillAmount(findViewById<TextView>(R.id.todayPriceView).text.toString())
 //        currentSession.setCurrentCustomer_prevBalance(findViewById<TextView>(R.id.prevBalanceView).text.toString())
-        currentSession.setCurrentCustomer_paid(findViewById<EditText>(R.id.paidTodayView).text.toString())
-        currentSession.setCurrentCustomer_newBalance(findViewById<TextView>(R.id.newBalanceView).text.toString())
+        currentSession.currentCustomer_paid = findViewById<EditText>(R.id.paidTodayView).text.toString()
+        currentSession.currentCustomer_newBalance = findViewById<TextView>(R.id.newBalanceView).text.toString()
     }
 
     fun setActionbarTextColor() {
