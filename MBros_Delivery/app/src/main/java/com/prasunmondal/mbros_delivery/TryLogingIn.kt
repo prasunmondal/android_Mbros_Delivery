@@ -29,8 +29,7 @@ class TryLogingIn : AppCompatActivity() {
         setContentView(R.layout.activity_try_loging_in)
         setSupportActionBar(toolbar)
         setActionbarTextColor()
-        goToSelectCustomerPage()
-//        getLoginData()
+        getLoginData()
     }
 
     private fun getLoginData() {
