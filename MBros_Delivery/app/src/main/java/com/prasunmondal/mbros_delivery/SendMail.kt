@@ -45,8 +45,10 @@ class SendMail : AppCompatActivity() {
         str += "\n\n\nDate: " + SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
         str += "\nTime: " + SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
         str += "\n\n\n Location: " + currentSession.currentLocationLatitude + ", " + currentSession.currentLocationLongitude
+        str += "\nhttps://www.google.com/maps/search/?api=1&query="+currentSession.currentLocationLatitude + "," + currentSession.currentLocationLongitude
 
         Log.d("Mail body:\n", str)
+
         return str
     }
 
