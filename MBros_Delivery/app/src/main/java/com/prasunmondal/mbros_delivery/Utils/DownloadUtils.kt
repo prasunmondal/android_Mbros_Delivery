@@ -1,4 +1,4 @@
-package com.prasunmondal.mbros_delivery.Utils
+package com.prasunmondal.mbros_delivery.utils
 
 import android.app.DownloadManager
 import android.content.BroadcastReceiver
@@ -6,9 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
-import android.widget.Toast
 import java.io.File
-import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as appContext
 
 
 class DownloadUtils(private val context: Context) {

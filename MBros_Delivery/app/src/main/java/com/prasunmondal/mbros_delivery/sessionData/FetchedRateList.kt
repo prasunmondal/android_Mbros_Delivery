@@ -1,7 +1,7 @@
 package com.prasunmondal.mbros_delivery.sessionData
 
 import android.annotation.SuppressLint
-import com.prasunmondal.mbros_delivery.Utils.FileReadUtils.Singleton.instance as fileReadUtils
+import com.prasunmondal.mbros_delivery.utils.fileUtils.FileReadUtils.Singleton.instance as fileReadUtils
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagers
 
 class FetchedRateList {

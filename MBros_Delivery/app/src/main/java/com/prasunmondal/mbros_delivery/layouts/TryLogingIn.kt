@@ -1,4 +1,4 @@
-package com.prasunmondal.mbros_delivery
+package com.prasunmondal.mbros_delivery.layouts
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -11,10 +11,10 @@ import android.provider.Settings
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.prasunmondal.mbros_delivery.Utils.DownloadUtils
-import com.prasunmondal.mbros_delivery.Utils.FileReadUtils
+import com.prasunmondal.mbros_delivery.R
+import com.prasunmondal.mbros_delivery.utils.DownloadUtils
+import com.prasunmondal.mbros_delivery.utils.fileUtils.FileReadUtils
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil
 import com.prasunmondal.mbros_delivery.sessionData.AppContext
 import com.prasunmondal.mbros_delivery.sessionData.HardData

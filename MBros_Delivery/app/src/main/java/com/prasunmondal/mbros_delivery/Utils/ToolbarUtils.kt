@@ -1,8 +1,6 @@
-package com.prasunmondal.mbros_delivery.Utils
+package com.prasunmondal.mbros_delivery.utils
 
-import android.content.Context
 import android.content.res.Resources
-import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan

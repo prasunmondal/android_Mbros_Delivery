@@ -1,4 +1,4 @@
-package com.prasunmondal.mbros_delivery.Utils
+package com.prasunmondal.mbros_delivery.utils
 
 class NumberUtils {
     object Singleton {

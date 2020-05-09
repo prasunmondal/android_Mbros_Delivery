@@ -1,4 +1,4 @@
-package com.prasunmondal.mbros_delivery.MailUtils
+package com.prasunmondal.mbros_delivery.utils.mailUtils
 
 import java.util.*
 import javax.activation.*

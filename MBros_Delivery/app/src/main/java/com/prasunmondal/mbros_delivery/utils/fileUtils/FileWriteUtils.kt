@@ -1,4 +1,4 @@
-package com.prasunmondal.mbros_delivery.Utils
+package com.prasunmondal.mbros_delivery.utils.fileUtils
 
 import android.util.Log
 import com.prasunmondal.mbros_delivery.appData.FilePaths
@@ -8,7 +8,8 @@ import java.io.FileWriter
 class FileWriteUtils {
 
     object Singleton {
-        var instance = FileWriteUtils()
+        var instance =
+            FileWriteUtils()
     }
 
     fun writeToInternalFile(filepath: FilePaths, writeString: String): Boolean {

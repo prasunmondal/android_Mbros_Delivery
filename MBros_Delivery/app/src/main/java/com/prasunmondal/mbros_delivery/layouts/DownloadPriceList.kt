@@ -1,4 +1,4 @@
-package com.prasunmondal.mbros_delivery
+package com.prasunmondal.mbros_delivery.layouts
 
 import android.content.Intent
 import android.graphics.Color
@@ -9,7 +9,8 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.prasunmondal.mbros_delivery.Utils.DownloadUtils
+import com.prasunmondal.mbros_delivery.R
+import com.prasunmondal.mbros_delivery.utils.DownloadUtils
 import com.prasunmondal.mbros_delivery.sessionData.AppContext
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagerUtils
 import com.prasunmondal.mbros_delivery.sessionData.HardData

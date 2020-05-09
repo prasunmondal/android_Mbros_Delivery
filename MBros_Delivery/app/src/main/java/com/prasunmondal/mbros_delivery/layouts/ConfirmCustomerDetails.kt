@@ -1,4 +1,4 @@
-package com.prasunmondal.mbros_delivery
+package com.prasunmondal.mbros_delivery.layouts
 
 import android.content.Intent
 import android.graphics.Color
@@ -10,7 +10,8 @@ import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.prasunmondal.mbros_delivery.Utils.FileReadUtils
+import com.prasunmondal.mbros_delivery.R
+import com.prasunmondal.mbros_delivery.utils.fileUtils.FileReadUtils
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil
 import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList.Singleton.instance as fetchedRateList
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession

@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".locationUtils.GetLocationPermission"
+            android:name="com.prasunmondal.mbros_delivery.utils.locationUtils.GetLocationPermission"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -29,39 +29,39 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TryLogingIn"
+            android:name=".layouts.TryLogingIn"
             android:label="@string/title_activity_try_loging_in"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ConfirmCustomerDetails"
+            android:name=".layouts.ConfirmCustomerDetails"
             android:label="@string/title_activity_confirm_customer_details"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Login"
+            android:name=".layouts.Login"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LoginCheck"
+            android:name=".layouts.LoginCheck"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".SelectCurrentUser"
+            android:name=".layouts.SelectCurrentUser"
             android:label="MBros_Delivery"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".WeighingPage"
+            android:name=".layouts.WeighingPage"
             android:label="@string/title_activity_weighing_page"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".DownloadPriceList" />
-        <activity android:name=".SendMail" />
+        <activity android:name=".layouts.DownloadPriceList" />
+        <activity android:name=".layouts.SendMail" />
         <activity
-            android:name=".SettlementPage"
+            android:name=".layouts.SettlementPage"
             android:label="@string/title_activity_settlement_page"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <service
-            android:name=".locationUtils.LocationUpdatesService"
+            android:name="com.prasunmondal.mbros_delivery.utils.locationUtils.LocationUpdatesService"
             android:label="My Job Service Update "
             android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>

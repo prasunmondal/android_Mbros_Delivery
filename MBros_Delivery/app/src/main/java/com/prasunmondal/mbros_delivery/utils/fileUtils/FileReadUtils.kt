@@ -1,4 +1,4 @@
-package com.prasunmondal.mbros_delivery.Utils
+package com.prasunmondal.mbros_delivery.utils.fileUtils
 
 import com.prasunmondal.mbros_delivery.appData.FilePaths
 import com.opencsv.CSVReader
@@ -9,7 +9,8 @@ import java.io.IOException
 class FileReadUtils {
 
     object Singleton {
-        var instance = FileReadUtils()
+        var instance =
+            FileReadUtils()
     }
 
     fun readPairCSVnPopulateMap(map: MutableMap<String, String>, fileName: FilePaths) {

@@ -1,4 +1,4 @@
-package com.prasunmondal.mbros_delivery
+package com.prasunmondal.mbros_delivery.layouts
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -11,8 +11,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.prasunmondal.mbros_delivery.MailUtils.SendMailTrigger
-import com.prasunmondal.mbros_delivery.Utils.FileReadUtils
+import com.prasunmondal.mbros_delivery.R
+import com.prasunmondal.mbros_delivery.utils.mailUtils.SendMailTrigger
+import com.prasunmondal.mbros_delivery.utils.fileUtils.FileReadUtils
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagerUtil
 import java.text.SimpleDateFormat
 import java.util.*

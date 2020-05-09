@@ -1,4 +1,4 @@
-package com.prasunmondal.mbros_delivery
+package com.prasunmondal.mbros_delivery.layouts
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -15,8 +15,8 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.prasunmondal.mbros_delivery.MailUtils.SendMailTrigger
-import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
+import com.prasunmondal.mbros_delivery.R
+import com.prasunmondal.mbros_delivery.utils.mailUtils.SendMailTrigger
 import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as appContext
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*

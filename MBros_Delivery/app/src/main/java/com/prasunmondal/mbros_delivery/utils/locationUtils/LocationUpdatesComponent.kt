@@ -1,4 +1,4 @@
-package com.prasunmondal.mbros_delivery.locationUtils
+package com.prasunmondal.mbros_delivery.utils.locationUtils
 
 import android.content.Context
 import android.location.Location

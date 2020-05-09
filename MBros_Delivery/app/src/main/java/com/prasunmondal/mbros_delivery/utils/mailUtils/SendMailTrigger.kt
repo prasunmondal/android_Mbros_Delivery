@@ -1,8 +1,7 @@
-package com.prasunmondal.mbros_delivery.MailUtils
+package com.prasunmondal.mbros_delivery.utils.mailUtils
 
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
-import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 
 class SendMailTrigger {
 

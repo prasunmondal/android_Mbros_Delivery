@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ConfirmCustomerDetails"
+    tools:context=".layouts.ConfirmCustomerDetails"
     android:background="@drawable/center_gradient_confirm_customer"
     tools:showIn="@layout/activity_confirm_customer_details">
 

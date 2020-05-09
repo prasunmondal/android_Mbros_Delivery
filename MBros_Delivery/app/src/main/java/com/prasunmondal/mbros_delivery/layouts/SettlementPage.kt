@@ -1,4 +1,4 @@
-package com.prasunmondal.mbros_delivery
+package com.prasunmondal.mbros_delivery.layouts
 
 import android.content.Intent
 import android.graphics.Color
@@ -14,10 +14,11 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.prasunmondal.mbros_delivery.Utils.NumberUtils.Singleton.instance as numberUtils
-import com.prasunmondal.mbros_delivery.locationUtils.IncomingMessageHandler
-import com.prasunmondal.mbros_delivery.locationUtils.GetLocationPermission
-import com.prasunmondal.mbros_delivery.locationUtils.LocationUpdatesService
+import com.prasunmondal.mbros_delivery.R
+import com.prasunmondal.mbros_delivery.utils.NumberUtils.Singleton.instance as numberUtils
+import com.prasunmondal.mbros_delivery.utils.locationUtils.IncomingMessageHandler
+import com.prasunmondal.mbros_delivery.utils.locationUtils.GetLocationPermission
+import com.prasunmondal.mbros_delivery.utils.locationUtils.LocationUpdatesService
 import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList.Singleton.instance as fetchedRateList
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 

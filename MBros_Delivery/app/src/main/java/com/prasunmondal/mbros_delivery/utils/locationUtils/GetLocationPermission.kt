@@ -1,4 +1,4 @@
-package com.prasunmondal.mbros_delivery.locationUtils
+package com.prasunmondal.mbros_delivery.utils.locationUtils
 
 
 import android.Manifest
@@ -9,7 +9,7 @@ import android.util.Log
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import com.prasunmondal.mbros_delivery.LoginCheck
+import com.prasunmondal.mbros_delivery.layouts.LoginCheck
 import com.prasunmondal.mbros_delivery.R
 import kotlinx.android.synthetic.main.activity_job_service_demo.*
 
