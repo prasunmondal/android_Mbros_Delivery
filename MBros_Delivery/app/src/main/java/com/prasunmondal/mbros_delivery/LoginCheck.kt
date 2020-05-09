@@ -20,11 +20,14 @@ class LoginCheck : AppCompatActivity() {
         setContentView(R.layout.activity_login_check)
         setSupportActionBar(toolbar)
         appContext.setLoginCheckActivity(this)
+        println("In Login Check")
+        deleteAllData()
         resetDataOnTime()
 
         if(resetDataOnTime()) {
             goToCustomerSelctionPage()
         } else {
+            println("Downloading Login credentials")
             goToTryLogingInPage()
         }
     }

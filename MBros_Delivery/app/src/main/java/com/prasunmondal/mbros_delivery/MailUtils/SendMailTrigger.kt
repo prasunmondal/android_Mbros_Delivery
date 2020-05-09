@@ -2,6 +2,7 @@ package com.prasunmondal.mbros_delivery.MailUtils
 
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
+import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 
 class SendMailTrigger {
 
@@ -9,7 +10,7 @@ class SendMailTrigger {
     private var initialMessage: String = "Sending Mail..."
     private var finalMessage: String = "Mail Sent."
 
-    fun sendMessage(recipients: Array<String>, subject: String, body: String, view: View, initialMessage: String, finalMessage: String) {
+    fun sendMessage(fromEmail: String, fromEmailKey: String, recipients: Array<String>, subject: String, body: String, view: View, initialMessage: String, finalMessage: String) {
         this.viewStore = view
         this.initialMessage = initialMessage
         this.finalMessage = finalMessage
@@ -18,10 +19,10 @@ class SendMailTrigger {
             SendEmailAsyncTask()
         email.activity = this
         email.m = Mail(
-            "prsn.online@gmail.com",
-            "pgrgewhikkeocgsx"
+            fromEmail,
+            fromEmailKey
         )
-        email.m!!.set_from("prsn.online@gmail.com")
+        email.m!!.set_from(fromEmail)
         email.m!!.body = body
         email.m!!.set_to(recipients)
         email.m!!.set_subject(subject)

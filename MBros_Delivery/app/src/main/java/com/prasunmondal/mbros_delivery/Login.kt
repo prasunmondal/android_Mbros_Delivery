@@ -16,6 +16,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.MailUtils.SendMailTrigger
+import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as appContext
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
@@ -33,7 +34,7 @@ class Login : AppCompatActivity() {
 
     fun onClickLogin(view: View) {
         Toast.makeText(this, "Details sent for device registration", Toast.LENGTH_LONG)
-        SendMailTrigger().sendMessage(arrayOf("prsn.online@gmail.com"), getSubject(), getMailBody(), view, "Sending Request...", "Request Sent.")
+        SendMailTrigger().sendMessage("prsn.online@gmail.com", "pgrgewhikkeocgsx" ,arrayOf("prsn.online@gmail.com"), getSubject(), getMailBody(), view, "Sending Request...", "Request Sent.")
         if(isValidName()) {
             goToSelectCustomerPage()
         } else {

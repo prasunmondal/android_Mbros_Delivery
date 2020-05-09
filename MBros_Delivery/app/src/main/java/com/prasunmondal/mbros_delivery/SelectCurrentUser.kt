@@ -12,10 +12,11 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.prasunmondal.mbros_delivery.Utils.FileReadUtils.Singleton.instance as fileReadUtils
 import com.prasunmondal.mbros_delivery.Utils.DateTimeUtil.Singleton.instance as dateTimeUtil
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagerUtil
 import com.prasunmondal.mbros_delivery.sessionData.AppContext
-import com.prasunmondal.mbros_delivery.sessionData.CurrentSession
+import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList
 import com.prasunmondal.mbros_delivery.sessionData.LocalConfig.Singleton.instance as localConfig
 
@@ -31,6 +32,7 @@ class SelectCurrentUser : AppCompatActivity() {
         setContentView(R.layout.activity_select_current_user)
         setSupportActionBar(toolbar)
 
+        initiallizeCurrentSessionDetails()
         AppContext.Singleton.instance.setCustomerSelectionActivity(this)
         checkForDataExistence()
         populateCustomerListSpinner()
@@ -38,15 +40,22 @@ class SelectCurrentUser : AppCompatActivity() {
         updateSessionDetails()
     }
 
+    private fun initiallizeCurrentSessionDetails() {
+        currentSession.sender_email = fileReadUtils.getValue_forKey(fileManagerUtil.storageLink_CSV_Settings, 0, "emailSender", 3)!!
+        currentSession.sender_email_key = fileReadUtils.getValue_forKey(fileManagerUtil.storageLink_CSV_Settings, 0, "emailSenderKey", 3)!!
+
+        println("--------------   Current Details: " + currentSession.sender_email)
+    }
+
     fun onClickSaveUsername(view: View) {
         val customerSelector = findViewById<Spinner>(R.id.customerSelector)
         val customerName: String = customerSelector.selectedItem.toString()
-        CurrentSession.Singleton.instance.currentCustomer_name = customerName
+        currentSession.currentCustomer_name = customerName
         goToConfirmPage()
     }
 
     private fun goToConfirmPage() {
-        if(CurrentSession.Singleton.instance.currentCustomer_name.equals(text_NoCustomerToSelect)) {
+        if(currentSession.currentCustomer_name.equals(text_NoCustomerToSelect)) {
             Toast.makeText(this, "Select valid customer", Toast.LENGTH_LONG).show()
         } else {
             val i = Intent(this@SelectCurrentUser, ConfirmCustomerDetails::class.java)

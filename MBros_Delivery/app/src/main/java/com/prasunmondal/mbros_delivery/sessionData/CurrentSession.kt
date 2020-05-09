@@ -17,4 +17,8 @@ class CurrentSession {
     lateinit var currentLocationLatitude: String
     lateinit var currentLocationLongitude: String
     lateinit var currentCustomer_newBalance: String
+    lateinit var sender_email: String
+    lateinit var sender_email_key: String
+    lateinit var receipt_email: String
+    lateinit var currentCustomer_emailID: String
 }

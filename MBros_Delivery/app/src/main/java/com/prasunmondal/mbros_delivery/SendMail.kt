@@ -57,11 +57,12 @@ class SendMail : AppCompatActivity() {
     fun onClickSendMail(view: View) {
         val recipients =
             arrayOf<String>("prsn.online@gmail.com")
-        SendMailTrigger().sendMessage(recipients, getSubject(), getMailBody(), findViewById(R.id.send_mail), "Sending Bill...", "Bill Sent.")
+        SendMailTrigger().sendMessage(currentSession.sender_email, currentSession.sender_email_key, recipients, getSubject(), getMailBody(), findViewById(R.id.send_mail), "Sending Bill...", "Bill Sent.")
     }
 
-    fun setActionbarTextColor() {
-        val title: String = "Pranab Mondal"
+    @Suppress("DEPRECATION")
+    private fun setActionbarTextColor() {
+        val title = "Pranab Mondal"
         val spannableTitle: Spannable = SpannableString("")
         spannableTitle.setSpan(
             ForegroundColorSpan(Color.GRAY),
