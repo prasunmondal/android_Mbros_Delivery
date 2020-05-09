@@ -27,20 +27,20 @@ class ConfirmCustomerDetails : AppCompatActivity() {
         updateLabels()
     }
 
-    fun updateLabels() {
-        var nameLabel = findViewById<TextView>(R.id.label_confirm_name)
+    private fun updateLabels() {
+        val nameLabel = findViewById<TextView>(R.id.label_confirm_name)
         nameLabel.text = currentSession.currentCustomer_name
-        var KGLabel = findViewById<TextView>(R.id.label_confirm_KG)
+        val kgLabel = findViewById<TextView>(R.id.label_confirm_KG)
         currentSession.currentCustomer_orderedQty =
             FileReadUtils.Singleton.instance.getValue_forKey(
                 FileManagerUtil.Singleton.instance.storageLink_RateList,
                 fetchedRateList.RateListColIndex_Name,
                 currentSession.currentCustomer_name,
                 fetchedRateList.RateListColIndex_orderedKG)!!
-        KGLabel.text = currentSession.currentCustomer_orderedQty + " kg"
+        kgLabel.text = (currentSession.currentCustomer_orderedQty + " kg")
     }
 
-    fun goToWeighingPage() {
+    private fun goToWeighingPage() {
         val i = Intent(this@ConfirmCustomerDetails, WeighingPage::class.java)
         startActivity(i)
     }
@@ -49,6 +49,7 @@ class ConfirmCustomerDetails : AppCompatActivity() {
         goToWeighingPage()
     }
 
+    @Suppress("DEPRECATION")
     private fun setActionbarTextColor() {
         val title = "Confirm Details"
         val spannableTitle: Spannable = SpannableString("")

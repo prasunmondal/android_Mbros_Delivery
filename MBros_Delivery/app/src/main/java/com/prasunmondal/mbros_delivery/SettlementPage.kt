@@ -14,6 +14,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.prasunmondal.mbros_delivery.Utils.NumberUtils.Singleton.instance as numberUtils
 import com.prasunmondal.mbros_delivery.locationUtils.IncomingMessageHandler
 import com.prasunmondal.mbros_delivery.locationUtils.GetLocationPermission
 import com.prasunmondal.mbros_delivery.locationUtils.LocationUpdatesService
@@ -33,7 +34,7 @@ class SettlementPage : AppCompatActivity() {
         setActionbarTextColor()
     }
 
-    fun getLocation() {
+    private fun getLocation() {
         val startServiceIntent = Intent(this@SettlementPage, LocationUpdatesService::class.java)
         val messengerIncoming = Messenger(IncomingMessageHandler())
         startServiceIntent.putExtra(
@@ -43,28 +44,28 @@ class SettlementPage : AppCompatActivity() {
         startService(startServiceIntent)
     }
 
-    fun initiallize() {
-        var currentUser = currentSession.currentCustomer_name
-        var totalKG = currentSession.currentCustomer_totalKG.toFloat()
-        var totalPCs = currentSession.currentCustomer_totalPCs
-        var pricePerKG  = fetchedRateList.getPricePerKg(currentUser).toFloat()
-        var todaysPrice = (totalKG * pricePerKG).toInt()
-        var prevBalance = fetchedRateList.getPrevBal(currentUser).toInt()
-        var toPay = todaysPrice + prevBalance
-        var newBalance = toPay - 0
+    private fun initiallize() {
+        val currentUser = currentSession.currentCustomer_name
+        val totalKG = currentSession.currentCustomer_totalKG.toFloat()
+        val totalPCs = currentSession.currentCustomer_totalPCs
+        val pricePerKG  = fetchedRateList.getPricePerKg(currentUser).toFloat()
+        val todaysPrice = (totalKG * pricePerKG).toInt()
+        val prevBalance = fetchedRateList.getPrevBal(currentUser).toInt()
+        val toPay = todaysPrice + prevBalance
+        val newBalance = toPay - 0
 
         currentSession.currentCustomer_todaysUnitPrice = pricePerKG.toString()
         currentSession.currentCustomer_prevBalance = fetchedRateList.getPrevBal(currentUser).toInt().toString()
         currentSession.currentCustomer_todaysBillAmount = todaysPrice.toString()
 
-        findViewById<TextView>(R.id.kgView).text = tryNRemoveDecimal(totalKG) + " kg"
+        findViewById<TextView>(R.id.kgView).text = (numberUtils.tryNRemoveDecimal(totalKG) + " kg")
         findViewById<TextView>(R.id.pieceView).text = totalPCs
         findViewById<TextView>(R.id.todayPriceView).text = todaysPrice.toString()
         findViewById<TextView>(R.id.prevBalanceView).text = prevBalance.toString()
         findViewById<TextView>(R.id.toPayView).text = toPay.toString()
         findViewById<TextView>(R.id.newBalanceView).text = newBalance.toString()
 
-        var paidTodayView = findViewById<EditText>(R.id.paidTodayView)
+        val paidTodayView = findViewById<EditText>(R.id.paidTodayView)
         paidTodayView.addTextChangedListener(object : TextWatcher {
             //
             override fun afterTextChanged(s: Editable) {}
@@ -85,20 +86,12 @@ class SettlementPage : AppCompatActivity() {
     }
 
     fun onChangePaidTodayView(toPay: Int) {
-        var paidTodayView = findViewById<EditText>(R.id.paidTodayView)
-        var paidTodayText = paidTodayView.text.toString()
+        val paidTodayView = findViewById<EditText>(R.id.paidTodayView)
+        val paidTodayText = paidTodayView.text.toString()
         var newBalance = 0
-        if(paidTodayText.length>0)
+        if(paidTodayText.isNotEmpty())
             newBalance = toPay - paidTodayText.toInt()
         findViewById<TextView>(R.id.newBalanceView).text = newBalance.toString()
-    }
-
-    fun tryNRemoveDecimal(value: Float): String {
-        if(value > value.toInt()) {
-            return value.toString()
-        } else {
-            return value.toInt().toString()
-        }
     }
 
     fun goToSendMail(view: View) {
@@ -107,13 +100,14 @@ class SettlementPage : AppCompatActivity() {
         startActivity(i)
     }
 
-    fun cacheAllData() {
+    private fun cacheAllData() {
         currentSession.currentCustomer_paid = findViewById<EditText>(R.id.paidTodayView).text.toString()
         currentSession.currentCustomer_newBalance = findViewById<TextView>(R.id.newBalanceView).text.toString()
     }
 
+    @Suppress("DEPRECATION")
     fun setActionbarTextColor() {
-        val title: String = "Bill"
+        val title = "Bill"
         val spannableTitle: Spannable = SpannableString("")
         spannableTitle.setSpan(
             ForegroundColorSpan(Color.GRAY),
