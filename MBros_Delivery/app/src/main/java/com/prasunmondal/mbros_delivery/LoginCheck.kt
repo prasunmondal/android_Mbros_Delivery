@@ -2,13 +2,8 @@ package com.prasunmondal.mbros_delivery
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Messenger
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.prasunmondal.mbros_delivery.locationUtils.IncomingMessageHandler
-import com.prasunmondal.mbros_delivery.locationUtils.JobServiceDemoActivity
-import com.prasunmondal.mbros_delivery.locationUtils.LocationUpdatesService
-import com.prasunmondal.mbros_delivery.sessionData.CurrentSession
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagerUtil
 import com.prasunmondal.mbros_delivery.Utils.DateTimeUtil.Singleton.instance as dateTimeUtil
 import com.prasunmondal.mbros_delivery.sessionData.LocalConfig.Singleton.instance as localConfig

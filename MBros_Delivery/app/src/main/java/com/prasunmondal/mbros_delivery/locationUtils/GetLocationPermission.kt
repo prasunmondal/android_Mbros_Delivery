@@ -5,15 +5,15 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.Messenger
 import android.util.Log
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import com.prasunmondal.mbros_delivery.LoginCheck
 import com.prasunmondal.mbros_delivery.R
 import kotlinx.android.synthetic.main.activity_job_service_demo.*
 
-class JobServiceDemoActivity : AppCompatActivity() {
+class GetLocationPermission : AppCompatActivity() {
 
     // as google doc says
     // Handler for incoming messages from the service.
@@ -23,7 +23,6 @@ class JobServiceDemoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_job_service_demo)
         setSupportActionBar(toolbar)
         requestPermissions()
-//        mHandler =
     }
 
     /**
@@ -47,7 +46,6 @@ class JobServiceDemoActivity : AppCompatActivity() {
                     //  Utils.scheduleJob(this, LocationUpdatesService.class);
                     //doing this way to communicate via messenger
                     // Start service and provide it a way to communicate with this class.
-//                    getLocation()
                 }
                 else -> {
                     // Permission denied.
@@ -55,6 +53,13 @@ class JobServiceDemoActivity : AppCompatActivity() {
                 }
             }
         }
+        goToLoginCheckPage()
+
+    }
+
+    fun goToLoginCheckPage() {
+        val i = Intent(this@GetLocationPermission, LoginCheck::class.java)
+        startActivity(i)
     }
 
     override fun onDestroy() {
@@ -75,7 +80,7 @@ class JobServiceDemoActivity : AppCompatActivity() {
             Log.i(TAG, "Displaying permission rationale to provide additional context.")
             // Request permission
             ActivityCompat.requestPermissions(
-                this@JobServiceDemoActivity,
+                this@GetLocationPermission,
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 REQUEST_PERMISSIONS_REQUEST_CODE
             )
@@ -85,7 +90,7 @@ class JobServiceDemoActivity : AppCompatActivity() {
             // sets the permission in a given state or the user denied the permission
             // previously and checked "Never ask again".
             ActivityCompat.requestPermissions(
-                this@JobServiceDemoActivity,
+                this@GetLocationPermission,
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 REQUEST_PERMISSIONS_REQUEST_CODE
             )
@@ -95,7 +100,7 @@ class JobServiceDemoActivity : AppCompatActivity() {
 
 
     companion object {
-        private val TAG = JobServiceDemoActivity::class.java.simpleName
+        private val TAG = GetLocationPermission::class.java.simpleName
 
         /**
          * Code used in requesting runtime permissions.

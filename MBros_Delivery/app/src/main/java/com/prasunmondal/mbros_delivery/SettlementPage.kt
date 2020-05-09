@@ -15,7 +15,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.locationUtils.IncomingMessageHandler
-import com.prasunmondal.mbros_delivery.locationUtils.JobServiceDemoActivity
+import com.prasunmondal.mbros_delivery.locationUtils.GetLocationPermission
 import com.prasunmondal.mbros_delivery.locationUtils.LocationUpdatesService
 import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList.Singleton.instance as fetchedRateList
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
@@ -37,7 +37,7 @@ class SettlementPage : AppCompatActivity() {
         val startServiceIntent = Intent(this@SettlementPage, LocationUpdatesService::class.java)
         val messengerIncoming = Messenger(IncomingMessageHandler())
         startServiceIntent.putExtra(
-            JobServiceDemoActivity.MESSENGER_INTENT_KEY,
+            GetLocationPermission.MESSENGER_INTENT_KEY,
             messengerIncoming
         )
         startService(startServiceIntent)
@@ -108,11 +108,6 @@ class SettlementPage : AppCompatActivity() {
     }
 
     fun cacheAllData() {
-//        currentSession.setCurrentCustomer_totalPCs(findViewById<TextView>(R.id.pi).text.toString())
-//        currentSession.setCurrentCustomer_totalKG(findViewById<TextView>(R.id.kgView).text.toString())
-//        currentSession.setCurrentCustomer_todaysUnitPrice(findViewById<TextView>(R.id.pieceView).text.toString())
-//        currentSession.setCurrentCustomer_todaysBillAmount(findViewById<TextView>(R.id.todayPriceView).text.toString())
-//        currentSession.setCurrentCustomer_prevBalance(findViewById<TextView>(R.id.prevBalanceView).text.toString())
         currentSession.currentCustomer_paid = findViewById<EditText>(R.id.paidTodayView).text.toString()
         currentSession.currentCustomer_newBalance = findViewById<TextView>(R.id.newBalanceView).text.toString()
     }

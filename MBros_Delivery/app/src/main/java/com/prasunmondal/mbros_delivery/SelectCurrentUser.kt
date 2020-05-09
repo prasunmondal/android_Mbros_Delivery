@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.prasunmondal.mbros_delivery.locationUtils.JobServiceDemoActivity
 import com.prasunmondal.mbros_delivery.Utils.DateTimeUtil.Singleton.instance as dateTimeUtil
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagerUtil
 import com.prasunmondal.mbros_delivery.sessionData.AppContext

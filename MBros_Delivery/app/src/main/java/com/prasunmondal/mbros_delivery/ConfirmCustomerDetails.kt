@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.Utils.FileReadUtils
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil
+import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList.Singleton.instance as fetchedRateList
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 
 import kotlinx.android.synthetic.main.activity_confirm_customer_details.*
@@ -30,7 +31,12 @@ class ConfirmCustomerDetails : AppCompatActivity() {
         var nameLabel = findViewById<TextView>(R.id.label_confirm_name)
         nameLabel.text = currentSession.currentCustomer_name
         var KGLabel = findViewById<TextView>(R.id.label_confirm_KG)
-        currentSession.currentCustomer_orderedQty = FileReadUtils.Singleton.instance.getValue_forKey(FileManagerUtil.Singleton.instance.storageLink_RateList,0,currentSession.currentCustomer_name,5)!!
+        currentSession.currentCustomer_orderedQty =
+            FileReadUtils.Singleton.instance.getValue_forKey(
+                FileManagerUtil.Singleton.instance.storageLink_RateList,
+                fetchedRateList.RateListColIndex_Name,
+                currentSession.currentCustomer_name,
+                fetchedRateList.RateListColIndex_orderedKG)!!
         KGLabel.text = currentSession.currentCustomer_orderedQty + " kg"
     }
 
