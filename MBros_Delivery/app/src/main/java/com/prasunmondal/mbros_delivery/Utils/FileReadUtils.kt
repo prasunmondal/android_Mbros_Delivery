@@ -45,15 +45,33 @@ class FileReadUtils {
         return null
     }
 
-    fun getListOfValues(fileName: FilePaths, keyColumnIndex: Int): MutableList<String>? {
+    fun getListOfValues(fileName: FilePaths, valueColumnIndex: Int): MutableList<String>? {
         var list : MutableList<String> = mutableListOf<String>()
         try {
             val reader = CSVReader(FileReader(File(fileName.destination)))
             var nextLine: Array<String>
             while (reader.peek() != null) {
                 nextLine = reader.readNext()
-                if(nextLine[keyColumnIndex].length > 0)
-                    list.add(nextLine[keyColumnIndex])
+                if(nextLine[valueColumnIndex].length > 0)
+                    list.add(nextLine[valueColumnIndex])
+            }
+        } catch (e: IOException) {
+            println(e)
+            throw (e)
+        }
+//        "when asked value list is empty.. need to update the values"
+        return list
+    }
+
+    fun getListOfValuesForKeys(fileName: FilePaths, keyColumnIndex: Int, keyColumnValue: String, valueColumnIndex: Int): MutableList<String>? {
+        var list : MutableList<String> = mutableListOf<String>()
+        try {
+            val reader = CSVReader(FileReader(File(fileName.destination)))
+            var nextLine: Array<String>
+            while (reader.peek() != null) {
+                nextLine = reader.readNext()
+                if(nextLine[keyColumnIndex].equals(keyColumnValue) && nextLine[valueColumnIndex].length > 0)
+                    list.add(nextLine[valueColumnIndex])
             }
         } catch (e: IOException) {
             println(e)

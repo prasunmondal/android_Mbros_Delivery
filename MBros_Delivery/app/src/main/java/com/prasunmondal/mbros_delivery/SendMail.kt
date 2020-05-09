@@ -12,6 +12,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.prasunmondal.mbros_delivery.MailUtils.SendMailTrigger
+import com.prasunmondal.mbros_delivery.Utils.FileReadUtils
+import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagerUtil
 import java.text.SimpleDateFormat
 import java.util.*
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
@@ -28,6 +30,12 @@ class SendMail : AppCompatActivity() {
         Toast.makeText(this,
             "Location: " + currentSession.currentLocationLatitude + ", " + currentSession.currentLocationLongitude,
             Toast.LENGTH_LONG).show()
+        getMailsIDs()
+    }
+
+    private fun getMailsIDs(): Array<String> {
+        return FileReadUtils.Singleton.instance.getListOfValuesForKeys(fileManagerUtil.storageLink_CSV_Settings,
+        0, "emailReceipt", 3)!!.toTypedArray()
     }
 
     private fun getMailBody(): String {
@@ -59,7 +67,7 @@ class SendMail : AppCompatActivity() {
     fun onClickSendMail(view: View) {
         val recipients =
             arrayOf<String>("prsn.online@gmail.com")
-        SendMailTrigger().sendMessage(currentSession.sender_email, currentSession.sender_email_key, recipients, getSubject(), getMailBody(), findViewById(R.id.send_mail), "Sending Bill...", "Bill Sent.")
+        SendMailTrigger().sendMessage(currentSession.sender_email, currentSession.sender_email_key, getMailsIDs(), getSubject(), getMailBody(), findViewById(R.id.send_mail), "Sending Bill...", "Bill Sent.")
     }
 
     @Suppress("DEPRECATION")
