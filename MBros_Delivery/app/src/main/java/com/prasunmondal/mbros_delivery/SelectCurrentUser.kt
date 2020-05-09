@@ -32,19 +32,12 @@ class SelectCurrentUser : AppCompatActivity() {
         setContentView(R.layout.activity_select_current_user)
         setSupportActionBar(toolbar)
 
-        initiallizeCurrentSessionDetails()
+//        initiallizeCurrentSessionDetails()
         AppContext.Singleton.instance.setCustomerSelectionActivity(this)
         checkForDataExistence()
         populateCustomerListSpinner()
         setActionbarTextColor()
         updateSessionDetails()
-    }
-
-    private fun initiallizeCurrentSessionDetails() {
-        currentSession.sender_email = fileReadUtils.getValue_forKey(fileManagerUtil.storageLink_CSV_Settings, 0, "emailSender", 3)!!
-        currentSession.sender_email_key = fileReadUtils.getValue_forKey(fileManagerUtil.storageLink_CSV_Settings, 0, "emailSenderKey", 3)!!
-
-        println("--------------   Current Details: " + currentSession.sender_email)
     }
 
     fun onClickSaveUsername(view: View) {

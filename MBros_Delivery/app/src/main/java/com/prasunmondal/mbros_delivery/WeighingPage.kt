@@ -14,6 +14,9 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.prasunmondal.mbros_delivery.Utils.FileReadUtils
+import com.prasunmondal.mbros_delivery.appData.FileManagerUtil
+import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList.Singleton.instance as fetchedRateList
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 
 import kotlinx.android.synthetic.main.activity_weighing_page.*
@@ -41,6 +44,22 @@ class WeighingPage : AppCompatActivity() {
         currentSession.currentCustomer_totalKG = "0"
         currentSession.currentCustomer_totalPCs = "0"
         updateLabels()
+        initiallizeCurrentSessionDetails()
+    }
+
+    private fun initiallizeCurrentSessionDetails() {
+        currentSession.sender_email = FileReadUtils.Singleton.instance.getValue_forKey(
+            FileManagerUtil.Singleton.instance.storageLink_CSV_Settings, 0, "emailSender", 3)!!
+        currentSession.sender_email_key = FileReadUtils.Singleton.instance.getValue_forKey(
+            FileManagerUtil.Singleton.instance.storageLink_CSV_Settings, 0, "emailSenderKey", 3)!!
+
+        currentSession.currentCustomer_emailID = FileReadUtils.Singleton.instance.getValue_forKey(
+            FileManagerUtil.Singleton.instance.storageLink_RateList,
+            fetchedRateList.RateListColIndex_Name,
+            currentSession.currentCustomer_name,
+            fetchedRateList.RateListColIndex_EmailID)!!
+        println("--------------   Current Details: " + currentSession.sender_email)
+        println("--------------   Current Customer email: " + currentSession.currentCustomer_emailID)
     }
 
     fun addTransactionRow() {
