@@ -65,9 +65,26 @@ class SendMail : AppCompatActivity() {
     }
 
     fun onClickSendMail(view: View) {
-        val recipients =
-            arrayOf<String>("prsn.online@gmail.com")
-        SendMailTrigger().sendMessage(currentSession.sender_email, currentSession.sender_email_key, getMailsIDs(), getSubject(), getMailBody(), findViewById(R.id.send_mail), "Sending Bill...", "Bill Sent.")
+
+        println("Sending Mail to: " + getMailsIDs())
+        SendMailTrigger().sendMessage(currentSession.sender_email,
+            currentSession.sender_email_key,
+            getMailsIDs(),
+            getSubject(),
+            getMailBody(),
+            findViewById(R.id.send_mail),
+            "Sending Bill...",
+            "Bill Sent.")
+
+        println("Sending Mail to: " + arrayOf(currentSession.currentCustomer_emailID))
+        SendMailTrigger().sendMessage(currentSession.sender_email,
+            currentSession.sender_email_key,
+            arrayOf(currentSession.currentCustomer_emailID),
+            getSubject(),
+            getMailBody(),
+            findViewById(R.id.send_mail),
+            "Sending Bill...",
+            "Bill Sent.")
     }
 
     @Suppress("DEPRECATION")
