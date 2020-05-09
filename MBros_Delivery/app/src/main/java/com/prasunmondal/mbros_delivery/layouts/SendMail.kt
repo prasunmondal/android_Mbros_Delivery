@@ -77,15 +77,19 @@ class SendMail : AppCompatActivity() {
             "Sending Bill...",
             "Bill Sent.")
 
-        println("Sending Mail to: " + arrayOf(currentSession.currentCustomer_emailID))
-        SendMailTrigger().sendMessage(currentSession.sender_email,
-            currentSession.sender_email_key,
-            arrayOf(currentSession.currentCustomer_emailID),
-            getSubject(),
-            getMailBody(),
-            findViewById(R.id.send_mail),
-            "Sending Bill...",
-            "Bill Sent.")
+        if(currentSession.currentCustomer_emailID.isNotEmpty() && currentSession.currentCustomer_emailID.length>2) {
+            println("Sending Mail to: " + arrayOf(currentSession.currentCustomer_emailID))
+            SendMailTrigger().sendMessage(
+                currentSession.sender_email,
+                currentSession.sender_email_key,
+                arrayOf(currentSession.currentCustomer_emailID),
+                getSubject(),
+                getMailBody(),
+                findViewById(R.id.send_mail),
+                "Sending Bill...",
+                "Bill Sent."
+            )
+        }
     }
 
     @Suppress("DEPRECATION")
