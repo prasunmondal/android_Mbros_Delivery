@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +21,6 @@ import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.inst
 
 class SendMail : AppCompatActivity() {
 
-    private var mailBody: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_send_mail)
@@ -33,80 +31,12 @@ class SendMail : AppCompatActivity() {
         Toast.makeText(this,
             "Location: " + currentSession.currentLocationLatitude + ", " + currentSession.currentLocationLongitude,
             Toast.LENGTH_LONG).show()
-        mailBody = prepareMailBody()
         getMailsIDs()
     }
 
     private fun getMailsIDs(): Array<String> {
         return FileReadUtils.Singleton.instance.getListOfValuesForKeys(fileManagerUtil.storageLink_CSV_Settings,
         0, "emailReceipt", 3)!!.toTypedArray()
-    }
-
-    private fun prepareMailBody(): String {
-        var str: String = ""
-
-        str += "<tr>" +
-                "<td>Name         </td>" +
-                "<td>Pieces       </td>" +
-                "<td>Weight (KG)    </td>" +
-                "<td>Avg Weight (kG)    </td>" +
-                "<td>Unit Price       </td>" +
-                "<td>Prev. Bal    </td>" +
-                "<td>Today Sale     </td>" +
-                "<td>Paid     </td>" +
-                "<td>New Bal.    </td>" +
-                "</tr>"
-
-
-
-//        str += "\nPieces: " + currentSession.currentCustomer_totalPCs
-//        str += "\nWeight: " + currentSession.currentCustomer_totalKG
-//        println("kg ----------------" + currentSession.currentCustomer_totalKG)
-//        println("pc ----------------" + currentSession.currentCustomer_totalPCs)
-//        str += "\nAvg body weight: " + (currentSession.currentCustomer_totalKG.toFloat() / currentSession.currentCustomer_totalPCs.toInt()).toString()
-//        str += "\n\nUnit Price: " + currentSession.currentCustomer_todaysUnitPrice
-//        str += "\n\nPrevious Pending: " + currentSession.currentCustomer_prevBalance
-//        str += "\nToday's Amount: " + currentSession.currentCustomer_todaysBillAmount
-//        str += "\nPaid Amount: " + currentSession.currentCustomer_paid
-//        str += "\nNew Balance: " + currentSession.currentCustomer_newBalance
-//        str += "\n\n\nDate: " + SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
-//        str += "\nTime: " + SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(Date())
-//        str += "\n\n\n Location: " + currentSession.currentLocationLatitude + ", " + currentSession.currentLocationLongitude
-//        str += "\nhttps://www.google.com/maps/search/?api=1&query="+currentSession.currentLocationLatitude + "," + currentSession.currentLocationLongitude
-
-        val temp = LocalConfig.Singleton.instance.getValue("mailString")
-        if(temp != null)
-            str = temp
-        println("got string: " + str)
-        str += "<tr>" +
-                "<td>"+currentSession.currentCustomer_name + "</td>" +
-                "<td>" + currentSession.currentCustomer_totalPCs + "</td>" +
-                "<td>" + currentSession.currentCustomer_totalKG + "</td><td>" +
-                (currentSession.currentCustomer_totalKG.toFloat() / currentSession.currentCustomer_totalPCs.toInt()).toString() + "</td><" +
-                "td>" + currentSession.currentCustomer_todaysUnitPrice + "</td>" +
-                "<td>" + currentSession.currentCustomer_prevBalance + "</td><" +
-                "td>" + currentSession.currentCustomer_todaysBillAmount + "</td>" +
-                "<td>" + currentSession.currentCustomer_paid + "</td>" +
-                "<td>" + currentSession.currentCustomer_newBalance + "</td>" +
-                "</tr>"
-
-        Log.d("Mail body:\n", str)
-
-        return str
-    }
-
-    fun splitNJoin(str: String): String {
-        val t = str.split("~")
-        var str = ""
-        t.forEach { e -> str+="\n"+e }
-        println("Output --------\n\n\n\n\n")
-        println(str)
-        println("\n\n\n\n\n")
-        return str
-    }
-
-    private fun getSubject(): String {
-        return "Delivered to: " + currentSession.currentCustomer_name
     }
 
     fun onClickSendMail(view: View) {
@@ -118,28 +48,31 @@ class SendMail : AppCompatActivity() {
             currentSession.sender_email_key,
             getMailsIDs(),
             adminMail.getSubject(),
-            adminMail.getBody(),
+            adminMail.getMailContent(),
             findViewById(R.id.send_mail),
             "Sending Bill...",
             "Bill Sent.",
         true)
 
-        val customerMail =
-            CustomerMail()
-        if(currentSession.currentCustomer_emailID.isNotEmpty() && currentSession.currentCustomer_emailID.length>5) {
-            println("Sending Mail to: " + arrayOf(currentSession.currentCustomer_emailID))
-            SendMailTrigger().sendMessage(
-                currentSession.sender_email,
-                currentSession.sender_email_key,
-                arrayOf(currentSession.currentCustomer_emailID),
-                customerMail.getSubject(),
-                customerMail.getBody(),
-                findViewById(R.id.send_mail),
-                "Sending Bill...",
-                "Bill Sent.",
-                true
-            )
-        }
+//        val customerMail =
+//            CustomerMail()
+//        if(currentSession.currentCustomer_emailID.isNotEmpty() && currentSession.currentCustomer_emailID.length>5) {
+//            println("Sending Mail to: " + arrayOf(currentSession.currentCustomer_emailID))
+//            SendMailTrigger().sendMessage(
+//                currentSession.sender_email,
+//                currentSession.sender_email_key,
+//                arrayOf(currentSession.currentCustomer_emailID),
+//                customerMail.getSubject(),
+//                customerMail.getBody(),
+//                findViewById(R.id.send_mail),
+//                "Sending Bill...",
+//                "Bill Sent.",
+//                true
+//            )
+//        }
+        LocalConfig.Singleton.instance.setValue("mailString", adminMail.getDetails())
+        println("\n\n\nSaving mail details: " + adminMail.getDetails() + "\n\n\n\n")
+
     }
 
     @Suppress("DEPRECATION")
