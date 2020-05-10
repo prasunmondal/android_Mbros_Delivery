@@ -43,7 +43,17 @@ class SendMail : AppCompatActivity() {
     private fun prepareMailBody(): String {
         var str: String = ""
 
-        str += "~Name\tPieces\t\tKG\t\tAvg.\tUnitPrice\tPrev. Bal\t\tToday Sale\t\tPaid\t\tNew Bal."
+        str += "<tr>" +
+                "<td>Name         </td>" +
+                "<td>Pieces       </td>" +
+                "<td>Weight (KG)    </td>" +
+                "<td>Avg Weight (kG)    </td>" +
+                "<td>Unit Price       </td>" +
+                "<td>Prev. Bal    </td>" +
+                "<td>Today Sale     </td>" +
+                "<td>Paid     </td>" +
+                "<td>New Bal.    </td>" +
+                "</tr>"
 
 
 
@@ -66,10 +76,17 @@ class SendMail : AppCompatActivity() {
         if(temp != null)
             str = temp
         println("got string: " + str)
-        str += "~"+currentSession.currentCustomer_name + "\t\t" + currentSession.currentCustomer_totalPCs + "\t\t" + currentSession.currentCustomer_totalKG + "\t\t" +
-                (currentSession.currentCustomer_totalKG.toFloat() / currentSession.currentCustomer_totalPCs.toInt()).toString() + "\t\t" +
-                currentSession.currentCustomer_todaysUnitPrice + "\t\t" + currentSession.currentCustomer_prevBalance + "\t\t\t" +
-                currentSession.currentCustomer_todaysBillAmount + "\t\t\t\t" + currentSession.currentCustomer_paid + "\t\t" + currentSession.currentCustomer_newBalance
+        str += "<tr>" +
+                "<td>"+currentSession.currentCustomer_name + "</td>" +
+                "<td>" + currentSession.currentCustomer_totalPCs + "</td>" +
+                "<td>" + currentSession.currentCustomer_totalKG + "</td><td>" +
+                (currentSession.currentCustomer_totalKG.toFloat() / currentSession.currentCustomer_totalPCs.toInt()).toString() + "</td><" +
+                "td>" + currentSession.currentCustomer_todaysUnitPrice + "</td>" +
+                "<td>" + currentSession.currentCustomer_prevBalance + "</td><" +
+                "td>" + currentSession.currentCustomer_todaysBillAmount + "</td>" +
+                "<td>" + currentSession.currentCustomer_paid + "</td>" +
+                "<td>" + currentSession.currentCustomer_newBalance + "</td>" +
+                "</tr>"
 
         Log.d("Mail body:\n", str)
 
@@ -97,11 +114,12 @@ class SendMail : AppCompatActivity() {
             currentSession.sender_email_key,
             getMailsIDs(),
             getSubject(),
-            splitNJoin(mailBody),
+//            splitNJoin(mailBody),
+            "<table>" + mailBody + "</table>",
             findViewById(R.id.send_mail),
             "Sending Bill...",
             "Bill Sent.",
-        false)
+        true)
 
         if(currentSession.currentCustomer_emailID.isNotEmpty() && currentSession.currentCustomer_emailID.length>5) {
             println("Sending Mail to: " + arrayOf(currentSession.currentCustomer_emailID))
@@ -110,11 +128,11 @@ class SendMail : AppCompatActivity() {
                 currentSession.sender_email_key,
                 arrayOf(currentSession.currentCustomer_emailID),
                 getSubject(),
-                prepareMailBody(),
+                "<table>" + mailBody + "</table>",
                 findViewById(R.id.send_mail),
                 "Sending Bill...",
                 "Bill Sent.",
-                false
+                true
             )
         }
     }
