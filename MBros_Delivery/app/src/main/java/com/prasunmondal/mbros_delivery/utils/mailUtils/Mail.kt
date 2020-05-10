@@ -21,6 +21,7 @@ class Mail() : Authenticator() {
     private var _sport = "465"
     private var _host = "smtp.gmail.com"
     private var _subject = ""
+    private var isHTML = true
 
     // the getters and setters
     var body = ""
@@ -56,8 +57,14 @@ class Mail() : Authenticator() {
             _multipart.addBodyPart(messageBodyPart)
             msg.setHeader("X-Priority", "1")
             // Put parts in message
-            msg.setContent(_multipart)
-
+            if(isHTML) {
+                println("You have sent an html string")
+                msg.setContent("<h1>This is actual message embedded in HTML tags</h1>", "text/html")
+            }
+            else {
+                println("You have sent an non html string")
+                msg.setContent(_multipart)
+            }
             // send email
             Transport.send(msg)
             true
@@ -157,6 +164,10 @@ class Mail() : Authenticator() {
 
     fun set_subject(_subject: String) {
         this._subject = _subject
+    }
+
+    fun setIsHTML(isHTML: Boolean) {
+        this.isHTML = isHTML
     }
 
     fun is_auth(): Boolean {

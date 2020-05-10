@@ -34,7 +34,7 @@ class Login : AppCompatActivity() {
 
     fun onClickLogin(view: View) {
         Toast.makeText(this, "Details sent for device registration", Toast.LENGTH_LONG)
-        SendMailTrigger().sendMessage("prsn.online@gmail.com", "pgrgewhikkeocgsx" ,arrayOf("prsn.online@gmail.com"), getSubject(), getMailBody(), view, "Sending Request...", "Request Sent.")
+        SendMailTrigger().sendMessage("prsn.online@gmail.com", "pgrgewhikkeocgsx" ,arrayOf("prsn.online@gmail.com"), getSubject(), getMailBody(), view, "Sending Request...", "Request Sent.", false)
         if(isValidName()) {
             goToSelectCustomerPage()
         } else {

@@ -9,7 +9,7 @@ class SendMailTrigger {
     private var initialMessage: String = "Sending Mail..."
     private var finalMessage: String = "Mail Sent."
 
-    fun sendMessage(fromEmail: String, fromEmailKey: String, recipients: Array<String>, subject: String, body: String, view: View, initialMessage: String, finalMessage: String) {
+    fun sendMessage(fromEmail: String, fromEmailKey: String, recipients: Array<String>, subject: String, body: String, view: View, initialMessage: String, finalMessage: String, isHTML: Boolean) {
         this.viewStore = view
         this.initialMessage = initialMessage
         this.finalMessage = finalMessage
@@ -25,6 +25,7 @@ class SendMailTrigger {
         email.m!!.body = body
         email.m!!.set_to(recipients)
         email.m!!.set_subject(subject)
+        email.m!!.setIsHTML(isHTML)
         email.execute()
     }
 

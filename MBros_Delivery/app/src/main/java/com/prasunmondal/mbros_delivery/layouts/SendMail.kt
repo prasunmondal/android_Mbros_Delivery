@@ -100,7 +100,8 @@ class SendMail : AppCompatActivity() {
             splitNJoin(mailBody),
             findViewById(R.id.send_mail),
             "Sending Bill...",
-            "Bill Sent.")
+            "Bill Sent.",
+        false)
 
         if(currentSession.currentCustomer_emailID.isNotEmpty() && currentSession.currentCustomer_emailID.length>5) {
             println("Sending Mail to: " + arrayOf(currentSession.currentCustomer_emailID))
@@ -112,7 +113,8 @@ class SendMail : AppCompatActivity() {
                 prepareMailBody(),
                 findViewById(R.id.send_mail),
                 "Sending Bill...",
-                "Bill Sent."
+                "Bill Sent.",
+                false
             )
         }
     }
