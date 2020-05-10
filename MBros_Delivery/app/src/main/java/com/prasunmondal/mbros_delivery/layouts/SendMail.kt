@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -28,9 +29,16 @@ class SendMail : AppCompatActivity() {
         var fab_send = findViewById<FloatingActionButton>(R.id.send_mail)
         fab_send.setRippleColor(Color.parseColor("#000000"))
         setActionbarTextColor()
-        Toast.makeText(this,
-            "Location: " + currentSession.currentLocationLatitude + ", " + currentSession.currentLocationLongitude,
-            Toast.LENGTH_LONG).show()
+        try {
+            Toast.makeText(
+                this,
+                "Location: " + currentSession.currentLocationLatitude + ", " + currentSession.currentLocationLongitude,
+                Toast.LENGTH_LONG
+            ).show()
+        } catch (e: Exception) {
+            Log.e("Show Location: ", "failed")
+            e.printStackTrace()
+        }
         getMailsIDs()
     }
 

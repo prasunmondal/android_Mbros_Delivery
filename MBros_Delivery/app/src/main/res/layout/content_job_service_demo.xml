@@ -6,6 +6,6 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".utils.locationUtils.GetLocationPermission"
-    tools:showIn="@layout/activity_job_service_demo">
+    tools:showIn="@layout/activity_check_location_permission">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

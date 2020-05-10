@@ -22,7 +22,6 @@ class LoginCheck : AppCompatActivity() {
         setSupportActionBar(toolbar)
         appContext.setLoginCheckActivity(this)
         println("In Login Check")
-        deleteAllData()
         resetDataOnTime()
 
         if(resetDataOnTime()) {

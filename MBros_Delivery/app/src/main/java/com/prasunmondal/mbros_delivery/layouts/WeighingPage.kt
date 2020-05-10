@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Messenger
 import android.text.*
 import android.text.style.ForegroundColorSpan
 import android.view.Gravity
@@ -17,6 +18,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.R
 import com.prasunmondal.mbros_delivery.utils.fileUtils.FileReadUtils
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil
+import com.prasunmondal.mbros_delivery.utils.locationUtils.GetLocationPermission
+import com.prasunmondal.mbros_delivery.utils.locationUtils.IncomingMessageHandler
+import com.prasunmondal.mbros_delivery.utils.locationUtils.LocationUpdatesService
 import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList.Singleton.instance as fetchedRateList
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 
@@ -38,6 +42,7 @@ class WeighingPage : AppCompatActivity() {
         setSupportActionBar(toolbar)
         setActionbarTextColor()
 
+        getLocation()
 //        setActionbarTextColor()
         for(i in 1..10) {
             addTransactionRow()
@@ -46,6 +51,16 @@ class WeighingPage : AppCompatActivity() {
         currentSession.currentCustomer_totalPCs = "0"
         updateLabels()
         initiallizeCurrentSessionDetails()
+    }
+
+    private fun getLocation() {
+        val startServiceIntent = Intent(this@WeighingPage, LocationUpdatesService::class.java)
+        val messengerIncoming = Messenger(IncomingMessageHandler())
+        startServiceIntent.putExtra(
+            GetLocationPermission.MESSENGER_INTENT_KEY,
+            messengerIncoming
+        )
+        startService(startServiceIntent)
     }
 
     private fun initiallizeCurrentSessionDetails() {

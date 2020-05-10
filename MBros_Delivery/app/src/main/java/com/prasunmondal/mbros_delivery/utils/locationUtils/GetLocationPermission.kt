@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.prasunmondal.mbros_delivery.layouts.LoginCheck
 import com.prasunmondal.mbros_delivery.R
-import kotlinx.android.synthetic.main.activity_job_service_demo.*
+import kotlinx.android.synthetic.main.activity_check_location_permission.*
 
 class GetLocationPermission : AppCompatActivity() {
 
@@ -20,7 +20,7 @@ class GetLocationPermission : AppCompatActivity() {
     private var mHandler: IncomingMessageHandler? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_job_service_demo)
+        setContentView(R.layout.activity_check_location_permission)
         setSupportActionBar(toolbar)
         requestPermissions()
     }
@@ -60,6 +60,7 @@ class GetLocationPermission : AppCompatActivity() {
     fun goToLoginCheckPage() {
         val i = Intent(this@GetLocationPermission, LoginCheck::class.java)
         startActivity(i)
+        finish()
     }
 
     override fun onDestroy() {
