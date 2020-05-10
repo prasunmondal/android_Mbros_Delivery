@@ -12,6 +12,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.prasunmondal.mbros_delivery.R
+import com.prasunmondal.mbros_delivery.components.appMails.AdminMail
+import com.prasunmondal.mbros_delivery.components.appMails.CustomerMail
 import com.prasunmondal.mbros_delivery.sessionData.LocalConfig
 import com.prasunmondal.mbros_delivery.utils.mailUtils.SendMailTrigger
 import com.prasunmondal.mbros_delivery.utils.fileUtils.FileReadUtils
@@ -108,27 +110,30 @@ class SendMail : AppCompatActivity() {
     }
 
     fun onClickSendMail(view: View) {
-        LocalConfig.Singleton.instance.setValue("mailString", mailBody)
         println("Sending Mail to: " + getMailsIDs())
+
+        val adminMail =
+            AdminMail()
         SendMailTrigger().sendMessage(currentSession.sender_email,
             currentSession.sender_email_key,
             getMailsIDs(),
-            getSubject(),
-//            splitNJoin(mailBody),
-            "<table>" + mailBody + "</table>",
+            adminMail.getSubject(),
+            adminMail.getBody(),
             findViewById(R.id.send_mail),
             "Sending Bill...",
             "Bill Sent.",
         true)
 
+        val customerMail =
+            CustomerMail()
         if(currentSession.currentCustomer_emailID.isNotEmpty() && currentSession.currentCustomer_emailID.length>5) {
             println("Sending Mail to: " + arrayOf(currentSession.currentCustomer_emailID))
             SendMailTrigger().sendMessage(
                 currentSession.sender_email,
                 currentSession.sender_email_key,
                 arrayOf(currentSession.currentCustomer_emailID),
-                getSubject(),
-                "<table>" + mailBody + "</table>",
+                customerMail.getSubject(),
+                customerMail.getBody(),
                 findViewById(R.id.send_mail),
                 "Sending Bill...",
                 "Bill Sent.",
