@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMultipart
 /**
  * Created by brandonjenniges on 11/6/15.
  */
-class MailHTML() : Authenticator() {
+class Mail() : Authenticator() {
     private var _user = ""
     private var _pass = ""
     lateinit private var _to: Array<String>

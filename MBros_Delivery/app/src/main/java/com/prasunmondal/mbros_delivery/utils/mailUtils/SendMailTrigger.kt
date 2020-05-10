@@ -15,9 +15,9 @@ class SendMailTrigger {
         this.finalMessage = finalMessage
         displayInitialMessage()
         val email =
-            SendEmailAsyncTaskHTML()
+            SendEmailAsyncTask()
         email.activity = this
-        email.m = MailHTML(
+        email.m = Mail(
             fromEmail,
             fromEmailKey
         )
