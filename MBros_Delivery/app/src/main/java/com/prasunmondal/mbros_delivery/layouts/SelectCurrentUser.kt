@@ -103,4 +103,10 @@ class SelectCurrentUser : AppCompatActivity() {
         localConfig.setValue(localConfig.LAST_LOGGED_IN_TIME, dateTime)
         println("Last logged in: " + localConfig.getValue(localConfig.LAST_LOGGED_IN_TIME))
     }
+
+    fun onClickDeleteDataBtn(view: View) {
+        val i = Intent(this@SelectCurrentUser, PasswordToResetData::class.java)
+        startActivity(i)
+        finish()
+    }
 }

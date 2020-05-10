@@ -21,7 +21,7 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_job_service_demo" />
+    <include layout="@layout/content_check_location_permission" />
 
     <TextView
         android:id="@+id/textView"

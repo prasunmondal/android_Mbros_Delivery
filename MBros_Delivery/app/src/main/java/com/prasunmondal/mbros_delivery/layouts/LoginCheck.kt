@@ -64,8 +64,7 @@ class LoginCheck : AppCompatActivity() {
     }
 
     private fun deleteAllData() {
-        fileManagerUtil.deleteFile(fileManagerUtil.localConfigurationStorage)
-        fileManagerUtil.deleteFile(fileManagerUtil.storageLink_RateList)
+        fileManagerUtil.deleteAllData()
     }
 
     private fun goToCustomerSelctionPage() {

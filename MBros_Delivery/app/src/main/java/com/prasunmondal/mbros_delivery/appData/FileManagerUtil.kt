@@ -35,4 +35,9 @@ class FileManagerUtil {
         val file = File(filename.destination)
         if (file.exists()) file.delete()
     }
+
+    fun deleteAllData() {
+        deleteFile(Singleton.instance.localConfigurationStorage)
+        deleteFile(Singleton.instance.storageLink_RateList)
+    }
 }
