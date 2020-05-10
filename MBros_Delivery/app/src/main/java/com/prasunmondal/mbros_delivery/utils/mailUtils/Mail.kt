@@ -59,7 +59,7 @@ class Mail() : Authenticator() {
             // Put parts in message
             if(isHTML) {
                 println("You have sent an html string")
-                msg.setContent("<h1>This is actual message embedded in HTML tags</h1>", "text/html")
+                msg.setContent(body, "text/html; charset=utf-8")
             }
             else {
                 println("You have sent an non html string")
