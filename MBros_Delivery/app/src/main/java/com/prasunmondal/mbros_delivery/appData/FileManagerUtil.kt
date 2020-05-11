@@ -1,6 +1,7 @@
 package com.prasunmondal.mbros_delivery.appData
 
 import android.os.Environment
+import com.prasunmondal.mbros_delivery.sessionData.LocalConfig
 import java.io.File
 import com.prasunmondal.mbros_delivery.sessionData.AppContext.Singleton.instance as appContext
 
@@ -16,9 +17,6 @@ class FileManagerUtil {
     var rootFromContext = appContext.getLoginCheckActivity().filesDir.absolutePath
 
     var localConfigurationStorage = FilePaths(rootFromContext, "AppData", "AppConfigurationData")
-
-    var downloadLink_UpdateAPK = FilePaths(
-        appContext.getLoginCheckActivity().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString(), "", "SampleDownloadApp.apk")
 
     var storageLink_RateList = FilePaths(
         appContext.getLoginCheckActivity().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString(), "", "details.csv")
@@ -37,7 +35,9 @@ class FileManagerUtil {
     }
 
     fun deleteAllData() {
-        deleteFile(Singleton.instance.localConfigurationStorage)
-        deleteFile(Singleton.instance.storageLink_RateList)
+        deleteFile(localConfigurationStorage)
+        LocalConfig.Singleton.instance.setValue("mailString","")
+        deleteFile(storageLink_RateList)
+        deleteFile(storageLink_CSV_Settings)
     }
 }

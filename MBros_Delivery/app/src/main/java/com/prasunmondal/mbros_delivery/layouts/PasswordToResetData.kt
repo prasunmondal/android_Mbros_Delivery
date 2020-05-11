@@ -31,6 +31,7 @@ class PasswordToResetData : AppCompatActivity() {
 
     fun onClickNext(view: View) {
         if(isKeyValid()) {
+            Toast.makeText(this, "Reset Complete", Toast.LENGTH_SHORT).show()
             fileManagerUtil.deleteAllData()
             goToTryLogingInPage()
         }
