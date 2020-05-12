@@ -11,7 +11,8 @@ class Customer {
     lateinit var prevBalance: String
     lateinit var paidAmount: String
     lateinit var newBalAmount: String
-    lateinit var deliverLocation: String
+    lateinit var location_lat: String
+    lateinit var location_long: String
     lateinit var deliverTime: String
     lateinit var email: String
     lateinit var phoneNumber: String

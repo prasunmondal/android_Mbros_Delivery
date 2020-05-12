@@ -22,7 +22,6 @@ import com.prasunmondal.mbros_delivery.utils.locationUtils.IncomingMessageHandle
 import com.prasunmondal.mbros_delivery.utils.locationUtils.GetLocationPermission
 import com.prasunmondal.mbros_delivery.utils.locationUtils.LocationUpdatesService
 import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList.Singleton.instance as fetchedRateList
-import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 
 import kotlinx.android.synthetic.main.activity_settlement_page.*
 
@@ -48,9 +47,9 @@ class SettlementPage : AppCompatActivity() {
     }
 
     private fun initiallize() {
-        val currentUser = currentSession.currentCustomer_name
-        val totalKG = currentSession.currentCustomer_totalKG.toFloat()
-        val totalPCs = currentSession.currentCustomer_totalPCs
+        val currentUser = cm.current.name
+        val totalKG = cm.current.totalKG.toFloat()
+        val totalPCs = cm.current.totalPiece
         val pricePerKG  = fetchedRateList.getPricePerKg(currentUser).toFloat()
         val todaysPrice = (totalKG * pricePerKG).toInt()
         val prevBalance = fetchedRateList.getPrevBal(currentUser).toInt()
@@ -61,10 +60,6 @@ class SettlementPage : AppCompatActivity() {
         cm.current.totalTodayAmount = calcUtils.getTodaysTotalAmount(cm.current)
         cm.current.prevBalance = fetchedRateList.getPrevBal(cm.current.name)
 
-        currentSession.currentCustomer_todaysUnitPrice = pricePerKG.toString()
-        currentSession.currentCustomer_prevBalance = fetchedRateList.getPrevBal(currentUser).toInt().toString()
-        currentSession.currentCustomer_todaysBillAmount = todaysPrice.toString()
-
         findViewById<TextView>(R.id.kgView).text = (numberUtils.tryNRemoveDecimal(totalKG) + " kg")
         findViewById<TextView>(R.id.pieceView).text = totalPCs
         findViewById<TextView>(R.id.todayPriceView).text = todaysPrice.toString()
@@ -74,7 +69,7 @@ class SettlementPage : AppCompatActivity() {
 
         val paidTodayView = findViewById<EditText>(R.id.paidTodayView)
         paidTodayView.addTextChangedListener(object : TextWatcher {
-            //
+
             override fun afterTextChanged(s: Editable) {}
 
             override fun beforeTextChanged(
@@ -102,17 +97,10 @@ class SettlementPage : AppCompatActivity() {
     }
 
     fun goToSendMail(view: View) {
-        cacheAllData()
         cm.current.paidAmount = findViewById<EditText>(R.id.paidTodayView).text.toString()
         cm.current.newBalAmount = calcUtils.getNewBalance(cm.current)
-
         val i = Intent(this@SettlementPage, SendMail::class.java)
         startActivity(i)
-    }
-
-    private fun cacheAllData() {
-        currentSession.currentCustomer_paid = findViewById<EditText>(R.id.paidTodayView).text.toString()
-        currentSession.currentCustomer_newBalance = findViewById<TextView>(R.id.newBalanceView).text.toString()
     }
 
     @Suppress("DEPRECATION")

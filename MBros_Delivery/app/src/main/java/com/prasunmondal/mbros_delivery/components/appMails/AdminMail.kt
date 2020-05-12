@@ -46,15 +46,7 @@ class AdminMail: AppMails {
     }
 
     fun getDetails(): String {
-        var str = ""
-
-        val temp = LocalConfig.Singleton.instance.getValue("mailString")
-        if(temp != null)
-            str = temp
-
-        str += getRow(cm.current)
-//        str = getAllRows()
-        return str
+        return getAllRows()
     }
 
     override fun getMailContent(): String {

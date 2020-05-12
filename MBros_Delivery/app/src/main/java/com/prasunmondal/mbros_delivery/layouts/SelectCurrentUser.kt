@@ -17,7 +17,6 @@ import com.prasunmondal.mbros_delivery.appData.CustomerManager.Singleton.instanc
 import com.prasunmondal.mbros_delivery.utils.DateTimeUtil.Singleton.instance as dateTimeUtil
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagerUtil
 import com.prasunmondal.mbros_delivery.sessionData.AppContext
-import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList
 import com.prasunmondal.mbros_delivery.sessionData.LocalConfig.Singleton.instance as localConfig
 
@@ -33,7 +32,6 @@ class SelectCurrentUser : AppCompatActivity() {
         setContentView(R.layout.activity_select_current_user)
         setSupportActionBar(toolbar)
 
-//        initiallizeCurrentSessionDetails()
         AppContext.Singleton.instance.setCustomerSelectionActivity(this)
         checkForDataExistence()
         populateCustomerListSpinner()
@@ -44,14 +42,13 @@ class SelectCurrentUser : AppCompatActivity() {
     fun onClickSaveUsername(view: View) {
         val customerSelector = findViewById<Spinner>(R.id.customerSelector)
         val customerName: String = customerSelector.selectedItem.toString()
-        currentSession.currentCustomer_name = customerName
         cm.createCustomerIfAbsent(customerName)
         cm.current = cm.getCustomer(customerName)
         goToConfirmPage()
     }
 
     private fun goToConfirmPage() {
-        if(currentSession.currentCustomer_name.equals(text_NoCustomerToSelect)) {
+        if(cm.current.name.equals(text_NoCustomerToSelect)) {
             Toast.makeText(this, "Select valid customer", Toast.LENGTH_LONG).show()
         } else {
             val i = Intent(this@SelectCurrentUser, ConfirmCustomerDetails::class.java)

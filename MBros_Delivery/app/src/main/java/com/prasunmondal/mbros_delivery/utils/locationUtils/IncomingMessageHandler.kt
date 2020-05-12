@@ -3,7 +3,7 @@ package com.prasunmondal.mbros_delivery.utils.locationUtils
 import android.location.Location
 import android.os.Handler
 import android.os.Message
-import com.prasunmondal.mbros_delivery.sessionData.CurrentSession
+import com.prasunmondal.mbros_delivery.appData.CustomerManager.Singleton.instance as cm
 
 class IncomingMessageHandler : Handler() {
     override fun handleMessage(msg: Message) {
@@ -12,8 +12,8 @@ class IncomingMessageHandler : Handler() {
             LocationUpdatesService.LOCATION_MESSAGE -> {
                 val obj = msg.obj as Location
                 println("""LAT :  ${obj.latitude}   LNG : ${obj.longitude}""")
-                CurrentSession.Singleton.instance.currentLocationLatitude = obj.latitude.toString()
-                CurrentSession.Singleton.instance.currentLocationLongitude = obj.longitude.toString()
+                cm.current.location_lat = obj.latitude.toString()
+                cm.current.location_long = obj.longitude.toString()
             }
         }
     }

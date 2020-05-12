@@ -12,8 +12,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.prasunmondal.mbros_delivery.R
+import com.prasunmondal.mbros_delivery.appData.CustomerManager.Singleton.instance as cm
 import com.prasunmondal.mbros_delivery.components.appMails.AdminMail
-import com.prasunmondal.mbros_delivery.components.appMails.CustomerMail
 import com.prasunmondal.mbros_delivery.sessionData.LocalConfig
 import com.prasunmondal.mbros_delivery.utils.mailUtils.SendMailTrigger
 import com.prasunmondal.mbros_delivery.utils.fileUtils.FileReadUtils
@@ -32,7 +32,7 @@ class SendMail : AppCompatActivity() {
         try {
             Toast.makeText(
                 this,
-                "Location: " + currentSession.currentLocationLatitude + ", " + currentSession.currentLocationLongitude,
+                "Location: " + cm.current.location_lat + ", " + cm.current.location_long,
                 Toast.LENGTH_LONG
             ).show()
         } catch (e: Exception) {

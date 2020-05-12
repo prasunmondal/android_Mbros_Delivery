@@ -15,7 +15,6 @@ import com.prasunmondal.mbros_delivery.appData.CustomerManager.Singleton.instanc
 import com.prasunmondal.mbros_delivery.utils.fileUtils.FileReadUtils
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil
 import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList.Singleton.instance as fetchedRateList
-import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 
 import kotlinx.android.synthetic.main.activity_confirm_customer_details.*
 
@@ -31,15 +30,15 @@ class ConfirmCustomerDetails : AppCompatActivity() {
 
     private fun updateLabels() {
         val nameLabel = findViewById<TextView>(R.id.label_confirm_name)
-        nameLabel.text = currentSession.currentCustomer_name
+        nameLabel.text = cm.current.name
         val kgLabel = findViewById<TextView>(R.id.label_confirm_KG)
-        currentSession.currentCustomer_orderedQty =
+        cm.current.orderedKG =
             FileReadUtils.Singleton.instance.getValue_forKey(
                 FileManagerUtil.Singleton.instance.storageLink_RateList,
                 fetchedRateList.RateListColIndex_Name,
-                currentSession.currentCustomer_name,
+                cm.current.name,
                 fetchedRateList.RateListColIndex_orderedKG)!!
-        kgLabel.text = (currentSession.currentCustomer_orderedQty + " kg")
+        kgLabel.text = (cm.current.orderedKG + " kg")
     }
 
     private fun goToWeighingPage() {
@@ -48,7 +47,6 @@ class ConfirmCustomerDetails : AppCompatActivity() {
     }
 
     fun onClickNextButton(view: View) {
-        cm.current.orderedKG = findViewById<TextView>(R.id.label_confirm_KG).text.toString()
         goToWeighingPage()
     }
 

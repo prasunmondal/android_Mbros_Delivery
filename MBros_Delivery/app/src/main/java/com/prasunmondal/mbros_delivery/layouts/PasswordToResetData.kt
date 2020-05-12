@@ -13,7 +13,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.R
 import com.prasunmondal.mbros_delivery.sessionData.AppContext
-import com.prasunmondal.mbros_delivery.sessionData.CurrentSession
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagerUtil
 
 import kotlinx.android.synthetic.main.activity_password_to_reset_data.*

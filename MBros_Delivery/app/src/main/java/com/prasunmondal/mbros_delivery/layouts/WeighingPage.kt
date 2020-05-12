@@ -45,12 +45,11 @@ class WeighingPage : AppCompatActivity() {
         setActionbarTextColor()
 
         getLocation()
-//        setActionbarTextColor()
         for(i in 1..10) {
             addTransactionRow()
         }
-        currentSession.currentCustomer_totalKG = "0"
-        currentSession.currentCustomer_totalPCs = "0"
+        cm.current.totalKG = "0"
+        cm.current.totalPiece = "0"
         updateLabels()
         initiallizeCurrentSessionDetails()
     }
@@ -71,13 +70,11 @@ class WeighingPage : AppCompatActivity() {
         currentSession.sender_email_key = FileReadUtils.Singleton.instance.getValue_forKey(
             FileManagerUtil.Singleton.instance.storageLink_CSV_Settings, 0, "emailSenderKey", 3)!!
 
-        currentSession.currentCustomer_emailID = FileReadUtils.Singleton.instance.getValue_forKey(
+        cm.current.email = FileReadUtils.Singleton.instance.getValue_forKey(
             FileManagerUtil.Singleton.instance.storageLink_RateList,
             fetchedRateList.RateListColIndex_Name,
-            currentSession.currentCustomer_name,
+            cm.current.name,
             fetchedRateList.RateListColIndex_EmailID)!!
-        println("--------------   Current Details: " + currentSession.sender_email)
-        println("--------------   Current Customer email: " + currentSession.currentCustomer_emailID)
     }
 
     fun addTransactionRow() {
@@ -149,15 +146,18 @@ class WeighingPage : AppCompatActivity() {
         var labelPc = findViewById<TextView>(R.id.editText8)
         var labelKG = findViewById<TextView>(R.id.editText9)
 
-        currentSession.currentCustomer_totalKG = total_KGs.toString()
-        currentSession.currentCustomer_totalPCs = total_Pieces.toString()
-        labelPc.setText(currentSession.currentCustomer_totalPCs)
-        labelKG.setText(currentSession.currentCustomer_totalKG)
+        cm.current.totalKG = total_KGs.toString()
+        cm.current.totalPiece = total_Pieces.toString()
+        labelPc.text = cm.current.totalPiece
+        labelKG.text = cm.current.totalKG
 
 
-        var per = (total_KGs / currentSession.currentCustomer_orderedQty.toFloat() * 100)
+        println("==========================================================")
+        println(cm.current.totalKG)
+        println(cm.current.orderedKG)
+        var percentComplete = (cm.current.totalKG.toFloat() / cm.current.orderedKG.toFloat() * 100)
         var pb = findViewById<ProgressBar>(R.id.weighProgress)
-        pb.progress = per.toInt()
+        pb.progress = percentComplete.toInt()
     }
 
     fun goToSettlementPage(view: View) {
@@ -172,7 +172,7 @@ class WeighingPage : AppCompatActivity() {
     }
 
     fun setActionbarTextColor() {
-        val title: String = currentSession.currentCustomer_name
+        val title: String = cm.current.name
         val spannableTitle: Spannable = SpannableString("")
         spannableTitle.setSpan(
             ForegroundColorSpan(Color.GRAY),
