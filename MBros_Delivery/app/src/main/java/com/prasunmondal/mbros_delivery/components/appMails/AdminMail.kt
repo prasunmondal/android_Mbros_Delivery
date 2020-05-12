@@ -42,7 +42,35 @@ class AdminMail: AppMails {
                 k, v ->
             str += getRow(v)
         }
-        return str
+        return str+getRow(getTotalDetails())
+    }
+
+    fun getTotalDetails(): Customer {
+        var total = Customer()
+        total.name = "TOTAL"
+        total.totalKG = "0"
+        total.totalPiece = "0"
+        total.avgWeight = "0"
+        total.orderedKG = "0"
+        total.prevBalance = "0"
+        total.totalTodayAmount = "0"
+        total.paidAmount = "0"
+        total.newBalAmount = "0"
+
+        cm.customerMap.forEach {
+                k, v ->
+            total.totalKG = (total.totalKG.toFloat() + v.totalKG.toFloat()).toString()
+            total.totalPiece = (total.totalPiece.toInt() + v.totalPiece.toInt()).toString()
+            total.avgWeight = calcUtils.getAvgWeight(total)
+            total.orderedKG = (total.orderedKG.toFloat() + v.orderedKG.toFloat()).toString()
+            total.prevBalance = (total.prevBalance.toInt() + v.prevBalance.toInt()).toString()
+            total.totalTodayAmount = (total.totalTodayAmount.toInt() + v.totalTodayAmount.toInt()).toString()
+            total.paidAmount = (total.paidAmount.toInt() + v.paidAmount.toInt()).toString()
+            total.newBalAmount = (total.newBalAmount.toInt() + v.newBalAmount.toInt()).toString()
+
+            total.unitPrice = ""
+        }
+        return total
     }
 
     fun getDetails(): String {
