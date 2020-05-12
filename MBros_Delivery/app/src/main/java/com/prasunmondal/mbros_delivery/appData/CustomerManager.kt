@@ -28,10 +28,18 @@ class CustomerManager {
     fun createCustomerIfAbsent(name: String) {
         var newCustomer = Customer()
         newCustomer.name = name
+        newCustomer.paidAmount = ""
+        newCustomer.unitPrice = "0"
         customerMap.putIfAbsent(name, newCustomer)
     }
 
     fun getCustomer(customerName: String): Customer {
         return customerMap.get(customerName)!!
+    }
+
+    fun resetData() {
+        customerMap = mutableMapOf()
+        save()
+        SerializeUtil().removeSerializable(appContext.getLoginCheckActivity(), "customerMap")
     }
 }

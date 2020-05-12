@@ -68,6 +68,7 @@ class SettlementPage : AppCompatActivity() {
         findViewById<TextView>(R.id.newBalanceView).text = newBalance.toString()
 
         val paidTodayView = findViewById<EditText>(R.id.paidTodayView)
+        paidTodayView.setText(cm.current.paidAmount)
         paidTodayView.addTextChangedListener(object : TextWatcher {
 
             override fun afterTextChanged(s: Editable) {}

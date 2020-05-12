@@ -39,5 +39,6 @@ class FileManagerUtil {
         LocalConfig.Singleton.instance.setValue("mailString","")
         deleteFile(storageLink_RateList)
         deleteFile(storageLink_CSV_Settings)
+        CustomerManager.Singleton.instance.resetData()
     }
 }
