@@ -10,7 +10,8 @@ class CustomerManager {
         var instance = CustomerManager()
     }
 
-    lateinit var customerMap: MutableMap<String, Customer>
+    var customerMap: MutableMap<String, Customer> = mutableMapOf()
+    lateinit var current: Customer
 
     fun save() {
         SerializeUtil().saveSerializable(appContext.getLoginCheckActivity(), customerMap, "customerMap")
@@ -18,5 +19,19 @@ class CustomerManager {
 
     fun read() {
         customerMap = SerializeUtil().readSerializable(appContext.getLoginCheckActivity(), "customerMap") as MutableMap<String, Customer>
+    }
+
+    fun find(name: String): Boolean {
+        return customerMap.contains(name)
+    }
+
+    fun createCustomerIfAbsent(name: String) {
+        var newCustomer = Customer()
+        newCustomer.name = name
+        customerMap.putIfAbsent(name, newCustomer)
+    }
+
+    fun getCustomer(customerName: String): Customer {
+        return customerMap.get(customerName)!!
     }
 }

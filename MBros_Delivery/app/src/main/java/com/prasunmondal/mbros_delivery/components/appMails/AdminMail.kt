@@ -1,6 +1,8 @@
 package com.prasunmondal.mbros_delivery.components.appMails
 
-import com.prasunmondal.mbros_delivery.sessionData.CurrentSession
+import com.prasunmondal.mbros_delivery.blueprints.Customer
+import com.prasunmondal.mbros_delivery.components.appMails.customer.CalculationUtils.Singleton.instance as calcUtils
+import com.prasunmondal.mbros_delivery.appData.CustomerManager.Singleton.instance as cm
 import com.prasunmondal.mbros_delivery.sessionData.LocalConfig
 import java.text.SimpleDateFormat
 import java.util.*
@@ -20,6 +22,20 @@ class AdminMail: AppMails {
                 "</tr>"
     }
 
+    fun getRow(customer: Customer): String {
+        return "<tr>" +
+                "<td>"+ customer.name + "</td>" +
+                "<td>" + customer.totalPiece + "</td>" +
+                "<td>" + customer.totalKG + "</td>" +
+                "<td>" + customer.avgWeight + "</td>" +
+                "<td>" + customer.unitPrice + "</td>" +
+                "<td>" + customer.prevBalance + "</td>" +
+                "<td>" + customer.totalTodayAmount + "</td>" +
+                "<td>" + customer.paidAmount + "</td>" +
+                "<td>" + customer.newBalAmount + "</td>" +
+                "</tr>"
+    }
+
     fun getDetails(): String {
         var str = ""
 
@@ -27,18 +43,7 @@ class AdminMail: AppMails {
         if(temp != null)
             str = temp
 
-        str+= "<tr>" +
-                "<td>"+ CurrentSession.Singleton.instance.currentCustomer_name + "</td>" +
-                "<td>" + CurrentSession.Singleton.instance.currentCustomer_totalPCs + "</td>" +
-                "<td>" + CurrentSession.Singleton.instance.currentCustomer_totalKG + "</td><td>" +
-                (CurrentSession.Singleton.instance.currentCustomer_totalKG.toFloat()
-                        / CurrentSession.Singleton.instance.currentCustomer_totalPCs.toInt()).toString() + "</td>" +
-                "<td>" + CurrentSession.Singleton.instance.currentCustomer_todaysUnitPrice + "</td>" +
-                "<td>" + CurrentSession.Singleton.instance.currentCustomer_prevBalance + "</td><" +
-                "td>" + CurrentSession.Singleton.instance.currentCustomer_todaysBillAmount + "</td>" +
-                "<td>" + CurrentSession.Singleton.instance.currentCustomer_paid + "</td>" +
-                "<td>" + CurrentSession.Singleton.instance.currentCustomer_newBalance + "</td>" +
-                "</tr>"
+        str+= getRow(cm.current)
         return str
     }
 

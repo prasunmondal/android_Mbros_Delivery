@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.R
+import com.prasunmondal.mbros_delivery.appData.CustomerManager.Singleton.instance as cm
 import com.prasunmondal.mbros_delivery.utils.fileUtils.FileReadUtils
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil
 import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList.Singleton.instance as fetchedRateList
@@ -47,6 +48,7 @@ class ConfirmCustomerDetails : AppCompatActivity() {
     }
 
     fun onClickNextButton(view: View) {
+        cm.current.orderedKG = findViewById<TextView>(R.id.label_confirm_KG).text.toString()
         goToWeighingPage()
     }
 

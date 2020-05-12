@@ -15,6 +15,8 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.R
+import com.prasunmondal.mbros_delivery.components.appMails.customer.CalculationUtils.Singleton.instance as calcUtils
+import com.prasunmondal.mbros_delivery.appData.CustomerManager.Singleton.instance as cm
 import com.prasunmondal.mbros_delivery.utils.NumberUtils.Singleton.instance as numberUtils
 import com.prasunmondal.mbros_delivery.utils.locationUtils.IncomingMessageHandler
 import com.prasunmondal.mbros_delivery.utils.locationUtils.GetLocationPermission
@@ -54,6 +56,10 @@ class SettlementPage : AppCompatActivity() {
         val prevBalance = fetchedRateList.getPrevBal(currentUser).toInt()
         val toPay = todaysPrice + prevBalance
         val newBalance = toPay - 0
+
+        cm.current.unitPrice = fetchedRateList.getPricePerKg(currentUser)
+        cm.current.totalTodayAmount = calcUtils.getTodaysTotalAmount(cm.current)
+        cm.current.prevBalance = fetchedRateList.getPrevBal(cm.current.name)
 
         currentSession.currentCustomer_todaysUnitPrice = pricePerKG.toString()
         currentSession.currentCustomer_prevBalance = fetchedRateList.getPrevBal(currentUser).toInt().toString()
@@ -97,6 +103,9 @@ class SettlementPage : AppCompatActivity() {
 
     fun goToSendMail(view: View) {
         cacheAllData()
+        cm.current.paidAmount = findViewById<EditText>(R.id.paidTodayView).text.toString()
+        cm.current.newBalAmount = calcUtils.getNewBalance(cm.current)
+
         val i = Intent(this@SettlementPage, SendMail::class.java)
         startActivity(i)
     }

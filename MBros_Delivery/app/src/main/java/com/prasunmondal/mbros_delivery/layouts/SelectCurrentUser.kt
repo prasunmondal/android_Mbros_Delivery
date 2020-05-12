@@ -13,6 +13,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.R
+import com.prasunmondal.mbros_delivery.appData.CustomerManager.Singleton.instance as cm
 import com.prasunmondal.mbros_delivery.utils.DateTimeUtil.Singleton.instance as dateTimeUtil
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil.Singleton.instance as fileManagerUtil
 import com.prasunmondal.mbros_delivery.sessionData.AppContext
@@ -44,6 +45,8 @@ class SelectCurrentUser : AppCompatActivity() {
         val customerSelector = findViewById<Spinner>(R.id.customerSelector)
         val customerName: String = customerSelector.selectedItem.toString()
         currentSession.currentCustomer_name = customerName
+        cm.createCustomerIfAbsent(customerName)
+        cm.current = cm.getCustomer(customerName)
         goToConfirmPage()
     }
 

@@ -16,8 +16,10 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.prasunmondal.mbros_delivery.R
+import com.prasunmondal.mbros_delivery.appData.CustomerManager.Singleton.instance as cm
 import com.prasunmondal.mbros_delivery.utils.fileUtils.FileReadUtils
 import com.prasunmondal.mbros_delivery.appData.FileManagerUtil
+import com.prasunmondal.mbros_delivery.components.appMails.customer.CalculationUtils.Singleton.instance as calcUtils
 import com.prasunmondal.mbros_delivery.utils.locationUtils.GetLocationPermission
 import com.prasunmondal.mbros_delivery.utils.locationUtils.IncomingMessageHandler
 import com.prasunmondal.mbros_delivery.utils.locationUtils.LocationUpdatesService
@@ -159,6 +161,12 @@ class WeighingPage : AppCompatActivity() {
     }
 
     fun goToSettlementPage(view: View) {
+        var labelPc = findViewById<TextView>(R.id.editText8)
+        var labelKG = findViewById<TextView>(R.id.editText9)
+
+        cm.current.totalPiece = labelPc.text.toString()
+        cm.current.totalKG = labelKG.text.toString()
+        cm.current.avgWeight = calcUtils.getAvgWeight(cm.current)
         val i = Intent(this@WeighingPage, SettlementPage::class.java)
         startActivity(i)
     }
