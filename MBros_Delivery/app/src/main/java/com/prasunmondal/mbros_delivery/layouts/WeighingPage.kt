@@ -27,7 +27,6 @@ import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList.Singleton.ins
 import com.prasunmondal.mbros_delivery.sessionData.CurrentSession.Singleton.instance as currentSession
 
 import kotlinx.android.synthetic.main.activity_weighing_page.*
-import kotlin.math.min
 
 class WeighingPage : AppCompatActivity() {
 
@@ -52,7 +51,6 @@ class WeighingPage : AppCompatActivity() {
         cm.current.totalKG = "0"
         cm.current.totalPiece = "0"
         updateLabels()
-        setFieldsFromSavedValues()
         initiallizeCurrentSessionDetails()
     }
 
@@ -128,39 +126,7 @@ class WeighingPage : AppCompatActivity() {
         })
     }
 
-    private fun backUpBreakdowns() {
-        cm.current.weighingBreakdown = mutableListOf()
-        cm.current.pieceBreakdown = mutableListOf()
-        var iterator = list_KGFields.listIterator()
-        for (kgs in iterator) {
-            if (kgs.text.toString().length > 0) {
-                cm.current.weighingBreakdown.add(kgs.text.toString())
-            } else {
-                cm.current.weighingBreakdown.add("")
-            }
-        }
-
-        iterator = list_PieceFields.listIterator()
-        for (pieces in iterator) {
-            if (pieces.text.toString().length > 0) {
-                cm.current.pieceBreakdown.add(pieces.text.toString())
-            } else {
-                cm.current.pieceBreakdown.add("")
-            }
-        }
-    }
-
-    private fun setFieldsFromSavedValues() {
-        val minSize = Math.min(list_KGFields.size, cm.current.weighingBreakdown.size) - 1
-        for (i in 0..minSize) {
-            list_KGFields[i].setText(cm.current.weighingBreakdown[i])
-            list_PieceFields[i].setText(cm.current.pieceBreakdown[i])
-        }
-    }
-
-
     fun updateLabels() {
-
         total_KGs = 0.0
         total_Pieces = 0
         var iterator = list_KGFields.listIterator()
@@ -185,12 +151,13 @@ class WeighingPage : AppCompatActivity() {
         labelPc.text = cm.current.totalPiece
         labelKG.text = cm.current.totalKG
 
-        backUpBreakdowns()
 
+        println("==========================================================")
+        println(cm.current.totalKG)
+        println(cm.current.orderedKG)
         var percentComplete = (cm.current.totalKG.toFloat() / cm.current.orderedKG.toFloat() * 100)
         var pb = findViewById<ProgressBar>(R.id.weighProgress)
         pb.progress = percentComplete.toInt()
-
     }
 
     fun goToSettlementPage(view: View) {
@@ -200,7 +167,6 @@ class WeighingPage : AppCompatActivity() {
         cm.current.totalPiece = labelPc.text.toString()
         cm.current.totalKG = labelKG.text.toString()
         cm.current.avgWeight = calcUtils.getAvgWeight(cm.current)
-        cm.save()
         val i = Intent(this@WeighingPage, SettlementPage::class.java)
         startActivity(i)
     }

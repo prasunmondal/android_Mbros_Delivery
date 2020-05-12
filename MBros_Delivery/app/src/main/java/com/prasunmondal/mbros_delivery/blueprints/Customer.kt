@@ -16,7 +16,4 @@ class Customer {
     lateinit var deliverTime: String
     lateinit var email: String
     lateinit var phoneNumber: String
-
-    var weighingBreakdown:MutableList<String> = mutableListOf()
-    var pieceBreakdown:MutableList<String> = mutableListOf()
 }
