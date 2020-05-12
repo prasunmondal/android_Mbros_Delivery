@@ -24,7 +24,7 @@ class AdminMail: AppMails {
 
     fun getRow(customer: Customer): String {
         return "<tr>" +
-                "<td>"+ customer.name + "</td>" +
+                "<td>" + customer.name + "</td>" +
                 "<td>" + customer.totalPiece + "</td>" +
                 "<td>" + customer.totalKG + "</td>" +
                 "<td>" + customer.avgWeight + "</td>" +
@@ -36,6 +36,15 @@ class AdminMail: AppMails {
                 "</tr>"
     }
 
+    fun getAllRows(): String {
+        var str = ""
+        cm.customerMap.forEach {
+                k, v ->
+            str += getRow(v)
+        }
+        return str
+    }
+
     fun getDetails(): String {
         var str = ""
 
@@ -43,7 +52,8 @@ class AdminMail: AppMails {
         if(temp != null)
             str = temp
 
-        str+= getRow(cm.current)
+        str += getRow(cm.current)
+//        str = getAllRows()
         return str
     }
 
