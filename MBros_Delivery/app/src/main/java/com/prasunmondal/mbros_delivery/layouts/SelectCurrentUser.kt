@@ -31,8 +31,8 @@ class SelectCurrentUser : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_current_user)
         setSupportActionBar(toolbar)
-
         AppContext.Singleton.instance.setCustomerSelectionActivity(this)
+        cm.read()
         checkForDataExistence()
         populateCustomerListSpinner()
         setActionbarTextColor()

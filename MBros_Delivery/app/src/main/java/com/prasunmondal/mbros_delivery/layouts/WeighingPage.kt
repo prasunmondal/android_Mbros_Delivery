@@ -167,6 +167,7 @@ class WeighingPage : AppCompatActivity() {
         cm.current.totalPiece = labelPc.text.toString()
         cm.current.totalKG = labelKG.text.toString()
         cm.current.avgWeight = calcUtils.getAvgWeight(cm.current)
+        cm.save()
         val i = Intent(this@WeighingPage, SettlementPage::class.java)
         startActivity(i)
     }

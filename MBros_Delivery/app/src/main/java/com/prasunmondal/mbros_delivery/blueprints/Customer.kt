@@ -1,6 +1,8 @@
 package com.prasunmondal.mbros_delivery.blueprints
 
-class Customer {
+import java.io.Serializable
+
+class Customer: Serializable {
     lateinit var name: String
     lateinit var orderedKG: String
     lateinit var totalPiece: String
