@@ -21,6 +21,7 @@ import com.prasunmondal.mbros_delivery.sessionData.FetchedRateList
 import com.prasunmondal.mbros_delivery.sessionData.LocalConfig.Singleton.instance as localConfig
 
 import kotlinx.android.synthetic.main.activity_select_current_user.*
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -37,6 +38,11 @@ class SelectCurrentUser : AppCompatActivity() {
         populateCustomerListSpinner()
         setActionbarTextColor()
         updateSessionDetails()
+        try {
+            cm.read()
+        } catch (e: Exception) {
+
+        }
     }
 
     fun onClickSaveUsername(view: View) {

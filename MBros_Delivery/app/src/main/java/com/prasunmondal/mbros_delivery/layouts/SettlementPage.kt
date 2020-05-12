@@ -99,6 +99,7 @@ class SettlementPage : AppCompatActivity() {
     fun goToSendMail(view: View) {
         cm.current.paidAmount = findViewById<EditText>(R.id.paidTodayView).text.toString()
         cm.current.newBalAmount = calcUtils.getNewBalance(cm.current)
+        cm.save()
         val i = Intent(this@SettlementPage, SendMail::class.java)
         startActivity(i)
     }

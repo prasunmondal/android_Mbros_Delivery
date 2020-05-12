@@ -80,7 +80,7 @@ class SendMail : AppCompatActivity() {
 //        }
         LocalConfig.Singleton.instance.setValue("mailString", adminMail.getDetails())
         println("\n\n\nSaving mail details: " + adminMail.getDetails() + "\n\n\n\n")
-
+        cm.save()
     }
 
     @Suppress("DEPRECATION")
