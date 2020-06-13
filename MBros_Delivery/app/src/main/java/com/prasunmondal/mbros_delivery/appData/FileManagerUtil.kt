@@ -14,15 +14,15 @@ class FileManagerUtil {
     object Singleton {
         var instance = FileManagerUtil()
     }
-    var rootFromContext = appContext.getLoginCheckActivity().filesDir.absolutePath
+    var rootFromContext = appContext.initialContext.filesDir.absolutePath
 
     var localConfigurationStorage = FilePaths(rootFromContext, "AppData", "AppConfigurationData")
 
     var storageLink_RateList = FilePaths(
-        appContext.getLoginCheckActivity().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString(), "", "details.csv")
+        appContext.initialContext.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString(), "", "details.csv")
 
     var storageLink_CSV_Settings = FilePaths(
-        appContext.getLoginCheckActivity().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString(), "", "settings")
+        appContext.initialContext.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString(), "", "settings")
 
     fun doesFileExist(filename: FilePaths): Boolean {
         val file = File(filename.destination)

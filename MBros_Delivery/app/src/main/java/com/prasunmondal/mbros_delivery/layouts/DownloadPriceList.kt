@@ -26,16 +26,12 @@ class DownloadPriceList : AppCompatActivity() {
     }
 
     private fun startDownloads() {
-        val downloadRecord = DownloadUtils(this)
-        downloadRecord.enqueueDownload(
-            HardData.Singleton.instance.detailCSV,
-            fileManagerUtils.storageLink_RateList.destination,
-            ::goToSelectCustomerPage,
-            "MBros: Downloading", "Downloading Data")
+
+
     }
 
     private fun goToSelectCustomerPage() {
-        Toast.makeText(AppContext.Singleton.instance.getCustomerSelectionActivity(), "Download Complete", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Download Complete", Toast.LENGTH_SHORT).show()
         val i = Intent(this@DownloadPriceList, SelectCurrentUser::class.java)
         startActivity(i)
         finish()

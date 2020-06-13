@@ -8,6 +8,7 @@ class AppContext {
         val instance = AppContext()
     }
 
+    lateinit var initialContext: Context
     private lateinit var mainActivity: Context
     private lateinit var saveUserActivity: Context
     private lateinit var loginCheck: Context

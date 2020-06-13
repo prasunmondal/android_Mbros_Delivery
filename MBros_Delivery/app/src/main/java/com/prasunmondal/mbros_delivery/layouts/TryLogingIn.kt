@@ -73,7 +73,7 @@ class TryLogingIn : AppCompatActivity() {
     fun generateDeviceId(): String {
         val macAddr: String
         val wifiMan =
-            AppContext.Singleton.instance.getLoginCheckActivity().getSystemService(Context.WIFI_SERVICE) as WifiManager
+            this.getSystemService(Context.WIFI_SERVICE) as WifiManager
         val wifiInf = wifiMan.connectionInfo
         macAddr = wifiInf.macAddress
         val androidId: String = "" + Settings.Secure.getString(

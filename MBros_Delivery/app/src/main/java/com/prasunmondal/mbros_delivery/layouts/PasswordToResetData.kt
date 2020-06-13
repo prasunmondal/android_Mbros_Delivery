@@ -49,7 +49,7 @@ class PasswordToResetData : AppCompatActivity() {
     }
 
     private fun goToSelectCurrentUser() {
-        Toast.makeText(AppContext.Singleton.instance.getCustomerSelectionActivity(), "Download Complete", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Download Complete", Toast.LENGTH_SHORT).show()
         val i = Intent(this@PasswordToResetData, SelectCurrentUser::class.java)
         startActivity(i)
         finish()

@@ -20,16 +20,16 @@ class LoginCheck : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_check)
         setSupportActionBar(toolbar)
-        appContext.setLoginCheckActivity(this)
+        appContext.initialContext = this
         println("In Login Check")
         resetDataOnTime()
 
-        if(resetDataOnTime()) {
-            goToCustomerSelctionPage()
-        } else {
-            println("Downloading Login credentials")
+//        if(resetDataOnTime()) {
+//            goToCustomerSelctionPage()
+//        } else {
+//            println("Downloading Login credentials")
             goToTryLogingInPage()
-        }
+//        }
     }
 
     private fun resetDataOnTime(): Boolean {
@@ -74,7 +74,7 @@ class LoginCheck : AppCompatActivity() {
     }
 
     private fun goToTryLogingInPage() {
-        val i = Intent(this@LoginCheck, TryLogingIn::class.java)
+        val i = Intent(this@LoginCheck, StartTrip::class.java)
         startActivity(i)
         finish()
     }

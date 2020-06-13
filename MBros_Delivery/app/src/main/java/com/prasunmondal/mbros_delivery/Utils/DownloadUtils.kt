@@ -39,6 +39,7 @@ class DownloadUtils(private val context: Context) {
 			override fun onReceive(context: Context, intent: Intent) {
 				println("Download Complete!")
 				onComplete.invoke()
+				context.unregisterReceiver(this)
 			}
 		}
 		context.registerReceiver(onComplete, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))

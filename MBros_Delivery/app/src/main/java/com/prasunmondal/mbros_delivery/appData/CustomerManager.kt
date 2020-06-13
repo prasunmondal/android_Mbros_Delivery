@@ -14,11 +14,11 @@ class CustomerManager {
     lateinit var current: Customer
 
     fun save() {
-        SerializeUtil().saveSerializable(appContext.getLoginCheckActivity(), customerMap, "customerMap")
+        SerializeUtil().saveSerializable(appContext.initialContext, customerMap, "customerMap")
     }
 
     fun read() {
-        customerMap = SerializeUtil().readSerializable(appContext.getLoginCheckActivity(), "customerMap") as MutableMap<String, Customer>
+        customerMap = SerializeUtil().readSerializable(appContext.initialContext, "customerMap") as MutableMap<String, Customer>
     }
 
     fun find(name: String): Boolean {
@@ -39,7 +39,7 @@ class CustomerManager {
 
     fun resetData() {
         customerMap = mutableMapOf()
+        customerMap.clear()
         save()
-        SerializeUtil().removeSerializable(appContext.getLoginCheckActivity(), "customerMap")
     }
 }

@@ -48,4 +48,5 @@
     <string name="title_activity_try_loging_in">TryLogingIn</string>
     <string name="title_activity_job_service_demo">JobServiceDemo</string>
     <string name="title_activity_password_to_reset_data">PasswordToResetData</string>
+    <string name="title_activity_start_trip">StartTrip</string>
 </resources>

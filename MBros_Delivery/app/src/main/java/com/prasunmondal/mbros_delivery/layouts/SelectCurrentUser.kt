@@ -32,7 +32,7 @@ class SelectCurrentUser : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_current_user)
         setSupportActionBar(toolbar)
-        AppContext.Singleton.instance.setCustomerSelectionActivity(this)
+        AppContext.Singleton.instance.initialContext = this
         try {
             cm.read()
         } catch (e: Exception) {
