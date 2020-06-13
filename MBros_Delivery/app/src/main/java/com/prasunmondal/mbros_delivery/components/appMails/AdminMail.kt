@@ -68,7 +68,7 @@ class AdminMail: AppMails {
             total.paidAmount = (total.paidAmount.toInt() + v.paidAmount.toInt()).toString()
             total.newBalAmount = (total.newBalAmount.toInt() + v.newBalAmount.toInt()).toString()
 
-            total.unitPrice = ""
+            total.unitPrice = (total.totalTodayAmount.toDouble() / total.totalKG.toDouble()).toString()
         }
         return total
     }
